@@ -45,12 +45,17 @@
   gap: 20px;
 }
 
-.nav-center a {
+..nav-center a {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* this centers the text horizontally */
+  text-align: center;
+  width: 130px;             /* consistent width for symmetry */
+  height: 42px;
   text-decoration: none;
   color: var(--color-text);
   font-weight: 500;
-  font-size: 1.1em;
-  padding: 8px 12px;
+  font-size: 1.05em;
   border-radius: 4px;
   transition: background 0.3s, color 0.3s;
 }
