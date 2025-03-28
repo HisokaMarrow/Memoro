@@ -42,15 +42,14 @@
 .nav-center {
   flex: 2;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .nav-center a {
-  gap: 10px;
   display: flex;
   align-items: center;
   justify-content: center;  /* center text horizontally */
-  padding: 10px 18px;
+  padding: 10px 12px;
   min-width: 80px;          /* makes them all box-like */
   height: 42px;              /* consistent height */
   text-align: center;
