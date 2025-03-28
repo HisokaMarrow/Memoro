@@ -22,23 +22,27 @@
   align-items: center;
 }
 
+.nav-left {
+  justify-content: flex-start;
+}
+
 .nav-center {
   justify-content: center;
-  gap: 20px;
   flex-grow: 1;
+  gap: 24px;
 }
 
 .nav-center a {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 80px;
-  height: 40px;
-  text-align: center;
-  text-decoration: none;
-  color: var(--color-text);
+  min-width: 100px;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 1em;
   font-weight: 500;
-  font-size: 1.05em;
+  color: var(--color-text);
+  text-decoration: none;
   border-radius: 6px;
   transition: background 0.2s ease, color 0.2s ease;
 }
