@@ -25,7 +25,11 @@
 }
 
 .nav-center {
-  justify-content: center;
+  position: fixed;
+  top: 15px; /* or match your header height */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .button {
