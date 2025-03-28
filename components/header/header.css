@@ -1,20 +1,28 @@
+/* ======= HEADER WRAPPER ======= */
 .site-header {
-  background-color: var(--color-bg-card); /* Light card-like background */
+  background-color: var(--color-bg-card); /* Light neutral background */
   padding: 20px 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   border-bottom: 1px solid var(--color-border);
 }
 
+/* ======= HEADER NAV BAR ======= */
 .nav-bar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
   font-family: 'Poppins', sans-serif;
+}
+
+/* ======= NAV LEFT (Logo) ======= */
+.nav-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .logo {
@@ -25,12 +33,21 @@
   text-decoration: none;
 }
 
+/* ======= NAV RIGHT (Links) ======= */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .nav-links {
   display: flex;
   gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
@@ -50,7 +67,7 @@
   color: white;
 }
 
-/* CTA Button Link in Nav */
+/* ======= CTA Button in Nav ======= */
 .cta-button {
   background-color: var(--color-secondary);
   padding: 8px 16px;
