@@ -43,7 +43,7 @@
   fetch('/components/gameheadertimerdown/header.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('game-header').innerHTML = html;
+      document.getElementById('gameheadertimerdown').innerHTML = html;
 
       const style = document.createElement('link');
       style.rel = 'stylesheet';
