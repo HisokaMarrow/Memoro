@@ -29,7 +29,7 @@
 }
 
 .button {
-  background-color: #27486e;
+  background-color: #2aa198;
   border: none;
   border-radius: 5px;
   padding: 8px 16px;
@@ -41,7 +41,7 @@
 }
 
 .button:hover {
-  background-color: #27486e;
+  background-color: #2aa198;
 }
 
 #remainingTimer {
