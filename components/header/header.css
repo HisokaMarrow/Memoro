@@ -46,11 +46,12 @@
 }
 
 .nav-center a {
+  gap: 10px;
   display: flex;
   align-items: center;
   justify-content: center;  /* center text horizontally */
   padding: 10px 18px;
-  min-width: 100px;          /* makes them all box-like */
+  min-width: 80px;          /* makes them all box-like */
   height: 42px;              /* consistent height */
   text-align: center;
   border-radius: 6px;
