@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Word Challenge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+  	#countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 0px;
+      text-align: center;
+    }
+    .word-display {
+      font-size: 2.2em;
+      font-weight: bold;
+      margin: 30px 0;
+    }
+	
+  </style>
+</head>
+<body>
+
+<header class="top-hud">
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="settings.html" class="button">Give Up</a>
+      <a href="#" onclick="endEarly()" class="button">End Early</a>
+    </div>
+    <div class="nav-center">
+      <a href="#" id="pauseButton" class="button" onclick="togglePause()">Pause</a>
+    </div>
+    <div class="nav-right">
+      <div id="remainingTimer">
+        Time Left: <span id="timer">0</span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="game-container" id="gameContainer">
+    <h2 id="gameTitle">Starting in...</h2>
+    <div id="countdown" class="countdown">5</div>
+    <div id="wordBox" class="word-display"></div>
+  </div>
+</main>
+
+<!-- LINK TO EXTERNAL WORD LIST -->
+<script src="wordlist.js"></script>
+
+<script>
+  const difficulty = localStorage.getItem("wordDifficulty") || "easy";
+  const totalTime = parseInt(localStorage.getItem("wordTimeLimit") || "60");
+
+  let timeLeft = totalTime;
+  let isPaused = false;
+  let pauseResolve;
+  let timerInterval;
+  let gameEndedEarly = false;
+
+  let words = [];
+  let shownWords = [];
+  let currentIndex = 0;
+
+  const countdownEl = document.getElementById("countdown");
+  const title = document.getElementById("gameTitle");
+  const timerDisplay = document.getElementById("timer");
+  const pauseButton = document.getElementById("pauseButton");
+  const wordBox = document.getElementById("wordBox");
+
+  function togglePause() {
+    isPaused = !isPaused;
+    pauseButton.textContent = isPaused ? "Resume" : "Pause";
+    if (!isPaused && pauseResolve) {
+      pauseResolve();
+      pauseResolve = null;
+    }
+  }
+
+  function waitWhilePaused() {
+    return new Promise(resolve => {
+      if (!isPaused) resolve();
+      else pauseResolve = resolve;
+    });
+  }
+
+  function startCountdown() {
+    let count = 5;
+    countdownEl.textContent = count;
+    const interval = setInterval(() => {
+      count--;
+      countdownEl.textContent = count;
+      if (count === 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+        title.style.display = "none";
+        startGame();
+      }
+    }, 1000);
+  }
+
+  function startGame() {
+    timerDisplay.textContent = timeLeft;
+    wordBox.textContent = "";
+    words = [...wordList[difficulty]];
+    shuffle(words);
+
+    timerInterval = setInterval(() => {
+      if (!isPaused) {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          finishGame();
+        }
+      }
+    }, 1000);
+
+    showNextWord();
+  }
+
+  function showNextWord() {
+    if (gameEndedEarly) return;
+
+    if (currentIndex < words.length) {
+      wordBox.innerText = words[currentIndex];
+      shownWords.push(words[currentIndex]);
+      currentIndex++;
+      setTimeout(() => {
+        if (!gameEndedEarly) showNextWord();
+      }, 3000);
+    } else {
+      finishGame();
+    }
+  }
+
+  function finishGame() {
+    clearInterval(timerInterval);
+    gameEndedEarly = true;
+    localStorage.setItem("shownWords", JSON.stringify(shownWords));
+    wordBox.textContent = "Test Ended";
+    setTimeout(() => {
+      window.location.href = "results.html";
+    }, 2000);
+  }
+
+  function endEarly() {
+    gameEndedEarly = true;
+    finishGame();
+  }
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  startCountdown();
+</script>
+
+</body>
+</html>

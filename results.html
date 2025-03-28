@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 60px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-box {
+      width: 70px;
+      height: 48px;
+      font-size: 1.1em;
+      text-align: center;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .input-box.correct {
+      border: 2px solid green;
+      background-color: #e7f7e7;
+    }
+
+    .input-box.incorrect {
+      border: 2px solid red;
+      background-color: #fbeaea;
+    }
+
+    .correct-answer {
+      font-size: 0.85em;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .button-block {
+      margin-top: 40px;
+      display: flex;
+	  gap: 20px;
+      justify-content: center;
+    }
+
+    .highlight {
+      color: #d6a77a;
+      font-weight: bold;
+    }
+
+    .result-summary {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    h3.instruction {
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 1.2em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <div class="game-container">
+    <h2>Memory Results</h2>
+    <h3 class="instruction">Write all the words you can remember</h3>
+
+    <div id="resultsArea" class="results-grid"></div>
+
+    <div id="summary" class="result-summary"></div>
+
+    <div class="button-block">
+  <button class="button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="checkAnswers()">Check Answers</button>
+  <button class="button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="goToTechnique()">Try Memory Technique</button>
+    </div>
+	<div style="margin-top: 30px;">
+  <button class="button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="goHome()">Return to Home Screen</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const shownWords = JSON.parse(localStorage.getItem("shownWords") || "[]");
+
+  function renderInputs() {
+    const container = document.getElementById("resultsArea");
+    container.innerHTML = "";
+
+    for (let i = 0; i < shownWords.length; i++) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "input-wrapper";
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.maxLength = 12;
+      input.className = "input-box";
+      input.placeholder = "Word";
+
+      const correctLabel = document.createElement("div");
+      correctLabel.className = "correct-answer";
+
+      wrapper.appendChild(input);
+      wrapper.appendChild(correctLabel);
+      container.appendChild(wrapper);
+    }
+  }
+
+  function checkAnswers() {
+    const inputs = document.querySelectorAll(".input-box");
+    const correctWords = shownWords.map(w => w.toLowerCase());
+    let correctCount = 0;
+    const used = new Set();
+
+    inputs.forEach(input => {
+      const word = input.value.trim().toLowerCase();
+      const wrapper = input.parentElement;
+      const label = wrapper.querySelector(".correct-answer");
+
+      if (correctWords.includes(word) && !used.has(word)) {
+        input.classList.add("correct");
+        input.classList.remove("incorrect");
+        label.textContent = "";
+        correctCount++;
+        used.add(word);
+      } else {
+        input.classList.add("incorrect");
+        input.classList.remove("correct");
+        label.textContent = "Incorrect";
+      }
+    });
+
+    const total = shownWords.length;
+    let resultText = `You remembered <span class="highlight">${correctCount}</span> out of ${total} words`;
+
+    if (correctCount >= 18) {
+      resultText += `<br><strong class='highlight'>You're a genius and a memory master!</strong>`;
+    } else if (correctCount >= 12) {
+      resultText += `<br><strong class='highlight'>Well done, you performed like a genius!</strong>`;
+    } else {
+      resultText += `<br><strong>Plenty of room to improve — keep practicing!</strong>`;
+    }
+
+    document.getElementById("summary").innerHTML = resultText;
+  }
+
+  function goToTechnique() {
+    window.location.href = "association.html";
+  }
+  
+  function goHome() {
+  window.location.href = "index.html";
+}
+
+  renderInputs();
+</script>
+
+</body>
+</html>

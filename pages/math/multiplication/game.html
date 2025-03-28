@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multiplication Challenge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    #answerInput {
+      display: none;
+      margin: 30px auto 0;
+      padding: 12px;
+      width: 180px;
+      font-size: 1.2em;
+      text-align: center;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+    }
+	#countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 0px;
+      text-align: center;
+  </style>
+</head>
+<body>
+
+<header class="top-hud">
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="settings.html" class="button">Give Up</a>
+      <a href="#" onclick="endEarly()" class="button">End Early</a>
+    </div>
+    <div class="nav-center">
+      <a href="#" id="pauseButton" class="button" onclick="togglePause()">Pause</a>
+    </div>
+    <div class="nav-right">
+      <div id="remainingTimer">
+        Time Left: <span id="timer">0</span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="game-container" id="gameContainer">
+    <h2 id="gameTitle">Starting in...</h2>
+    <div id="countdown" class="countdown">5</div>
+    <div id="problem" style="font-size: 2em; margin-top: 20px;"></div>
+    <input type="number" id="answerInput" placeholder="Your Answer" />
+  </div>
+</main>
+
+<script>
+  const difficulty = localStorage.getItem("mathDifficulty") || "beginner";
+  const totalTime = parseInt(localStorage.getItem("mathTimeLimit") || "60");
+
+  let timeLeft = totalTime;
+  let isPaused = false;
+  let pauseResolve;
+  let timerInterval;
+  let currentAnswer;
+  let problems = [];
+  let userAnswers = [];
+
+  const timerDisplay = document.getElementById("timer");
+  const pauseButton = document.getElementById("pauseButton");
+  const input = document.getElementById("answerInput");
+  const problemBox = document.getElementById("problem");
+  const title = document.getElementById("gameTitle");
+  const countdownEl = document.getElementById("countdown");
+
+ 
+  function togglePause() {
+    isPaused = !isPaused;
+    pauseButton.textContent = isPaused ? "Resume" : "Pause";
+    if (!isPaused && pauseResolve) {
+      pauseResolve();
+      pauseResolve = null;
+    }
+  }
+
+  function waitWhilePaused() {
+    return new Promise(resolve => {
+      if (!isPaused) {
+        resolve();
+      } else {
+        pauseResolve = resolve;
+      }
+    });
+  }
+
+  function startCountdown() {
+    let countdown = 5;
+    countdownEl.textContent = countdown;
+    const interval = setInterval(() => {
+      countdown--;
+      countdownEl.textContent = countdown;
+      if (countdown === 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+        title.style.display = "none";
+        startGame();
+      }
+    }, 1000);
+  }
+
+  function generateProblem() {
+    let a, b;
+    switch (difficulty) {
+      case "beginner":
+        a = Math.floor(Math.random() * 10);
+        b = Math.floor(Math.random() * 10);
+        break;
+      case "advanced":
+        a = Math.floor(Math.random() * 90 + 10);
+        b = Math.floor(Math.random() * 90 + 10);
+        break;
+      case "expert":
+        a = Math.floor(Math.random() * 900 + 100);
+        b = Math.floor(Math.random() * 900 + 100);
+        break;
+    }
+    currentAnswer = a * b
+    problems.push({ a, b, answer: currentAnswer });
+    problemBox.textContent = `${a} x ${b}`;
+  }
+
+  function startGame() {
+    input.style.display = "block";
+    input.focus();
+    generateProblem();
+    timerDisplay.textContent = timeLeft;
+
+    timerInterval = setInterval(async () => {
+      if (!isPaused) {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          finishGame();
+        }
+      }
+    }, 1000);
+
+    input.addEventListener("keyup", async function (e) {
+      if (e.key === "Enter") {
+        userAnswers.push(input.value.trim());
+        input.value = "";
+        await waitWhilePaused();
+        generateProblem();
+      }
+    });
+  }
+
+  function finishGame() {
+    clearInterval(timerInterval);
+    localStorage.setItem("mathProblems", JSON.stringify(problems));
+    localStorage.setItem("mathUserAnswers", JSON.stringify(userAnswers));
+    problemBox.textContent = "Time's Up!";
+    input.style.display = "none";
+    setTimeout(() => window.location.href = "results.html", 2000);
+  }
+
+  function endEarly() {
+    finishGame();
+  }
+
+  startCountdown();
+</script>
+
+</body>
+</html>

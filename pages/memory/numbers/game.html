@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Number Memory - Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    #output {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 0px;
+      text-align: center;
+    }
+
+    #goWrapper {
+      margin-top: 40px;
+    }
+
+    #goWrapper .button {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      font-size: 1.4em;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<header class="top-hud">
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="settings.html" class="button">Give Up</a>
+      <a href="#" onclick="endEarly()" class="button">End Early</a>
+    </div>
+    <div class="nav-center">
+      <a href="#" id="pauseButton" class="button" onclick="togglePause()">Pause</a>
+    </div>
+    <div class="nav-right">
+      <div id="remainingTimer">
+        Time Left: <span id="timer">0</span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="game-container">
+    <div id="goWrapper">
+      <button class="button" id="startButton" style="padding: 18px 40px; font-size: 1.4em;" onclick="startCountdown()">Go</button>
+    </div>
+    <h2 id="countdownLabel" style="display: none;">Starting in...</h2>
+    <div id="countdown" style="display: none;"></div>
+    <div id="output" style="display: none;"></div>
+  </div>
+</main>
+
+<script>
+  let isPaused = false;
+  let pauseResolve;
+  let pauseButton;
+  let shouldStopGame = false;
+
+  const delay = (parseFloat(localStorage.getItem("delay")) || 2) * 1000;
+  const rangeMax = parseInt(localStorage.getItem("rangeMax")) || 99;
+  const testTime = (parseInt(localStorage.getItem("testTime")) || 30) * 1000;
+  const padZeros = localStorage.getItem("padZeros") === "true";
+  const enableVoice = localStorage.getItem("enableVoice") === "true";
+  const speakIndividually = localStorage.getItem("speakIndividually") === "true";
+
+  let currentSequence = [];
+  let remainingTime = testTime / 1000;
+  let timerInterval;
+
+  function speak(text) {
+    if (!enableVoice) return;
+    const utter = new SpeechSynthesisUtterance();
+    utter.text = speakIndividually ? text.toString().split('').join(' ') : text;
+    utter.lang = 'en-US';
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utter);
+  }
+
+  function waitWhilePaused() {
+    return new Promise(resolve => {
+      if (!isPaused) {
+        resolve();
+      } else {
+        pauseResolve = resolve;
+      }
+    });
+  }
+
+  function togglePause() {
+    isPaused = !isPaused;
+    pauseButton.textContent = isPaused ? "Resume" : "Pause";
+    if (!isPaused && pauseResolve) {
+      pauseResolve();
+      pauseResolve = null;
+    }
+  }
+
+  function startCountdown() {
+    const unlock = new SpeechSynthesisUtterance('');
+    speechSynthesis.speak(unlock);
+
+    document.getElementById("goWrapper").style.display = "none";
+    document.getElementById("countdownLabel").style.display = "block";
+    document.getElementById("countdown").style.display = "block";
+
+    let countdownValue = 5;
+    document.getElementById("countdown").innerText = countdownValue;
+
+    const countdownInterval = setInterval(() => {
+      countdownValue--;
+      document.getElementById("countdown").innerText = countdownValue;
+      if (countdownValue === 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdownLabel").style.display = "none";
+        document.getElementById("countdown").style.display = "none";
+        beginGame();
+      }
+    }, 1000);
+  }
+
+  function beginGame() {
+    document.getElementById("remainingTimer").style.display = "block";
+    document.getElementById("output").style.display = "block";
+
+    pauseButton = document.getElementById("pauseButton");
+    currentSequence = [];
+    timerInterval = setInterval(updateTimer, 1000);
+
+    const startTime = Date.now();
+
+    (async function runLoop() {
+      while (Date.now() - startTime < testTime && !shouldStopGame) {
+        await waitWhilePaused();
+
+        let num = getRandomNumber(1, rangeMax);
+        if (padZeros && num < 10) num = "0" + num;
+        currentSequence.push(num);
+
+        document.getElementById("output").innerText = num;
+        speak(num);
+
+        await new Promise(res => setTimeout(res, delay));
+      }
+
+      if (!shouldStopGame) {
+        localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+        document.getElementById("output").innerText = "Done!";
+        setTimeout(() => {
+          window.location.href = "results.html";
+        }, 2000);
+      }
+    })();
+  }
+
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function updateTimer() {
+    if (isPaused) return;
+    remainingTime--;
+    document.getElementById("timer").innerText = remainingTime;
+
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval);
+      shouldStopGame = true;
+      localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+      document.getElementById("output").innerText = "Time's Up!";
+      setTimeout(() => {
+        window.location.href = "results.html";
+      }, 2000);
+    }
+  }
+
+  function endEarly() {
+    clearInterval(timerInterval);
+    shouldStopGame = true;
+    localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+    document.getElementById("output").innerText = "Done";
+    setTimeout(() => {
+      window.location.href = "results.html";
+    }, 2000);
+  }
+</script>
+
+</body>
+</html>

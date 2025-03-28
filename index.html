@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quick Memory Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    .daily-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .checkbox-complete {
+      margin-top: 10px;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Intro Unlock Animation -->
+<div id="memory-lock-overlay">
+  <div class="lock-container">
+    <div class="ring">M</div>
+    <div class="ring">E</div>
+    <div class="ring">M</div>
+    <div class="ring">O</div>
+    <div class="ring">R</div>
+    <div class="ring">Y</div>
+  </div>
+  <p class="unlock-text">Unlocking Memory...</p>
+</div>
+
+<!-- Navigation Bar -->
+<header class="top-hud">
+  <nav class="top-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="pages/memory.html">Memory Games</a>
+    <a href="pages/math.html">Math Training</a>
+    <a href="pages/riddles.html">Riddles</a>
+    <a href="pages/vault.html">Memory Vault</a>
+  </nav>
+</header>
+
+<main>
+  <h1 class="page-title">Unlock the Long-Lost Art of Memory</h1>
+  <p class="page-sub">
+    Discover how a powerful memory can improve your learning, creativity, job performance, and even help you reconnect with your past.  
+    Dive into ancient techniques used by orators, monks, and memory athletes to develop extraordinary recall.
+  </p>
+
+  <!-- Trial Test Game Box -->
+  <div class="game-container" style="max-width: 600px; margin: 60px auto; text-align: center;">
+    <h2>Ready to Test Your Memory?</h2>
+    <p>Try out the quick memory test to see how well you remember words!</p>
+    <div style="padding-left: 32px; padding-right: 60px;">
+      <a href="test.html" class="button" style="width: 100%; padding: 16px; font-size: 1.2em; display: inline-block; margin-top: 20px;">Start Trial Test</a>
+    </div>
+  </div>
+
+  <!-- Daily Practice Section -->
+  <div class="game-container" style="max-width: 1200px; margin: 60px auto; text-align: center;">
+    <h2>Daily Practice</h2>
+    <p>Sharpen your brain with a random set of 3 challenges every time you visit the site.</p>
+    <div class="daily-grid" id="dailyPracticeBox"></div>
+  </div>
+</main>
+
+<script>
+  const games = [
+    {
+      category: "Memory",
+      title: "Number Memory",
+      description: "Remember and recall sequences of numbers.",
+      link: "pages/memory/numbers/settings.html"
+    },
+    {
+      category: "Memory",
+      title: "Word Memory",
+      description: "Try to remember as many words as you can.",
+      link: "pages/memory/words/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Addition Challenge",
+      description: "Solve as many addition problems as you can in limited time.",
+      link: "pages/math/addition/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Subtraction Challenge",
+      description: "How fast can you solve subtraction problems?",
+      link: "pages/math/subtraction/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Multiplication Master",
+      description: "Speed through multiplication tasks under pressure.",
+      link: "pages/math/multiplication/settings.html"
+    },
+	{
+      category: "Math",
+      title: "Devision Master",
+      description: "Speed through devision tasks under pressure.",
+      link: "pages/math/devision/settings.html"
+    },
+	{
+      category: "Math",
+      title: "Percentage Master",
+      description: "Speed through percentage calculation tasks under pressure.",
+      link: "pages/math/percentage/settings.html"
+    },
+    {
+      category: "Riddles",
+      title: "Logic Riddles",
+      description: "Solve tricky logic puzzles and train your brain.",
+      link: "pages/riddles/logic/settings.html"
+    },
+    {
+      category: "Riddles",
+      title: "Math Riddles",
+      description: "Use both logic and math to crack these riddles.",
+      link: "pages/riddles/nummeric/settings.html"
+    }
+  ];
+
+  // Function to pick one random game from each category
+  function getCategoryRandomGames() {
+    const memory = games.filter(g => g.category === "Memory");
+    const math = games.filter(g => g.category === "Math");
+    const riddles = games.filter(g => g.category === "Riddles");
+
+    return [
+      memory[Math.floor(Math.random() * memory.length)],
+      math[Math.floor(Math.random() * math.length)],
+      riddles[Math.floor(Math.random() * riddles.length)]
+    ];
+  }
+
+  // Function to render daily practice games
+  function renderDailyPractice() {
+    const container = document.getElementById("dailyPracticeBox");
+
+    // Check sessionStorage for games or randomize if not available
+    let selectedGames = JSON.parse(sessionStorage.getItem("dailyGames"));
+    if (!selectedGames) {
+      selectedGames = getCategoryRandomGames(); // Pick one game from each category
+      sessionStorage.setItem("dailyGames", JSON.stringify(selectedGames));
+    }
+
+    selectedGames.forEach((game, index) => {
+      const checked = sessionStorage.getItem(`dailyGame_${game.title}`) === "true";  // Retrieve completed status
+      const box = document.createElement("div");
+      box.className = "game-box";
+      box.innerHTML = `
+        <h3>${game.title}</h3>
+        <p>${game.description}</p>
+        <a href="${game.link}" class="button">Go to Game</a>
+        <div class="checkbox-complete">
+  			<input type="checkbox" id="dailyGameCheck${index}" ${checked ? "checked" : ""} disabled>
+  			<label for="dailyGameCheck${index}">Completed</label>
+		</div>
+      `;
+      container.appendChild(box);
+    });
+  }
+
+  // Handle completion of games and update sessionStorage and localStorage
+  function handleGameCompletion(index) {
+    const game = JSON.parse(sessionStorage.getItem("dailyGames"))[index];
+    localStorage.setItem(`dailyGame_${game.title}`, "true");  // Mark this game as completed in localStorage
+  }
+
+  // Initialize Daily Practice on page load
+  window.addEventListener("load", renderDailyPractice);
+</script>
+
+<script src="scripts/intro.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Riddle Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .result-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: left;
+    }
+
+    .result-box.correct {
+      border: 2px solid green;
+      background-color: #e7f7e7;
+    }
+
+    .result-box.incorrect {
+      border: 2px solid red;
+      background-color: #fbeaea;
+    }
+
+    .correct-answer {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 10px;
+    }
+
+    .summary {
+      font-size: 1.3em;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .time-stat {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .button-row {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .button {
+      max-width: 400px;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+<header class="top-hud">
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="../../riddles.html" class="button">Return to Riddles</a>
+    </div>
+    <div class="nav-right">
+      <a href="game.html" class="button">Try Again</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="game-container">
+    <div id="summary" class="summary">Loading results...</div>
+    <div id="resultsGrid" class="results-grid"></div>
+
+    <div class="button-row">
+      <button class="button" onclick="goHome()">Return to Home Screen</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const riddles = JSON.parse(localStorage.getItem("riddleQuestions") || "[]");
+  const answers = JSON.parse(localStorage.getItem("riddleUserAnswers") || "[]");
+  const times = JSON.parse(localStorage.getItem("riddleTimes") || "[]");
+  const totalTime = parseInt(localStorage.getItem("riddleTotalTime") || "0");
+
+  const grid = document.getElementById("resultsGrid");
+  const summary = document.getElementById("summary");
+
+  let correct = 0;
+
+  function normalizeInput(text) {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s]/g, '')        // Remove punctuation
+      .split(/[\s,]+/)                // Split by space or comma
+      .filter(Boolean);               // Remove empty strings
+  }
+
+  function isAnswerCorrect(userInput, keywordList) {
+    const inputWords = normalizeInput(userInput);
+    return keywordList.every(keyword => inputWords.includes(keyword));
+  }
+
+  riddles.forEach((item, i) => {
+    const userAnswer = (answers[i] || "").trim().toLowerCase();
+    const correctAnswer = item.answer.trim().toLowerCase();
+
+    // Automatically derive keywords from correct answer
+    const keywords = normalizeInput(correctAnswer);
+    const isCorrect = isAnswerCorrect(userAnswer, keywords);
+
+    if (isCorrect) correct++;
+
+    const box = document.createElement("div");
+    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+    box.innerHTML = `
+      <strong>Riddle:</strong><br>${item.riddle}<br><br>
+      <strong>Your Answer:</strong> ${answers[i] || "—"}
+      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
+      <div class="time-stat">Time: ${times[i] || 0}s</div>
+    `;
+    grid.appendChild(box);
+  });
+
+  summary.innerHTML = `You solved ${correct} out of ${riddles.length} correctly (${Math.round((correct / riddles.length) * 100)}%)<br>Total Time: ${totalTime}s`;
+
+  function goHome() {
+    window.location.href = "../../../index.html";
+  }
+
+  const gameTitle = "Logic Riddles";
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+</script>
+
+</body>
+</html>
