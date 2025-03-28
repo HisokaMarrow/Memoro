@@ -1,4 +1,4 @@
-/* ========== HEADER WRAPPER ========== */
+/* ========== HEADER CONTAINER ========== */
 .site-header {
   background-color: var(--color-bg-card);
   padding: 20px 0;
@@ -11,22 +11,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
   padding: 0 30px;
   font-family: 'Poppins', sans-serif;
 }
 
-.nav-left,
-.nav-center,
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-/* LOGO LEFT */
+/* ========== LEFT: LOGO ========== */
 .nav-left {
   flex: 1;
+  display: flex;
   justify-content: flex-start;
 }
 
@@ -38,20 +31,22 @@
   letter-spacing: 1px;
 }
 
-/* LINKS CENTER */
+/* ========== CENTER: NAV LINKS ========== */
 .nav-center {
   flex: 2;
+  display: flex;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 32px;
 }
 
 .nav-center a {
   display: flex;
   align-items: center;
-  justify-content: center;  /* center text horizontally */
-  padding: 10px 12px;
-  min-width: 80px;          /* makes them all box-like */
-  height: 42px;              /* consistent height */
+  justify-content: center;
+  padding: 10px 18px;
+  min-width: 120px;
+  height: 42px;
   text-align: center;
   border-radius: 6px;
   font-weight: 500;
@@ -67,9 +62,10 @@
   color: white;
 }
 
-/* SIGN IN RIGHT */
+/* ========== RIGHT: SIGN IN BUTTON ========== */
 .nav-right {
   flex: 1;
+  display: flex;
   justify-content: flex-end;
 }
 
@@ -79,9 +75,9 @@
   border-radius: 6px;
   color: white !important;
   font-weight: 600;
+  font-size: 1em;
   text-decoration: none;
   transition: background 0.2s ease;
-  font-size: 1em;
 }
 
 .cta-button:hover {
