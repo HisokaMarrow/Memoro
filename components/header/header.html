@@ -1,10 +1,33 @@
-<!-- /components/header/header.html -->
-<header class="top-hud">
-  <nav class="top-nav">
-    <a href="/index.html">Home</a>
-    <a href="/memory.html" class="active">Memory Games</a>
-    <a href="/math.html">Math Training</a>
-    <a href="/riddles.html">Riddles</a>
-    <a href="/vault.html">Memory Vault</a>
-  </nav>
-</header>
+/* /components/header/header.css */
+.top-hud {
+  background-color: #ffffff;
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  transition: color 0.3s, background 0.3s;
+}
+
+.top-nav a:hover {
+  color: #fca311;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.top-nav a.active {
+  color: white;
+  background-color: #fca311;
+  border-radius: 4px;
+}
