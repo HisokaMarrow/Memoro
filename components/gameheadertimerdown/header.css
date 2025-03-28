@@ -59,22 +59,30 @@
   color: white;
   padding: 6px 12px;
   border-radius: 5px;
-  height: 25px;
-  min-width: 130px;
+  height: 40px;
+  min-width: 140px;
   white-space: nowrap;
   font-family: 'Poppins', sans-serif;
   line-height: 1;
-  vertical-align: middle;
-  text-align: center;
+}
+
+#timer-container {
+  position: relative;
+  display: inline-block;
+  width: 3ch;
+  text-align: right;
+  font-family: monospace;
 }
 
 #timer {
-  font-family: monospace;
-  display: inline-block;
-  width: 2ch;
-  text-align: right;
-  line-height: 1;
-  padding-left: 6px;
   position: relative;
-  top: 1px; /* adjust this pixel to visually align perfectly */
+  z-index: 2;
+}
+
+.ghost {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
