@@ -1,3 +1,4 @@
+/* ====== MAIN HEADER LAYOUT ====== */
 .site-header {
   background-color: var(--color-bg-card);
   padding: 20px 0;
@@ -5,36 +6,23 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+/* ====== FLEX WRAPPER ====== */
 .nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
-  font-family: 'Poppins', sans-serif;
+  padding: 0 30px;
+  gap: 10px;
 }
 
-.nav-left,
-.nav-center,
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
+/* ====== LEFT: LOGO ====== */
 .nav-left {
   flex: 1;
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
-}
-
-.nav-center {
-  flex: 2;
-  justify-content: center;
-}
-
-.nav-right {
-  flex: 1;
-  justify-content: flex-end;
 }
 
 .logo {
@@ -45,40 +33,63 @@
   text-decoration: none;
 }
 
-.nav-links {
+/* ====== CENTER: NAV LINKS ====== */
+.nav-center {
+  flex: 2;
   display: flex;
-  gap: 24px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-.nav-links a {
-  color: var(--color-text);
+.nav-center a {
   text-decoration: none;
+  color: var(--color-text);
   font-weight: 500;
+  font-size: 1.1em;
   padding: 8px 12px;
   border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
-  font-size: 1.05em;
+  transition: background 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-center a:hover,
+.nav-center a.active {
   background-color: var(--color-secondary-hover);
   color: white;
 }
 
+/* ====== RIGHT: CTA BUTTON ====== */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .cta-button {
-  background-color: var(--color-secondary);
-  padding: 8px 16px;
-  border-radius: 5px;
+  display: inline-block;
+  background: var(--color-secondary);
   color: white !important;
-  font-weight: 600;
   text-decoration: none;
-  transition: background 0.2s ease;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 1.1em;
 }
 
 .cta-button:hover {
   background-color: var(--color-secondary-hover);
+  color: white !important;
 }
