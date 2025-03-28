@@ -44,16 +44,19 @@
 <div id="site-header"></div>
 
 <script>
+  // Load header HTML
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
+      // Then load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '/components/header/header.css';
+      link.href = '/components/header/header.css';  // Make sure this file exists
       document.head.appendChild(link);
-    });
+    })
+    .catch(err => console.error('Error loading header:', err));
 </script>
 
 
