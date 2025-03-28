@@ -37,22 +37,20 @@
 </head>
 <body>
 
-<header class="top-hud">
-  <nav class="top-nav">
-    <div class="nav-left">
-      <a href="settings.html" class="button">Give Up</a>
-      <a href="#" onclick="endEarly()" class="button">End Early</a>
-    </div>
-    <div class="nav-center">
-      <a href="#" id="pauseButton" class="button" onclick="togglePause()">Pause</a>
-    </div>
-    <div class="nav-right">
-      <div id="remainingTimer">
-        Time Left: <span id="timer">0</span>
-      </div>
-    </div>
-  </nav>
-</header>
+<div id="game-header"></div>
+
+<script>
+  fetch('/components/gameheadertimerdown/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('game-header').innerHTML = html;
+
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/game-header/ingameheadertimerdown.css';
+      document.head.appendChild(style);
+    });
+</script>
 
 <main>
   <div class="game-container">
