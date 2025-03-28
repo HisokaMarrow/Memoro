@@ -18,15 +18,34 @@
 </head>
 <body>
 
-<header class="top-hud">
-  <nav class="top-nav">
-    <a href="../index.html">Home</a>
-    <a href="memory.html">Memory Games</a>
-    <a href="math.html">Math Training</a>
-	<a href="riddles.html">Riddles</a>
-    <a href="vault.html" class="active">Memory Vault</a>
-  </nav>
-</header>
+<!-- Navigation Bar -->
+<div id="site-header"></div>
+
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // Load header CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      // Highlight the correct active nav link
+      const links = document.querySelectorAll('.top-nav a');
+      const currentPath = window.location.pathname;
+
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+          link.classList.add('active');
+        }
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
 
 <main>
   <h1 class="page-title">Memory Vault</h1>
