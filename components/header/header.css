@@ -45,19 +45,20 @@
   gap: 20px;
 }
 
-..nav-center a {
+.nav-center a {
   display: flex;
   align-items: center;
-  justify-content: center;  /* this centers the text horizontally */
+  justify-content: center;  /* center text horizontally */
+  padding: 10px 18px;
+  min-width: 120px;          /* makes them all box-like */
+  height: 42px;              /* consistent height */
   text-align: center;
-  width: 130px;             /* consistent width for symmetry */
-  height: 42px;
-  text-decoration: none;
-  color: var(--color-text);
+  border-radius: 6px;
   font-weight: 500;
   font-size: 1.05em;
-  border-radius: 4px;
-  transition: background 0.3s, color 0.3s;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nav-center a:hover,
