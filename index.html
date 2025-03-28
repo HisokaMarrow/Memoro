@@ -44,21 +44,18 @@
 <div id="site-header"></div>
 
 <script>
-  const headerPath = '/components/header/header.html';
-  const headerCSS  = '/components/header/header.css';
-
-  fetch(headerPath)
+  fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = headerCSS;
+      link.href = '/components/header/header.css';
       document.head.appendChild(link);
-    })
-    .catch(err => console.error('Failed to load header:', err));
+    });
 </script>
+
 
 <main>
   <h1 class="page-title">Unlock the Long-Lost Art of Memory</h1>
