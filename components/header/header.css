@@ -1,26 +1,52 @@
-/* ========== HEADER CONTAINER ========== */
 .site-header {
   background-color: var(--color-bg-card);
   padding: 20px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* ========== FLEX LAYOUT ========== */
 .nav-bar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 1200%;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 30px;
-  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
-/* ========== LEFT: LOGO ========== */
-.nav-left {
-  flex: 1;
+.nav-left,
+.nav-center,
+.nav-right {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-center {
+  justify-content: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.nav-center a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 1.05em;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+  background-color: var(--color-secondary-hover);
+  color: white;
 }
 
 .logo {
@@ -31,41 +57,7 @@
   letter-spacing: 1px;
 }
 
-/* ========== CENTER: NAV LINKS ========== */
-.nav-center {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.nav-center a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  min-width: 80px;
-  height: 42px;
-  text-align: center;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 1.05em;
-  text-decoration: none;
-  color: var(--color-text);
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.nav-center a:hover,
-.nav-center a.active {
-  background-color: var(--color-secondary-hover);
-  color: white;
-}
-
-/* ========== RIGHT: SIGN IN BUTTON ========== */
 .nav-right {
-  flex: 1;
-  display: flex;
   justify-content: flex-end;
 }
 
@@ -82,5 +74,4 @@
 
 .cta-button:hover {
   background-color: var(--color-secondary-hover);
-  color: white !important;
 }
