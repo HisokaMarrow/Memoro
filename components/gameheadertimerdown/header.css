@@ -50,7 +50,6 @@
 
 
 #remainingTimer {
-  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,8 +59,22 @@
   color: white;
   padding: 6px 12px;
   border-radius: 5px;
-  min-width: 140px; /* enough for full "Time Left: 100" */
-  height: 25px;      /* optional: consistent height */
-  text-align: center;
+  height: 40px;
+  min-width: 130px;
   white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#timer {
+  font-family: monospace;
+  display: inline-block;
+  width: 2ch;
+  text-align: right;
+  line-height: 1;
+  padding-left: 6px;
+  position: relative;
+  top: 1px; /* adjust this pixel to visually align perfectly */
 }
