@@ -4,45 +4,43 @@
   <meta charset="UTF-8" />
   <title>Math Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
           link.classList.add('active');
         }
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
 <main>
-  <div class="game-container">
-    <div id="summary" class="summary">Loading results...</div>
+  <div class="main-container">
+    <h2 class="main-title">Subtraction Results</h2>
+    <p class="main-text" id="summary">Loading results...</p>
     <div id="resultsGrid" class="results-grid"></div>
+    <div class="main-button-block">
+      <a href="settings.html" class="main-button">Try Again</a>
+      <a href="/index.html" class="main-button">Return Home</a>
+    </div>
   </div>
 </main>
 
@@ -58,7 +56,6 @@
   problems.forEach((item, index) => {
     const userAnswer = answers[index] || "";
     const isCorrect = parseInt(userAnswer) === item.answer;
-
     if (isCorrect) correct++;
 
     const box = document.createElement("div");
@@ -71,10 +68,10 @@
   });
 
   const percent = Math.round((correct / problems.length) * 100);
-  summary.innerHTML = `Well done! You got ${correct} out of ${problems.length} correct (${percent}%)`;
-  
+  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
+
   const gameTitle = "Subtraction Challenge";
-sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
 </body>
