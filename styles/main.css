@@ -127,8 +127,9 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
   max-width: 1000px;
-  max-height: 200px;
+  max-height: auto;
   overflow-x: auto;
+  padding: 30px 20px; /* top/bottom, left/right */
 }
 
 /* =======================
@@ -332,6 +333,15 @@ main {
 .main-carousel-box .main-button {
   margin-top: 20px;
 }
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center; /* vertically centers arrows and carousel */
+  justify-content: center;
+  overflow: hidden;
+  gap: 10px; /* optional, space between arrows and carousel */
+}
+
 
 /* =======================
    RESULTS & FEEDBACK
