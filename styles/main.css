@@ -87,16 +87,6 @@ html, body {
   background-color: var(--color-secondary-hover);
 }
 
-#remainingTimer {
-  min-width: 140px;
-  font-size: 1.1em;
-  font-weight: 500;
-  color: var(--color-text);
-  text-align: right;
-  white-space: nowrap;
-  padding: 8px 60px;
-}
-
 /* ========== BUTTONS ========== */
 .button,
 .button:link,
