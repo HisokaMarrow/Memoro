@@ -119,6 +119,15 @@ main {
   max-width: 1000px;
 }
 
+.main-category-section {
+  background: var(--color-bg-card);
+  padding: 40px 20px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  position: relative;
+
 /* =======================
    GRID / BOXES
 ========================== */
@@ -315,6 +324,42 @@ main {
 
 .main-carousel-box .main-button {
   margin-top: 20px;
+}
+
+.carousel-wrapper {
+  position: relative;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-bg);
+}
+
+.carousel-arrow.left {
+  left: -20px;
+}
+
+.carousel-arrow.right {
+  right: -20px;
 }
 
 /* =======================
