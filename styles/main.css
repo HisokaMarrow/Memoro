@@ -294,3 +294,38 @@ main {
   margin-top: 30px;
   color: var(--color-text);
 }
+
+--color-success: #2ecc71;
+--color-error: #e74c3c;
+
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 1.6rem;
+  }
+
+  .main-subtitle {
+    font-size: 1rem;
+  }
+
+  .main-countdown {
+    font-size: 2.2rem;
+  }
+}
+
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
