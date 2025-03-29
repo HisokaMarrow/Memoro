@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <title>Percentage Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
@@ -19,13 +18,11 @@
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
 
@@ -40,8 +37,9 @@
 </script>
 
 <main>
-  <div class="game-container">
-    <div id="summary" class="summary">Loading results...</div>
+  <div class="main-container">
+    <h2 class="main-title">Percentage Results</h2>
+    <div id="summary" class="result-summary">Loading results...</div>
     <div id="resultsGrid" class="results-grid"></div>
   </div>
 </main>
@@ -72,9 +70,9 @@
 
   const percent = Math.round((correct / problems.length) * 100);
   summary.innerHTML = `Well done! You got ${correct} out of ${problems.length} correct (${percent}%)`;
-  
+
   const gameTitle = "Percentage Master";
-sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
 </body>
