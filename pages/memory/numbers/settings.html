@@ -4,85 +4,67 @@
   <meta charset="UTF-8" />
   <title>Number Memory - Game Settings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
-
-      // Highlight the correct active nav link
-      const links = document.querySelectorAll('.top-nav a');
-      const currentPath = window.location.pathname;
-
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        }
-      });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
+<!-- Main -->
 <main>
-  <div class="game-container" style="display: flex; flex-direction: column; align-items: center;">
-    <h2>Number Memory Game - Settings</h2>
+  <div class="main-container" style="display: flex; flex-direction: column; align-items: center;">
+    <h2 class="main-title">Number Memory Settings</h2>
 
-    <div class="input-block">
-      <label for="delay">Delay Between Digits (seconds):</label>
-      <input type="number" id="delay" value="3" min="1" />
+    <div class="main-option-group">
+      <div class="main-option-box">
+        <label for="delay">Delay (sec):</label>
+        <input type="number" id="delay" value="3" min="1" />
+      </div>
+      <div class="main-option-box">
+        <label for="rangeMax">Max Number:</label>
+        <input type="number" id="rangeMax" value="99" min="1" />
+      </div>
+      <div class="main-option-box">
+        <label for="testTime">Duration (sec):</label>
+        <input type="number" id="testTime" value="60" min="5" />
+      </div>
     </div>
 
-    <div class="input-block">
-      <label for="rangeMax">Maximum Number Range (1 - ?):</label>
-      <input type="number" id="rangeMax" value="99" min="1" />
-    </div>
-
-    <div class="input-block">
-      <label for="testTime">Total Duration (seconds):</label>
-      <input type="number" id="testTime" value="60" min="5" />
-    </div>
-
-    <div class="checkbox-row">
-      <div class="checkbox-option">
+    <div class="main-option-group">
+      <label class="main-option-box">
         <input type="checkbox" id="padZeros" />
-        <label for="padZeros">Use 01–09</label>
-      </div>
-
-      <div class="checkbox-option">
+        Use 01–09
+      </label>
+      <label class="main-option-box">
         <input type="checkbox" id="enableVoice" checked />
-        <label for="enableVoice">Enable Voice</label>
-      </div>
-
-      <div class="checkbox-option">
+        Enable Voice
+      </label>
+      <label class="main-option-box">
         <input type="checkbox" id="speakIndividually" />
-        <label for="speakIndividually">Speak Individually</label>
-      </div>
+        Speak Individually
+      </label>
     </div>
 
-    <div style="margin-top: 30px; width: 100%; max-width: 500px;">
-      <button class="button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="startGame()">
-        Start
-      </button>
+    <div class="main-button-block" style="max-width: 500px; width: 100%;">
+      <button class="main-button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="startGame()">Start</button>
     </div>
   </div>
 </main>
 
+<!-- Script -->
 <script>
   function startGame() {
     const delay = document.getElementById("delay").value;
@@ -103,7 +85,6 @@
     const unlock = new SpeechSynthesisUtterance('');
     speechSynthesis.speak(unlock);
 
-    // Slight delay to ensure speechSynthesis is unlocked
     setTimeout(() => {
       window.location.href = "game.html";
     }, 100);
@@ -112,3 +93,4 @@
 
 </body>
 </html>
+
