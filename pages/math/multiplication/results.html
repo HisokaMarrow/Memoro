@@ -2,47 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Math Results</title>
+  <title>Multiplication Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../../styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
-      const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        }
+      document.querySelectorAll('.top-nav a').forEach(link => {
+        if (link.getAttribute('href') === currentPath) link.classList.add('active');
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
 <main>
-  <div class="game-container">
-    <div id="summary" class="summary">Loading results...</div>
+  <div class="main-container">
+    <h2 class="main-title">Multiplication Results</h2>
+    <div id="summary" class="result-summary">Loading results...</div>
     <div id="resultsGrid" class="results-grid"></div>
+    <div class="main-button-block">
+      <a href="settings.html" class="main-button">Try Again</a>
+    </div>
   </div>
 </main>
 
@@ -64,7 +58,7 @@
     const box = document.createElement("div");
     box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a} x ${item.b} = <strong>${userAnswer || "—"}</strong>
+      <strong>${item.a} × ${item.b} =</strong> ${userAnswer || "—"}
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
     `;
     grid.appendChild(box);
@@ -72,9 +66,9 @@
 
   const percent = Math.round((correct / problems.length) * 100);
   summary.innerHTML = `Well done! You got ${correct} out of ${problems.length} correct (${percent}%)`;
-  
+
   const gameTitle = "Multiplication Master";
-sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
 </body>
