@@ -4,31 +4,26 @@
   <meta charset="UTF-8" />
   <title>Math Training</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -43,41 +38,41 @@
   <h1 class="page-title">Math Training</h1>
   <p class="page-sub">Sharpen your mental math and numeric agility with rapid challenges.</p>
 
-  <div class="game-grid">
-    <div class="game-box">
+  <div class="main-grid">
+    <div class="main-box">
       <h3>Addition</h3>
       <p>Boost your accuracy and speed with rapid-fire addition drills.</p>
-      <a href="math/addition/settings.html" class="button">Start</a>
+      <a href="/pages/math/addition/settings.html" class="main-button">Start</a>
     </div>
 
-    <div class="game-box">
+    <div class="main-box">
       <h3>Subtraction</h3>
       <p>Practice fast subtraction to keep your brain sharp and flexible.</p>
-      <a href="math/subtraction/subtraction.html" class="button">Start</a>
+      <a href="/pages/math/subtraction/subtraction.html" class="main-button">Start</a>
     </div>
 
-    <div class="game-box">
+    <div class="main-box">
       <h3>Multiplication</h3>
       <p>Drill your times tables and develop rapid number sense.</p>
-      <a href="math/multiplication/settings.html" class="button">Start</a>
+      <a href="/pages/math/multiplication/settings.html" class="main-button">Start</a>
     </div>
 
-    <div class="game-box">
+    <div class="main-box">
       <h3>Division</h3>
       <p>Master division and breakdowns with timed challenges.</p>
-      <a href="math/devision/settings.html" class="button">Start</a>
+      <a href="/pages/math/devision/settings.html" class="main-button">Start</a>
     </div>
 
-    <div class="game-box">
+    <div class="main-box">
       <h3>Percentage</h3>
       <p>Learn to calculate real-world percentages quickly in your head.</p>
-      <a href="math/percentage/settings.html" class="button">Start</a>
+      <a href="/pages/math/percentage/settings.html" class="main-button">Start</a>
     </div>
   </div>
 </main>
 
+<!-- Footer -->
 <div id="site-footer"></div>
-
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
