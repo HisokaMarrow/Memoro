@@ -5,28 +5,24 @@
   <meta charset="UTF-8" />
   <title>Memory Word Challenge - Settings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
 
@@ -41,42 +37,46 @@
 </script>
 
 <main>
-  <div class="game-container">
-    <h2>Memory Word Challenge - Settings</h2>
+  <div class="main-container">
+    <h2 class="main-title">Memory Word Challenge – Settings</h2>
 
-    <label>Difficulty Level:</label>
-    <div class="option-row">
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="easy" value="easy" checked />
-        <label for="easy">Objects (Easy)</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="advanced" value="advanced" />
-        <label for="advanced">Objects + Actions</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="expert" value="expert" />
-        <label for="expert">All Words</label>
-      </div>
+    <p class="main-text">Choose your difficulty and time limit to begin the challenge.</p>
+
+    <label class="main-text">Difficulty Level:</label>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="easy" checked />
+        Objects (Easy)
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="advanced" />
+        Objects + Actions
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="expert" />
+        All Words
+      </label>
     </div>
 
-    <label>Time Limit:</label>
-    <div class="option-row">
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time1" value="60" checked />
-        <label for="time1">1 Minute</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time2" value="120" />
-        <label for="time2">2 Minutes</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time3" value="180" />
-        <label for="time3">3 Minutes</label>
-      </div>
+    <label class="main-text" style="margin-top: 30px;">Time Limit:</label>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="60" checked />
+        1 Minute
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="120" />
+        2 Minutes
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="180" />
+        3 Minutes
+      </label>
     </div>
 
-    <button onclick="startWordGame()" class="button" style="width: 100%; padding: 16px; font-size: 1.2em; margin-top: 30px;">Start Challenge</button>
+    <div class="main-button-block">
+      <button onclick="startWordGame()" class="main-button" style="width: 100%; font-size: 1.2em;">Start Challenge</button>
+    </div>
   </div>
 </main>
 
@@ -94,3 +94,4 @@
 
 </body>
 </html>
+
