@@ -29,7 +29,6 @@ html, body {
 
 /* ========== HEADER NAVIGATION ========== */
 .header-site-header {
-  background-color: var(--header-color-bg-card);
   padding: 20px 0;
   border-bottom: 1px solid var(--header-color-border);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
