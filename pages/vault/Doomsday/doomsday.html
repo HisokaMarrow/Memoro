@@ -70,26 +70,89 @@
 
 <main>
   <div class="game-container">
-    <h2>Memory Association Technique</h2>
+    <h2>Doomsday Algorithm</h2>
 
     <div class="info-text">
       <p>
-        To significantly boost your memory, use the <strong>Association Technique</strong>. Instead of trying to remember each word separately, turn them into vivid mental images and link them together into a creative story.
+        The <strong>Doomsday Algorithm</strong> is a mental method for calculating the <strong>day of the week for any given date</strong> — without a calendar.
+        It’s fast, fun, and used by memory athletes around the world.
       </p>
-      <p>
-        For example, if the words are <strong>"cloud", "piano", "tree"</strong>:
-        Imagine a fluffy <strong>cloud</strong> playing a <strong>piano</strong> in the sky, and then that piano jumps down and starts climbing a <strong>tree</strong>.
-      </p>
-      <p>
-        Try to <strong>visualize</strong> the story. Feel the <strong>texture</strong>, hear the <strong>sounds</strong>, and involve your <strong>senses</strong>. The more bizarre or emotional the story, the more likely it will stick in your memory.
-      </p>
-      <p>
-        Now that you’ve learned the technique — give it another shot!
-      </p>
+
+      <h3>Step-by-Step Example: March 15, 2023</h3>
+
+      <ol>
+        <li><strong>Anchor the century:</strong> 2000s = <strong>Tuesday (2)</strong></li>
+        <li><strong>Find the last two digits of the year:</strong> <code>23</code></li>
+        <li><strong>Add:</strong> 23 + floor(23/4) = <strong>23 + 5 = 28</strong></li>
+        <li><strong>Add month code for March:</strong> <strong>3</strong></li>
+        <li><strong>Add day of the month:</strong> <code>15</code></li>
+        <li><strong>Total:</strong> 2 (century) + 28 + 3 + 15 = <strong>48</strong></li>
+        <li><strong>Take mod 7:</strong> 48 % 7 = <strong>6</strong> → <strong>Saturday</strong></li>
+      </ol>
+
+      <p><em>Answer: March 15, 2023 falls on a <strong>Wednesday</strong></em></p>
+
+      <hr />
+
+      <h3>Doomsday Reference Tables</h3>
+
+      <h4>Month Codes</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>January</td><td>0</td></tr>
+          <tr><td>February</td><td>3</td></tr>
+          <tr><td>March</td><td>3</td></tr>
+          <tr><td>April</td><td>6</td></tr>
+          <tr><td>May</td><td>1</td></tr>
+          <tr><td>June</td><td>4</td></tr>
+          <tr><td>July</td><td>6</td></tr>
+          <tr><td>August</td><td>2</td></tr>
+          <tr><td>September</td><td>5</td></tr>
+          <tr><td>October</td><td>0</td></tr>
+          <tr><td>November</td><td>3</td></tr>
+          <tr><td>December</td><td>5</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Century Anchor Codes</h4>
+      <table>
+        <thead>
+          <tr><th>Century</th><th>Anchor Day</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1700s</td><td>Sunday (0)</td></tr>
+          <tr><td>1800s</td><td>Friday (5)</td></tr>
+          <tr><td>1900s</td><td>Wednesday (3)</td></tr>
+          <tr><td>2000s</td><td>Tuesday (2)</td></tr>
+          <tr><td>2100s</td><td>Sunday (0)</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Weekday Reference</h4>
+      <table>
+        <thead>
+          <tr><th>Result</th><th>Day of the Week</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>Sunday</td></tr>
+          <tr><td>1</td><td>Monday</td></tr>
+          <tr><td>2</td><td>Tuesday</td></tr>
+          <tr><td>3</td><td>Wednesday</td></tr>
+          <tr><td>4</td><td>Thursday</td></tr>
+          <tr><td>5</td><td>Friday</td></tr>
+          <tr><td>6</td><td>Saturday</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="button-block">
-      <button class="button" onclick="retry()">Back</button>
+      <button class="button" onclick="goBack()">Back to Vault</button>
     </div>
   </div>
 </main>
