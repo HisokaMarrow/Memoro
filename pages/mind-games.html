@@ -12,6 +12,35 @@
       margin: 40px 0 10px;
     }
 
+    .section-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      color: var(--color-text);
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .section-button:hover {
+      color: var(--color-success);
+    }
+
+    .section-button::after {
+      content: "→";
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .section-button:hover::after {
+      transform: translateX(4px);
+    }
+
     .game-section-box {
       background: var(--color-bg-card);
       border-radius: 12px;
@@ -84,7 +113,7 @@
 
   <!-- Memory -->
   <div class="section-header">
-    <a href="../pages/memory.html" class="button">Memory Games</a>
+    <a href="../pages/memory.html" class="section-button">Memory Games</a>
   </div>
   <div class="game-section-box">
     <div class="game-carousel">
@@ -103,7 +132,7 @@
 
   <!-- Math -->
   <div class="section-header">
-    <a href="../pages/math.html" class="button">Math Games</a>
+    <a href="../pages/math.html" class="section-button">Math Games</a>
   </div>
   <div class="game-section-box">
     <div class="game-carousel">
@@ -137,7 +166,7 @@
 
   <!-- Riddles -->
   <div class="section-header">
-    <a href="../pages/riddles.html" class="button">Riddle Games</a>
+    <a href="../pages/riddles.html" class="section-button">Riddle Games</a>
   </div>
   <div class="game-section-box">
     <div class="game-carousel">
