@@ -12,6 +12,7 @@
 
 /* ========== GAME HEADER STYLING ========== */
 .gameheadertimerdown-top-hud {
+  background-color: var(--gameheadertimerdown-color-bg-card);
   border-bottom: 1px solid var(--gameheadertimerdown-color-border);
   padding: 15px 0;
   width: 100%;
