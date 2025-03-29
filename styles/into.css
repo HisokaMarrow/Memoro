@@ -81,3 +81,19 @@ body.intro-active #memory-lock-overlay {
     visibility: hidden;
   }
 }
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0; /* Hidden until animated */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
