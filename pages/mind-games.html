@@ -37,72 +37,84 @@
 
   <!-- Memory Games -->
   <div class="game-section memory">
-    <h2>Memory Games</h2>
+    <h2><a href="/pages/memory.html" class="main-section-link">Memory Games</a></h2>
     <div class="main-container-carusel">
-      <div class="main-carousel">
-        <div class="main-box">
-          <h3>Number Memory</h3>
-          <p>Remember and recall sequences of numbers.</p>
-          <a href="/pages/memory/numbers/settings.html" class="main-button">Play</a>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow left">&larr;</button>
+        <div class="main-carousel">
+          <div class="main-box">
+            <h3>Number Memory</h3>
+            <p>Remember and recall sequences of numbers.</p>
+            <a href="/pages/memory/numbers/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Word Memory</h3>
+            <p>Try to remember as many words as you can.</p>
+            <a href="/pages/memory/words/settings.html" class="main-button">Play</a>
+          </div>
         </div>
-        <div class="main-box">
-          <h3>Word Memory</h3>
-          <p>Try to remember as many words as you can.</p>
-          <a href="/pages/memory/words/settings.html" class="main-button">Play</a>
-        </div>
+        <button class="carousel-arrow right">&rarr;</button>
       </div>
     </div>
   </div>
 
   <!-- Math Games -->
   <div class="game-section math">
-    <h2>Math Games</h2>
+    <h2><a href="/pages/maths.html" class="main-section-link">Math Games</a></h2>
     <div class="main-container-carusel">
-      <div class="main-carousel">
-        <div class="main-box">
-          <h3>Addition Challenge</h3>
-          <p>Solve as many addition problems as you can in limited time.</p>
-          <a href="/pages/math/addition/settings.html" class="main-button">Play</a>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow left">&larr;</button>
+        <div class="main-carousel">
+          <div class="main-box">
+            <h3>Addition Challenge</h3>
+            <p>Solve as many addition problems as you can in limited time.</p>
+            <a href="/pages/math/addition/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Subtraction Challenge</h3>
+            <p>How fast can you solve subtraction problems?</p>
+            <a href="/pages/math/subtraction/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Multiplication Master</h3>
+            <p>Speed through multiplication tasks under pressure.</p>
+            <a href="/pages/math/multiplication/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Division Master</h3>
+            <p>Speed through division tasks under pressure.</p>
+            <a href="/pages/math/devision/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Percentage Master</h3>
+            <p>Speed through percentage calculation tasks under pressure.</p>
+            <a href="/pages/math/percentage/settings.html" class="main-button">Play</a>
+          </div>
         </div>
-        <div class="main-box">
-          <h3>Subtraction Challenge</h3>
-          <p>How fast can you solve subtraction problems?</p>
-          <a href="/pages/math/subtraction/settings.html" class="main-button">Play</a>
-        </div>
-        <div class="main-box">
-          <h3>Multiplication Master</h3>
-          <p>Speed through multiplication tasks under pressure.</p>
-          <a href="/pages/math/multiplication/settings.html" class="main-button">Play</a>
-        </div>
-        <div class="main-box">
-          <h3>Division Master</h3>
-          <p>Speed through division tasks under pressure.</p>
-          <a href="/pages/math/devision/settings.html" class="main-button">Play</a>
-        </div>
-        <div class="main-box">
-          <h3>Percentage Master</h3>
-          <p>Speed through percentage calculation tasks under pressure.</p>
-          <a href="/pages/math/percentage/settings.html" class="main-button">Play</a>
-        </div>
+        <button class="carousel-arrow right">&rarr;</button>
       </div>
     </div>
   </div>
 
   <!-- Riddle Games -->
   <div class="game-section riddles">
-    <h2>Riddle Games</h2>
+    <h2><a href="/pages/riddles.html" class="main-section-link">Riddle Games</a></h2>
     <div class="main-container-carusel">
-      <div class="main-carousel">
-        <div class="main-box">
-          <h3>Logic Riddles</h3>
-          <p>Solve tricky logic puzzles and train your brain.</p>
-          <a href="/pages/riddles/logic/settings.html" class="main-button">Play</a>
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow left">&larr;</button>
+        <div class="main-carousel">
+          <div class="main-box">
+            <h3>Logic Riddles</h3>
+            <p>Solve tricky logic puzzles and train your brain.</p>
+            <a href="/pages/riddles/logic/settings.html" class="main-button">Play</a>
+          </div>
+          <div class="main-box">
+            <h3>Math Riddles</h3>
+            <p>Use both logic and math to crack these riddles.</p>
+            <a href="/pages/riddles/nummeric/settings.html" class="main-button">Play</a>
+          </div>
         </div>
-        <div class="main-box">
-          <h3>Math Riddles</h3>
-          <p>Use both logic and math to crack these riddles.</p>
-          <a href="/pages/riddles/nummeric/settings.html" class="main-button">Play</a>
-        </div>
+        <button class="carousel-arrow right">&rarr;</button>
       </div>
     </div>
   </div>
@@ -115,7 +127,7 @@
     const leftBtn = wrapper.querySelector('.carousel-arrow.left');
     const rightBtn = wrapper.querySelector('.carousel-arrow.right');
 
-    const scrollAmount = 320; // adjust based on .main-box width + gap
+    const scrollAmount = 320;
 
     leftBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
