@@ -283,6 +283,8 @@ main {
   gap: 20px;
   padding: 10px 0;
   margin-bottom: 40px;
+  flex: 0 0 300px; /* or use min-width */
+  max-width: 300px;
 }
 
 .main-carousel::-webkit-scrollbar {
