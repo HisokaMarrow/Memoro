@@ -48,41 +48,37 @@
   background-color: #2aa198;
 }
 
-
 #remainingTimer {
   display: flex;
-  align-items: center;
+  align-items: center;               /* Center vertically (stable) */
   justify-content: center;
   background-color: #333;
   color: white;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 2rem;                   /* Set font size here */
+  font-weight: 600;
   font-family: 'Poppins', sans-serif;
   padding: 6px 12px;
   border-radius: 5px;
   min-width: 130px;
-  height: 40px;
+  height: 48px;                      /* Lock height to fit 2rem line-height */
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1.2;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 #timer {
-  font-size: 2rem;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-
-  min-width: 4ch;              /* enough space for 2-digit time */
-  min-height: 2.5rem;          /* lock height */
-  text-align: center;
-
-  padding: 0;                  /* reset padding */
-  margin: 0;                   /* reset margin */
-  line-height: 1.2;            /* consistent vertical rhythm */
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 
   display: inline-block;
+  text-align: center;
+  min-width: 4ch;                   /* Prevent width jump */
+  padding: 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
-
-  transition: none !important; /* prevent smooth shifting */
+  transition: none !important;
 }
