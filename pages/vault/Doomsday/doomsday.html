@@ -1,1 +1,75 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Association Technique</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    .info-text {
+      font-size: 1.1em;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .button-block {
+      margin-top: 20px;
+    }
+
+    .button-block button {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.2em;
+    }
+
+    @media (min-width: 600px) {
+      .info-text {
+        font-size: 1.15em;
+      }
+
+      .button-block {
+        max-width: 400px;
+        margin: 40px auto 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <div class="game-container">
+    <h2>Memory Association Technique</h2>
+
+    <div class="info-text">
+      <p>
+        To significantly boost your memory, use the <strong>Association Technique</strong>. Instead of trying to remember each word separately, turn them into vivid mental images and link them together into a creative story.
+      </p>
+      <p>
+        For example, if the words are <strong>"cloud", "piano", "tree"</strong>:
+        Imagine a fluffy <strong>cloud</strong> playing a <strong>piano</strong> in the sky, and then that piano jumps down and starts climbing a <strong>tree</strong>.
+      </p>
+      <p>
+        Try to <strong>visualize</strong> the story. Feel the <strong>texture</strong>, hear the <strong>sounds</strong>, and involve your <strong>senses</strong>. The more bizarre or emotional the story, the more likely it will stick in your memory.
+      </p>
+      <p>
+        Now that you’ve learned the technique — give it another shot!
+      </p>
+    </div>
+
+    <div class="button-block">
+      <button class="button" onclick="retry()">Back</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  function retry() {
+    window.location.href = "/pages/vault.html";
+  }
+</script>
+
+</body>
+</html>
