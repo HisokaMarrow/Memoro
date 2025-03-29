@@ -81,21 +81,67 @@
 <!-- Daily Game Loader -->
 <script>
   const games = [
-    { category: "Memory", title: "Number Memory", description: "Remember and recall sequences of numbers.", link: "/pages/memory/numbers/settings.html" },
-    { category: "Memory", title: "Word Memory", description: "Try to remember as many words as you can.", link: "/pages/memory/words/settings.html" },
-    { category: "Math", title: "Addition Challenge", description: "Solve as many addition problems as you can in limited time.", link: "/pages/math/addition/settings.html" },
-    { category: "Math", title: "Subtraction Challenge", description: "How fast can you solve subtraction problems?", link: "/pages/math/subtraction/settings.html" },
-    { category: "Math", title: "Multiplication Master", description: "Speed through multiplication tasks under pressure.", link: "/pages/math/multiplication/settings.html" },
-    { category: "Math", title: "Devision Master", description: "Speed through division tasks under pressure.", link: "/pages/math/devision/settings.html" },
-    { category: "Math", title: "Percentage Master", description: "Speed through percentage calculation tasks under pressure.", link: "/pages/math/percentage/settings.html" },
-    { category: "Riddles", title: "Logic Riddles", description: "Solve tricky logic puzzles and train your brain.", link: "/pages/riddles/logic/settings.html" },
-    { category: "Riddles", title: "Math Riddles", description: "Use both logic and math to crack these riddles.", link: "/pages/riddles/nummeric/settings.html" }
+    {
+      category: "Memory",
+      title: "Number Memory",
+      description: "Remember and recall sequences of numbers.",
+      link: "/pages/memory/numbers/settings.html"
+    },
+    {
+      category: "Memory",
+      title: "Word Memory",
+      description: "Try to remember as many words as you can.",
+      link: "/pages/memory/words/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Addition Challenge",
+      description: "Solve as many addition problems as you can in limited time.",
+      link: "/pages/math/addition/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Subtraction Challenge",
+      description: "How fast can you solve subtraction problems?",
+      link: "/pages/math/subtraction/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Multiplication Master",
+      description: "Speed through multiplication tasks under pressure.",
+      link: "/pages/math/multiplication/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Devision Master",
+      description: "Speed through devision tasks under pressure.",
+      link: "/pages/math/devision/settings.html"
+    },
+    {
+      category: "Math",
+      title: "Percentage Master",
+      description: "Speed through percentage calculation tasks under pressure.",
+      link: "/pages/math/percentage/settings.html"
+    },
+    {
+      category: "Riddles",
+      title: "Logic Riddles",
+      description: "Solve tricky logic puzzles and train your brain.",
+      link: "/pages/riddles/logic/settings.html"
+    },
+    {
+      category: "Riddles",
+      title: "Math Riddles",
+      description: "Use both logic and math to crack these riddles.",
+      link: "/pages/riddles/nummeric/settings.html"
+    }
   ];
 
   function getCategoryRandomGames() {
     const memory = games.filter(g => g.category === "Memory");
     const math = games.filter(g => g.category === "Math");
     const riddles = games.filter(g => g.category === "Riddles");
+
     return [
       memory[Math.floor(Math.random() * memory.length)],
       math[Math.floor(Math.random() * math.length)],
@@ -106,6 +152,7 @@
   function renderDailyPractice() {
     const container = document.getElementById("dailyPracticeBox");
     let selectedGames = JSON.parse(sessionStorage.getItem("dailyGames"));
+
     if (!selectedGames) {
       selectedGames = getCategoryRandomGames();
       sessionStorage.setItem("dailyGames", JSON.stringify(selectedGames));
@@ -130,6 +177,7 @@
 
   window.addEventListener("load", renderDailyPractice);
 </script>
+  
 
 <!-- Intro Animation -->
 <script src="/scripts/intro.js"></script>
