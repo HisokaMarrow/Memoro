@@ -49,8 +49,7 @@
 }
 
 #remainingTimer {
-  position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: #333;
@@ -58,18 +57,19 @@
   font-size: 2rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
+  font-variant-numeric: tabular-nums;
   padding: 6px 12px;
   border-radius: 5px;
   height: 48px;
-  min-width: 130px;
-  line-height: 1.2;
+  min-width: 80px;
   white-space: nowrap;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 #timer {
-  min-width: 3ch; /* force width for time like "00" - "99" */
-  text-align: center;
   display: inline-block;
+  min-width: 3ch; /* Ensures width stability for 2-digit numbers */
+  text-align: center;
+  line-height: 1;
 }
