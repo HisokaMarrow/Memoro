@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       background-color: #f4f6f8;
+      font-family: 'Poppins', sans-serif;
     }
 
     main {
@@ -19,32 +20,21 @@
       margin: auto;
     }
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding: 0 10px;
-    }
-
-    .section-header a {
+    .section-button {
+      display: inline-block;
+      margin: 40px 0 20px;
+      padding: 12px 24px;
       background-color: var(--primary-color, #4A90E2);
       color: white;
       text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-size: 0.9rem;
       font-weight: 600;
+      border-radius: 6px;
+      font-size: 1rem;
       transition: background-color 0.3s ease;
     }
 
-    .section-header a:hover {
+    .section-button:hover {
       background-color: #357ABD;
-    }
-
-    .section-header h2 {
-      font-size: 1.8rem;
-      margin: 0;
     }
 
     .game-carousel {
@@ -52,7 +42,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 20px;
-      padding: 10px;
+      padding: 10px 0 30px;
     }
 
     .game-card {
@@ -127,50 +117,35 @@
 
 <main>
   <!-- Memory Section -->
-  <section class="game-section memory">
-    <div class="section-header">
-      <h2>Memory Games</h2>
-      <a href="../pages/memory.html">Go to Memory</a>
+  <a href="../pages/memory.html" class="section-button">Memory Games</a>
+  <div class="game-carousel">
+    <div class="game-card">
+      <h3>Numbers</h3>
+      <a href="../pages/memory/numbers/settings.html">Play</a>
     </div>
-    <div class="game-carousel">
-      <div class="game-card">
-        <h3>Numbers</h3>
-        <a href="../pages/memory/numbers/settings.html">Play</a>
-      </div>
-      <div class="game-card">
-        <h3>Cards</h3>
-        <a href="../pages/memory/cards/settings.html">Play</a>
-      </div>
+    <div class="game-card">
+      <h3>Cards</h3>
+      <a href="../pages/memory/cards/settings.html">Play</a>
     </div>
-  </section>
+  </div>
 
   <!-- Math Section -->
-  <section class="game-section math">
-    <div class="section-header">
-      <h2>Math Games</h2>
-      <a href="../pages/math.html">Go to Math</a>
+  <a href="../pages/math.html" class="section-button">Math Games</a>
+  <div class="game-carousel">
+    <div class="game-card">
+      <h3>Basic Math</h3>
+      <a href="../pages/math/game1/settings.html">Play</a>
     </div>
-    <div class="game-carousel">
-      <div class="game-card">
-        <h3>Basic Math</h3>
-        <a href="../pages/math/game1/settings.html">Play</a>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- Riddle Section -->
-  <section class="game-section riddles">
-    <div class="section-header">
-      <h2>Riddle Games</h2>
-      <a href="../pages/riddles.html">Go to Riddles</a>
+  <!-- Riddles Section -->
+  <a href="../pages/riddles.html" class="section-button">Riddle Games</a>
+  <div class="game-carousel">
+    <div class="game-card">
+      <h3>Logic Puzzle</h3>
+      <a href="../pages/riddles/game1/settings.html">Play</a>
     </div>
-    <div class="game-carousel">
-      <div class="game-card">
-        <h3>Logic Puzzle</h3>
-        <a href="../pages/riddles/game1/settings.html">Play</a>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 
 </body>
