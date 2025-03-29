@@ -68,11 +68,21 @@
 }
 
 #timer {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+
+  min-width: 4ch;              /* enough space for 2-digit time */
+  min-height: 2.5rem;          /* lock height */
+  text-align: center;
+
+  padding: 0;                  /* reset padding */
+  margin: 0;                   /* reset margin */
+  line-height: 1.2;            /* consistent vertical rhythm */
+
   display: inline-block;
-  font-family: monospace;
-  width: 3ch; /* enough space for '00'–'99' */
-  text-align: right;
-  line-height: 1;
-  position: relative;
-  top: 0.5px; /* use fractional pixel to visually align */
+  white-space: nowrap;
+  overflow: hidden;
+
+  transition: none !important; /* prevent smooth shifting */
 }
