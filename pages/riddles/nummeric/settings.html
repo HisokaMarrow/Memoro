@@ -4,31 +4,25 @@
   <meta charset="UTF-8" />
   <title>Math Riddles - Settings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -40,28 +34,28 @@
 </script>
 
 <main>
-  <div class="game-container">
-    <h2>Math Riddles - Settings</h2>
+  <div class="main-container">
+    <h2 class="main-title">Math Riddles – Settings</h2>
+    <p class="main-text">Choose how many riddles you'd like to solve in this session.</p>
 
-    <!-- Riddle Count Option -->
-    <label>Number of Riddles:</label>
-    <div class="option-row">
-      <div class="option-box">
+    <div class="main-option-group">
+      <label for="count2" class="main-option-box">
         <input type="radio" name="riddleCount" id="count2" value="2" checked />
-        <label for="count2">2 Riddles</label>
-      </div>
-      <div class="option-box">
+        <span>2 Riddles</span>
+      </label>
+      <label for="count4" class="main-option-box">
         <input type="radio" name="riddleCount" id="count4" value="4" />
-        <label for="count4">4 Riddles</label>
-      </div>
-      <div class="option-box">
+        <span>4 Riddles</span>
+      </label>
+      <label for="count6" class="main-option-box">
         <input type="radio" name="riddleCount" id="count6" value="6" />
-        <label for="count6">6 Riddles</label>
-      </div>
+        <span>6 Riddles</span>
+      </label>
     </div>
 
-    <!-- Start Button -->
-    <button onclick="startGame()" class="button start-button">Start</button>
+    <div class="main-button-block">
+      <button onclick="startGame()" class="main-button">Start</button>
+    </div>
   </div>
 </main>
 
@@ -75,3 +69,4 @@
 
 </body>
 </html>
+
