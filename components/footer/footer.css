@@ -8,6 +8,7 @@
 }
 
 .footer-container {
+  background-color: var(--footer-color-bg-card);
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
