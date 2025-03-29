@@ -69,7 +69,7 @@
 
 #timer {
   display: inline-block;
-  min-width: 3ch;
+  min-width: 5ch;
   text-align: center;
   line-height: 1;
   font-size: 1.6rem; /* slightly larger than label, but smaller than before */
