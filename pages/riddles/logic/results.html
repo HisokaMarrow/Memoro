@@ -4,31 +4,25 @@
   <meta charset="UTF-8" />
   <title>Riddle Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -40,12 +34,13 @@
 </script>
 
 <main>
-  <div class="game-container">
-    <div id="summary" class="summary">Loading results...</div>
+  <div class="main-container">
+    <h2 class="main-title">Riddle Results</h2>
+    <div id="summary" class="result-summary">Loading results...</div>
     <div id="resultsGrid" class="results-grid"></div>
 
-    <div class="button-row">
-      <button class="button" onclick="goHome()">Return to Home Screen</button>
+    <div class="main-button-block">
+      <button class="main-button" onclick="goHome()">Return to Home Screen</button>
     </div>
   </div>
 </main>
@@ -64,9 +59,9 @@
   function normalizeInput(text) {
     return text
       .toLowerCase()
-      .replace(/[^\w\s]/g, '')        // Remove punctuation
-      .split(/[\s,]+/)                // Split by space or comma
-      .filter(Boolean);               // Remove empty strings
+      .replace(/[^\w\s]/g, '')
+      .split(/[\s,]+/)
+      .filter(Boolean);
   }
 
   function isAnswerCorrect(userInput, keywordList) {
@@ -77,28 +72,26 @@
   riddles.forEach((item, i) => {
     const userAnswer = (answers[i] || "").trim().toLowerCase();
     const correctAnswer = item.answer.trim().toLowerCase();
-
-    // Automatically derive keywords from correct answer
     const keywords = normalizeInput(correctAnswer);
     const isCorrect = isAnswerCorrect(userAnswer, keywords);
 
     if (isCorrect) correct++;
 
     const box = document.createElement("div");
-    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+    box.className = `main-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
       <strong>Riddle:</strong><br>${item.riddle}<br><br>
       <strong>Your Answer:</strong> ${answers[i] || "—"}
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
-      <div class="time-stat">Time: ${times[i] || 0}s</div>
+      <div class="time-tag">Time: ${times[i] || 0}s</div>
     `;
     grid.appendChild(box);
   });
 
-  summary.innerHTML = `You solved ${correct} out of ${riddles.length} correctly (${Math.round((correct / riddles.length) * 100)}%)<br>Total Time: ${totalTime}s`;
+  summary.innerHTML = `You solved ${correct} of ${riddles.length} correctly (${Math.round((correct / riddles.length) * 100)}%)<br>Total Time: ${totalTime}s`;
 
   function goHome() {
-    window.location.href = "../../../index.html";
+    window.location.href = "/index.html";
   }
 
   const gameTitle = "Logic Riddles";
