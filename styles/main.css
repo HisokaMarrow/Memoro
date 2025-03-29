@@ -297,8 +297,8 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 20px;
-  padding: 30px 0;
-  margin-bottom: 40px;
+  padding: 0px 0;
+  margin-bottom: 0px;
   max-width: 1000px;
 }
 
