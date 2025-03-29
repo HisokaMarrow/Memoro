@@ -1,26 +1,26 @@
 :root {
-  --color-bg: #f5f9fc;
-  --color-bg-card: #ffffff;
-  --color-text: #2d2d2d;
-  --color-border: #dce3ec;
+  --gameheadertimerdown-color-bg: #f5f9fc;
+  --gameheadertimerdown-color-bg-card: #ffffff;
+  --gameheadertimerdown-color-text: #2d2d2d;
+  --gameheadertimerdown-color-border: #dce3ec;
 
-  --color-secondary: #2aa198;
-  --color-secondary-hover: #248a87;
+  --gameheadertimerdown-color-secondary: #2aa198;
+  --gameheadertimerdown-color-secondary-hover: #248a87;
 
-  --color-dark: #333;
+  --gameheadertimerdown-color-dark: #333;
 }
 
 /* ========== GAME HEADER STYLING ========== */
-.top-hud {
-  background-color: var(--color-bg-card);
-  border-bottom: 1px solid var(--color-border);
+.gameheadertimerdown-top-hud {
+  background-color: var(--gameheadertimerdown-color-bg-card);
+  border-bottom: 1px solid var(--gameheadertimerdown-color-border);
   padding: 15px 0;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   font-family: 'Poppins', sans-serif;
 }
 
-.top-nav {
+.gameheadertimerdown-top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,15 +31,15 @@
   position: relative;
 }
 
-.nav-left,
-.nav-center,
-.nav-right {
+.gameheadertimerdown-nav-left,
+.gameheadertimerdown-nav-center,
+.gameheadertimerdown-nav-right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.nav-center {
+.gameheadertimerdown-nav-center {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -49,8 +49,8 @@
 }
 
 /* ========== BUTTONS ========== */
-.button {
-  background-color: var(--color-secondary);
+.gameheadertimerdown-button {
+  background-color: var(--gameheadertimerdown-color-secondary);
   color: white;
   padding: 10px 18px;
   border: none;
@@ -63,16 +63,16 @@
   transition: background-color 0.2s ease;
 }
 
-.button:hover {
-  background-color: var(--color-secondary-hover);
+.gameheadertimerdown-button:hover {
+  background-color: var(--gameheadertimerdown-color-secondary-hover);
 }
 
 /* ========== TIMER ========== */
-#remainingTimer {
+#gameheadertimerdown-remainingTimer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-dark);
+  background-color: var(--gameheadertimerdown-color-dark);
   color: white;
   font-size: 1rem;
   font-weight: 500;
@@ -87,7 +87,7 @@
   gap: 6px;
 }
 
-#timer {
+#gameheadertimerdown-timer {
   display: inline-block;
   min-width: 5ch;
   text-align: center;
@@ -95,8 +95,9 @@
   font-size: 1.6rem;
 }
 
-.timer-label {
+.gameheadertimerdown-timer-label {
   font-size: 1rem;
   font-weight: 500;
   opacity: 0.85;
 }
+
