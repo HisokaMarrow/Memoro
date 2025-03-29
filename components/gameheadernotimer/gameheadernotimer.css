@@ -1,7 +1,19 @@
+:root {
+  --color-bg: #f5f9fc;
+  --color-bg-card: #ffffff;
+  --color-text: #2d2d2d;
+  --color-border: #dce3ec;
+
+  --color-secondary: #2aa198;
+  --color-secondary-hover: #248a87;
+}
+
+/* ========== HEADER ========== */
 .top-hud {
-  background-color: #ffffff;
+  background-color: var(--color-bg-card);
   padding: 16px 24px;
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   font-family: 'Poppins', sans-serif;
 }
 
@@ -11,8 +23,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
+/* Layout Columns */
 .nav-left,
 .nav-center,
 .nav-right {
@@ -21,6 +35,17 @@
   gap: 15px;
 }
 
+/* Centered Button (e.g. Pause) */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Buttons */
 .button {
   background-color: var(--color-secondary);
   color: white;
@@ -31,10 +56,10 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .button:hover {
   background-color: var(--color-secondary-hover);
 }
-
