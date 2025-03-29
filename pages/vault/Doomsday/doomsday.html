@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Doomsday Calculation</title>
+  <title>Memory Association Technique</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
@@ -39,76 +39,80 @@
 </head>
 <body>
 
-<!-- Header placeholder -->
+<!-- Navigation Bar -->
 <div id="site-header"></div>
 
-<!-- Main content -->
-<main>
-  <div class="game-container">
-    <h2>Doomsday Calculation</h2>
-
-    <div class="info-text">
-      <p>
-        The <strong>Doomsday Algorithm</strong> is a mental method for determining the day of the week for any given date — past, present, or future.
-      </p>
-      <p>
-        It works by anchoring your calculation to "Doomsday" dates — fixed calendar days that always fall on the same weekday within each year. With a bit of training, you can calculate weekdays in seconds using nothing but your mind.
-      </p>
-      <p>
-        This system is used by mental athletes, memory champions, and anyone who loves a good brain trick. It's fast, fun, and incredibly useful.
-      </p>
-      <p>
-        Ready to learn it? Head back to the Vault and start your journey.
-      </p>
-    </div>
-
-    <div class="button-block">
-      <button class="button" onclick="goBack()">Back to Vault</button>
-    </div>
-  </div>
-</main>
-
-<!-- Footer placeholder -->
-<div id="site-footer"></div>
-
-<!-- Load Header -->
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
+
+      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Optional: highlight active nav link
+      // Highlight the correct active nav link
+      const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-      document.querySelectorAll('.top-nav a').forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
+
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
           link.classList.add('active');
         }
       });
-    });
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
-<!-- Load Footer -->
+<main>
+  <div class="game-container">
+    <h2>Memory Association Technique</h2>
+
+    <div class="info-text">
+      <p>
+        To significantly boost your memory, use the <strong>Association Technique</strong>. Instead of trying to remember each word separately, turn them into vivid mental images and link them together into a creative story.
+      </p>
+      <p>
+        For example, if the words are <strong>"cloud", "piano", "tree"</strong>:
+        Imagine a fluffy <strong>cloud</strong> playing a <strong>piano</strong> in the sky, and then that piano jumps down and starts climbing a <strong>tree</strong>.
+      </p>
+      <p>
+        Try to <strong>visualize</strong> the story. Feel the <strong>texture</strong>, hear the <strong>sounds</strong>, and involve your <strong>senses</strong>. The more bizarre or emotional the story, the more likely it will stick in your memory.
+      </p>
+      <p>
+        Now that you’ve learned the technique — give it another shot!
+      </p>
+    </div>
+
+    <div class="button-block">
+      <button class="button" onclick="retry()">Back</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  function retry() {
+    window.location.href = "/pages/vault.html";
+  }
+</script>
+
+<div id="site-footer"></div>
+
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-footer').innerHTML = html;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/components/footer/footer.css';
-      document.head.appendChild(link);
-    });
-</script>
 
-<script>
-  function goBack() {
-    window.location.href = "/pages/vault.html";
-  }
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/footer/footer.css';
+      document.head.appendChild(style);
+    });
 </script>
 
 </body>
