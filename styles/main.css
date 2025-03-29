@@ -6,21 +6,17 @@
   --color-subtext: #555;
   --color-border: #dce3ec;
 
-  /* Primary / Cognitive Focus */
-  --color-primary: #1e3a5f;
-  --color-primary-hover: #27486e;
-
-  /* Accent / Engagement */
-  --color-accent: #f39c12;
-  --color-accent-hover: #e67e22;
-
-  /* Secondary CTA (Your previous warm brown style) */
-   --color-secondary: #2aa198;
-  --color-secondary-hover: #248a87;
-
-  /* Success / Error Feedback */
+  /* Unified Green Palette */
   --color-success: #2ecc71;
-  --color-error: #e74c3c;
+  --color-success-hover: #27ae60;
+
+  /* Use success tone for all active UI */
+  --color-primary: var(--color-success);
+  --color-primary-hover: var(--color-success-hover);
+  --color-accent: var(--color-success);
+  --color-accent-hover: var(--color-success-hover);
+  --color-secondary: var(--color-success);
+  --color-secondary-hover: var(--color-success-hover);
 }
 
 /* ========== BASE LAYOUT ========== */
@@ -39,7 +35,7 @@ html, body {
 .button:visited,
 .button:active {
   display: inline-block;
-  background: var(--color-secondary);
+  background: var(--color-success);
   color: white !important;
   text-decoration: none;
   padding: 12px 20px;
@@ -53,7 +49,7 @@ html, body {
 }
 
 .button:hover {
-  background-color: var(--color-secondary-hover);
+  background-color: var(--color-success-hover);
   color: white !important;
 }
 
@@ -131,17 +127,7 @@ main {
 }
 
 /* ========== GAME CONTAINER ========== */
-.game-container {
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 40px;
-  background: var(--color-bg-card);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  min-height: 200px;
-}
-
+.game-container,
 .riddle-box {
   max-width: 600px;
   margin: 60px auto;
@@ -172,9 +158,9 @@ input[type="text"] {
 
 input[type="number"]:focus,
 input[type="text"]:focus {
-  border-color: var(--color-secondary);
+  border-color: var(--color-success);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(214, 167, 122, 0.2);
+  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
 }
 
 .user-input {
