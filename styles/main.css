@@ -13,12 +13,6 @@
 /* =======================
    BASE / LAYOUT
 ========================== */
-html, body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--color-bg); /* Same as main */
-}
-
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-bg);
@@ -106,12 +100,11 @@ main {
    CONTAINERS
 ========================== */
 .main-container {
-  background: var(--color-bg-card);
-  border-radius: 12px;
+  background: var(--color-bg-card); /* white card */
   padding: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin: 40px auto;
-  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   max-width: 700px;
 }
 
