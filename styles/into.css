@@ -13,13 +13,15 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: #000;
   z-index: 9999;
+
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
 }
 
 body.intro-active #memory-lock-overlay {
@@ -27,20 +29,22 @@ body.intro-active #memory-lock-overlay {
   opacity: 1;
 }
 
+/* ========== LOCK ANIMATION ========== */
 .lock-container {
   display: flex;
   gap: 15px;
+  margin-bottom: 30px;
 }
 
 .ring {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
   background: var(--color-bg-card);
   color: #000;
-  border: 3px solid var(--color-border);
-  border-radius: 12px;
-  width: 70px;
-  height: 70px;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,9 +60,8 @@ body.intro-active #memory-lock-overlay {
 .ring:nth-child(6) { animation-delay: 1.2s; }
 
 .unlock-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #aaa;
-  margin-top: 20px;
   animation: fadeInText 1s ease 1.5s forwards;
   opacity: 0;
 }
