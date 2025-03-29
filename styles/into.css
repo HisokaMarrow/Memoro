@@ -10,6 +10,8 @@ html, body {
 /* OVERLAY CONTAINER */
 #memory-lock-overlay {
   display: none;
+  opacity: 1;
+  transition: opacity 1s ease;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100vw;
@@ -20,14 +22,12 @@ html, body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  opacity: 1;
-  transition: opacity 1s ease;
 }
 
-/* Show overlay when intro is active */
 body.intro-active #memory-lock-overlay {
   display: flex;
 }
+
 
 /* DIGIT RINGS */
 .lock-container {
@@ -75,4 +75,11 @@ body.intro-active #memory-lock-overlay {
 
 @keyframes fadeInText {
   to { opacity: 1; }
+}
+
+@keyframes fadeOverlayOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
