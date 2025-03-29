@@ -57,7 +57,7 @@
       padding: 30px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .game-card:hover {
@@ -71,8 +71,14 @@
       color: #333;
     }
 
+    .game-card p {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 10px 0 20px;
+    }
+
     .game-card a {
-      margin-top: 12px;
+      margin-top: auto;
       padding: 10px 15px;
       background-color: var(--primary-color, #4A90E2);
       color: white;
@@ -90,29 +96,17 @@
 </head>
 <body>
 
-<!-- Header -->
 <div id="site-header"></div>
 <script>
   fetch('../components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '../components/header/header.css';
       document.head.appendChild(link);
-
-      const links = document.querySelectorAll('.top-nav a');
-      const currentPath = window.location.pathname;
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        }
-      });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
 <main>
@@ -121,11 +115,13 @@
   <a href="../pages/memory.html" class="section-button">Memory Games</a>
   <div class="game-carousel">
     <div class="game-card">
-      <h3>Numbers</h3>
+      <h3>Number Memory</h3>
+      <p>Memorize a growing sequence of numbers and recall them in the correct order. Sharpen your short-term memory and numeric retention.</p>
       <a href="../pages/memory/numbers/settings.html">Play</a>
     </div>
     <div class="game-card">
-      <h3>Words</h3>
+      <h3>Words Challenge</h3>
+      <p>Memorize and recall a list of words in order. Build a stronger vocabulary memory and language-based recall skills.</p>
       <a href="../pages/memory/words/settings.html">Play</a>
     </div>
   </div>
@@ -135,22 +131,27 @@
   <div class="game-carousel">
     <div class="game-card">
       <h3>Addition</h3>
+      <p>Solve progressively harder addition problems. Great for speed, accuracy, and mental arithmetic fluency.</p>
       <a href="../pages/math/addition/settings.html">Play</a>
     </div>
     <div class="game-card">
       <h3>Subtraction</h3>
+      <p>Test your subtraction skills and improve your reaction time with simple to complex problems.</p>
       <a href="../pages/math/subtraction/settings.html">Play</a>
     </div>
     <div class="game-card">
       <h3>Multiplication</h3>
+      <p>Sharpen your times table and rapid math recall with classic multiplication challenges.</p>
       <a href="../pages/math/multiplication/settings.html">Play</a>
     </div>
     <div class="game-card">
       <h3>Division</h3>
+      <p>Work your way through timed division challenges to improve math accuracy and logic.</p>
       <a href="../pages/math/devision/settings.html">Play</a>
     </div>
     <div class="game-card">
       <h3>Percentage</h3>
+      <p>Practice percentage-based problems, perfect for improving financial math and real-world logic.</p>
       <a href="../pages/math/percentage/settings.html">Play</a>
     </div>
   </div>
@@ -160,10 +161,12 @@
   <div class="game-carousel">
     <div class="game-card">
       <h3>Logic</h3>
+      <p>Challenge your reasoning skills with brain-teasing logical riddles and lateral thinking tasks.</p>
       <a href="../pages/riddles/logic/settings.html">Play</a>
     </div>
     <div class="game-card">
       <h3>Numeric</h3>
+      <p>Use numbers and patterns to solve clever numeric riddles designed to test your mental agility.</p>
       <a href="../pages/riddles/nummeric/settings.html">Play</a>
     </div>
   </div>
