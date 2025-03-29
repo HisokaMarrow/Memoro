@@ -25,74 +25,102 @@
 
 <main>
 
-  <!-- Memory Games Section -->
-  <div class="main-section-header">
-    <a href="/pages/memory.html" class="main-button">Memory Games →</a>
-  </div>
-  <div class="main-section">
-    <div class="main-carousel">
-      <div class="main-carousel-box">
-        <h3>Number Memory</h3>
-        <p>Memorize a growing sequence of numbers and recall them in the correct order.</p>
-        <a href="/pages/memory/numbers/settings.html" class="main-button">Play</a>
-      </div>
+  <!-- MEMORY GAMES -->
+  <section class="main-category-section">
+    <div class="main-section-header">
+      <a href="/pages/memory.html" class="main-button">Memory Games →</a>
     </div>
-  </div>
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left">‹</button>
+      <div class="main-carousel">
+        <div class="main-carousel-box">
+          <h3>Number Memory</h3>
+          <p>Memorize a growing sequence of numbers and recall them in the correct order.</p>
+          <a href="/pages/memory/numbers/settings.html" class="main-button">Play</a>
+        </div>
+      </div>
+      <button class="carousel-arrow right">›</button>
+    </div>
+  </section>
 
-  <!-- Math Games Section -->
-  <div class="main-section-header">
-    <a href="/pages/math.html" class="main-button">Math Games →</a>
-  </div>
-  <div class="main-section">
-    <div class="main-carousel">
-      <div class="main-carousel-box">
-        <h3>Addition</h3>
-        <p>Sharpen your mental math with quick-fire addition drills.</p>
-        <a href="/pages/math/addition/settings.html" class="main-button">Play</a>
-      </div>
-      <div class="main-carousel-box">
-        <h3>Subtraction</h3>
-        <p>Improve subtraction speed and problem-solving accuracy.</p>
-        <a href="/pages/math/subtraction/settings.html" class="main-button">Play</a>
-      </div>
-      <div class="main-carousel-box">
-        <h3>Multiplication</h3>
-        <p>Master your multiplication tables with challenge-based gameplay.</p>
-        <a href="/pages/math/multiplication/settings.html" class="main-button">Play</a>
-      </div>
-      <div class="main-carousel-box">
-        <h3>Division</h3>
-        <p>Work through division problems with increasing difficulty.</p>
-        <a href="/pages/math/devision/settings.html" class="main-button">Play</a>
-      </div>
-      <div class="main-carousel-box">
-        <h3>Percentage</h3>
-        <p>Calculate percentages in real-world inspired scenarios.</p>
-        <a href="/pages/math/percentage/settings.html" class="main-button">Play</a>
-      </div>
+  <!-- MATH GAMES -->
+  <section class="main-category-section">
+    <div class="main-section-header">
+      <a href="/pages/math.html" class="main-button">Math Games →</a>
     </div>
-  </div>
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left">‹</button>
+      <div class="main-carousel">
+        <div class="main-carousel-box">
+          <h3>Addition</h3>
+          <p>Sharpen your mental math with quick-fire addition drills.</p>
+          <a href="/pages/math/addition/settings.html" class="main-button">Play</a>
+        </div>
+        <div class="main-carousel-box">
+          <h3>Subtraction</h3>
+          <p>Improve subtraction speed and problem-solving accuracy.</p>
+          <a href="/pages/math/subtraction/settings.html" class="main-button">Play</a>
+        </div>
+        <div class="main-carousel-box">
+          <h3>Multiplication</h3>
+          <p>Master your multiplication tables with challenge-based gameplay.</p>
+          <a href="/pages/math/multiplication/settings.html" class="main-button">Play</a>
+        </div>
+        <div class="main-carousel-box">
+          <h3>Division</h3>
+          <p>Work through division problems with increasing difficulty.</p>
+          <a href="/pages/math/devision/settings.html" class="main-button">Play</a>
+        </div>
+        <div class="main-carousel-box">
+          <h3>Percentage</h3>
+          <p>Calculate percentages in real-world inspired scenarios.</p>
+          <a href="/pages/math/percentage/settings.html" class="main-button">Play</a>
+        </div>
+      </div>
+      <button class="carousel-arrow right">›</button>
+    </div>
+  </section>
 
-  <!-- Riddle Games Section -->
-  <div class="main-section-header">
-    <a href="/pages/riddles.html" class="main-button">Riddle Games →</a>
-  </div>
-  <div class="main-section">
-    <div class="main-carousel">
-      <div class="main-carousel-box">
-        <h3>Logic</h3>
-        <p>Stretch your reasoning skills with classic logic riddles.</p>
-        <a href="/pages/riddles/logic/settings.html" class="main-button">Play</a>
-      </div>
-      <div class="main-carousel-box">
-        <h3>Numeric</h3>
-        <p>Decode numeric patterns and number-based challenges.</p>
-        <a href="/pages/riddles/nummeric/settings.html" class="main-button">Play</a>
-      </div>
+  <!-- RIDDLE GAMES -->
+  <section class="main-category-section">
+    <div class="main-section-header">
+      <a href="/pages/riddles.html" class="main-button">Riddle Games →</a>
     </div>
-  </div>
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left">‹</button>
+      <div class="main-carousel">
+        <div class="main-carousel-box">
+          <h3>Logic</h3>
+          <p>Stretch your reasoning skills with classic logic riddles.</p>
+          <a href="/pages/riddles/logic/settings.html" class="main-button">Play</a>
+        </div>
+        <div class="main-carousel-box">
+          <h3>Numeric</h3>
+          <p>Decode numeric patterns and number-based challenges.</p>
+          <a href="/pages/riddles/nummeric/settings.html" class="main-button">Play</a>
+        </div>
+      </div>
+      <button class="carousel-arrow right">›</button>
+    </div>
+  </section>
 
 </main>
+
+<script>
+  document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
+    const carousel = wrapper.querySelector('.main-carousel');
+    const leftBtn = wrapper.querySelector('.carousel-arrow.left');
+    const rightBtn = wrapper.querySelector('.carousel-arrow.right');
+
+    leftBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    rightBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  });
+</script>
 
 <!-- Footer -->
 <div id="site-footer"></div>
