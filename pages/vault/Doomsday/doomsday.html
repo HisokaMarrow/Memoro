@@ -2,33 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Memory Association Technique</title>
+  <title>Doomsday Algorithm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -39,42 +33,37 @@
     .catch(err => console.error('Header load error:', err));
 </script>
 
+<!-- Main Content -->
 <main>
-  <div class="game-container">
-    <h2>Doomsday Algorithm</h2>
+  <div class="main-container">
+    <h2 class="main-title">Doomsday Algorithm</h2>
 
-    <div class="info-text">
+    <div class="main-text" style="text-align: left;">
       <p>
         The <strong>Doomsday Algorithm</strong> is a mental method for calculating the <strong>day of the week for any given date</strong> — without a calendar.
         It’s fast, fun, and used by memory athletes around the world.
       </p>
 
       <h3>Step-by-Step Example: March 15, 2023</h3>
-
       <ol>
         <li><strong>Anchor the century:</strong> 2000s = <strong>Tuesday (2)</strong></li>
         <li><strong>Find the last two digits of the year:</strong> <code>23</code></li>
-        <li><strong>Add:</strong> 23 + floor(23/4) = <strong>23 + 5 = 28</strong></li>
+        <li><strong>Add:</strong> 23 + floor(23/4) = <strong>28</strong></li>
         <li><strong>Add month code for March:</strong> <strong>3</strong></li>
         <li><strong>Add day of the month:</strong> <code>15</code></li>
-        <li><strong>Total:</strong> 2 (century) + 28 + 3 + 15 = <strong>48</strong></li>
-        <li><strong>Take mod 7:</strong> 48 % 7 = <strong>6</strong> → <strong>Saturday</strong></li>
+        <li><strong>Total:</strong> 2 + 28 + 3 + 15 = <strong>48</strong></li>
+        <li><strong>Mod 7:</strong> 48 % 7 = <strong>6</strong> → <strong>Saturday</strong></li>
       </ol>
 
       <p><em>Answer: March 15, 2023 falls on a <strong>Wednesday</strong></em></p>
 
-      <hr />
+      <hr>
 
       <h3>Doomsday Reference Tables</h3>
 
       <h4>Month Codes</h4>
       <table>
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Code</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Month</th><th>Code</th></tr></thead>
         <tbody>
           <tr><td>January</td><td>0</td></tr>
           <tr><td>February</td><td>3</td></tr>
@@ -93,9 +82,7 @@
 
       <h4>Century Anchor Codes</h4>
       <table>
-        <thead>
-          <tr><th>Century</th><th>Anchor Day</th></tr>
-        </thead>
+        <thead><tr><th>Century</th><th>Anchor Day</th></tr></thead>
         <tbody>
           <tr><td>1700s</td><td>Sunday (0)</td></tr>
           <tr><td>1800s</td><td>Friday (5)</td></tr>
@@ -107,9 +94,7 @@
 
       <h4>Weekday Reference</h4>
       <table>
-        <thead>
-          <tr><th>Result</th><th>Day of the Week</th></tr>
-        </thead>
+        <thead><tr><th>Result</th><th>Day of the Week</th></tr></thead>
         <tbody>
           <tr><td>0</td><td>Sunday</td></tr>
           <tr><td>1</td><td>Monday</td></tr>
@@ -122,8 +107,8 @@
       </table>
     </div>
 
-    <div class="button-block">
-      <button class="button" onclick="goBack()">Back to Vault</button>
+    <div class="main-button-block">
+      <button class="main-button" onclick="goBack()">Back to Vault</button>
     </div>
   </div>
 </main>
@@ -134,14 +119,13 @@
   }
 </script>
 
+<!-- Footer -->
 <div id="site-footer"></div>
-
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-footer').innerHTML = html;
-
       const style = document.createElement('link');
       style.rel = 'stylesheet';
       style.href = '/components/footer/footer.css';
