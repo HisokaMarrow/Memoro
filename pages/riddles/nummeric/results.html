@@ -4,49 +4,42 @@
   <meta charset="UTF-8" />
   <title>Math Riddles - Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
           link.classList.add('active');
         }
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
-
 <main>
-  <div class="game-container">
-    <div id="summary" class="summary">Loading results...</div>
-    <div id="resultsGrid" class="results-grid"></div>
-	<div style="margin-top: 40px; display: flex; justify-content: center;">
-  <a href="../../../index.html" class="button" style="padding: 14px 28px; font-size: 1.1em;">Return to Home Page</a>
-</div>
+  <div class="main-container">
+    <div class="result-summary" id="summary">Loading results...</div>
+    <div class="results-grid" id="resultsGrid"></div>
+
+    <div class="main-button-block">
+      <a href="/index.html" class="main-button" style="font-size: 1.1em;">Return to Home Page</a>
+    </div>
   </div>
 </main>
 
@@ -80,8 +73,9 @@
 
   const percent = Math.round((correct / riddles.length) * 100);
   summary.innerHTML = `You solved ${correct} of ${riddles.length} riddles correctly (${percent}%) in ${totalTime}s`;
+
   const gameTitle = "Math Riddles";
-sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
 </body>
