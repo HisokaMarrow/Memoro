@@ -9,15 +9,17 @@
   opacity: 1;
   transition: opacity 1s ease;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: black;
   z-index: 9999;
-  flex-direction: column;
+  display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  flex-direction: column;
 }
 
 body.intro-active #memory-lock-overlay {
@@ -27,18 +29,18 @@ body.intro-active #memory-lock-overlay {
 
 .lock-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 15px;
 }
 
 .ring {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
   background: var(--color-bg-card);
   color: #000;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
-  width: 50px;
-  height: 50px;
+  border: 3px solid var(--color-border);
+  border-radius: 12px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,8 +56,9 @@ body.intro-active #memory-lock-overlay {
 .ring:nth-child(6) { animation-delay: 1.2s; }
 
 .unlock-text {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #aaa;
+  margin-top: 20px;
   animation: fadeInText 1s ease 1.5s forwards;
   opacity: 0;
 }
@@ -68,32 +71,4 @@ body.intro-active #memory-lock-overlay {
 
 @keyframes fadeInText {
   to { opacity: 1; }
-}
-
-@keyframes fadeOverlayIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOverlayOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 0; /* Hidden until animated */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
