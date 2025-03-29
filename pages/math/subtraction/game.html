@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <title>Subtraction Challenge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
 </head>
 <body>
 
+<!-- Game Header (with timer/pause) -->
 <div id="gameheadertimerdown"></div>
-
 <script>
   fetch('/components/gameheadertimerdown/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('gameheadertimerdown').innerHTML = html;
-
       const style = document.createElement('link');
       style.rel = 'stylesheet';
       style.href = '/components/gameheadertimerdown/header.css';
@@ -26,11 +24,11 @@
 </script>
 
 <main>
-  <div class="game-container" id="gameContainer">
-    <h2 id="gameTitle">Starting in...</h2>
-    <div id="countdown" class="countdown">5</div>
-    <div id="problem" style="font-size: 2em; margin-top: 20px;"></div>
-    <input type="number" id="answerInput" placeholder="Your Answer" />
+  <div class="main-container" id="gameContainer">
+    <h2 class="main-title" id="gameTitle">Starting in...</h2>
+    <div class="main-countdown" id="countdown">5</div>
+    <div id="problem" class="main-word"></div>
+    <input type="number" id="answerInput" class="input-box" placeholder="Your Answer" style="display: none;" />
   </div>
 </main>
 
@@ -53,7 +51,6 @@
   const title = document.getElementById("gameTitle");
   const countdownEl = document.getElementById("countdown");
 
- 
   function togglePause() {
     isPaused = !isPaused;
     pauseButton.textContent = isPaused ? "Resume" : "Pause";
@@ -65,21 +62,18 @@
 
   function waitWhilePaused() {
     return new Promise(resolve => {
-      if (!isPaused) {
-        resolve();
-      } else {
-        pauseResolve = resolve;
-      }
+      if (!isPaused) resolve();
+      else pauseResolve = resolve;
     });
   }
 
   function startCountdown() {
-    let countdown = 5;
-    countdownEl.textContent = countdown;
+    let count = 5;
+    countdownEl.textContent = count;
     const interval = setInterval(() => {
-      countdown--;
-      countdownEl.textContent = countdown;
-      if (countdown === 0) {
+      count--;
+      countdownEl.textContent = count;
+      if (count === 0) {
         clearInterval(interval);
         countdownEl.style.display = "none";
         title.style.display = "none";
@@ -119,14 +113,12 @@
       if (!isPaused) {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
-        if (timeLeft <= 0) {
-          finishGame();
-        }
+        if (timeLeft <= 0) finishGame();
       }
     }, 1000);
 
     input.addEventListener("keyup", async function (e) {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && input.value.trim() !== "") {
         userAnswers.push(input.value.trim());
         input.value = "";
         await waitWhilePaused();
@@ -139,7 +131,7 @@
     clearInterval(timerInterval);
     localStorage.setItem("mathProblems", JSON.stringify(problems));
     localStorage.setItem("mathUserAnswers", JSON.stringify(userAnswers));
-    problemBox.textContent = "Time's Up!";
+    problemBox.textContent = "Time’s Up!";
     input.style.display = "none";
     setTimeout(() => window.location.href = "results.html", 2000);
   }
