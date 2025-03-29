@@ -11,21 +11,41 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f8f9fa;
+      background-color: #f4f6f8;
+      color: #333;
     }
 
     main {
-      padding: 40px 20px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .game-section {
-      margin-bottom: 60px;
-    }
-
-    .game-section h2 {
-      text-align: center;
-      font-size: 2em;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
+      padding: 0 10px;
+    }
+
+    .section-header h2 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .section-header a {
+      background-color: #4A90E2;
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .section-header a:hover {
+      background-color: #357ABD;
     }
 
     .game-carousel {
@@ -33,7 +53,7 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 20px;
-      padding: 10px 0;
+      padding: 10px;
     }
 
     .game-card {
@@ -42,7 +62,7 @@
       background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       min-height: 300px;
       display: flex;
       flex-direction: column;
@@ -51,6 +71,8 @@
 
     .game-card h3 {
       margin-top: 0;
+      font-size: 1.4rem;
+      color: #222;
     }
 
     .game-card a {
@@ -74,23 +96,19 @@
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
-  fetch('/components/header/header.html')
+  fetch('../components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '/components/header/header.css';
+      link.href = '../components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -102,8 +120,12 @@
 </script>
 
 <main>
-  <div class="game-section memory">
-    <h2>Memory Games</h2>
+  <!-- Memory Section -->
+  <section class="game-section memory">
+    <div class="section-header">
+      <h2>Memory Games</h2>
+      <a href="../pages/memory.html">Go to Memory</a>
+    </div>
     <div class="game-carousel">
       <div class="game-card">
         <h3>Memory Game 1</h3>
@@ -114,27 +136,35 @@
         <a href="../pages/memory/game2/settings.html" target="_blank">Play</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="game-section math">
-    <h2>Math Games</h2>
+  <!-- Math Section -->
+  <section class="game-section math">
+    <div class="section-header">
+      <h2>Math Games</h2>
+      <a href="../pages/math.html">Go to Math</a>
+    </div>
     <div class="game-carousel">
       <div class="game-card">
         <h3>Math Game 1</h3>
         <a href="../pages/math/game1/settings.html" target="_blank">Play</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="game-section riddles">
-    <h2>Riddle Games</h2>
+  <!-- Riddle Section -->
+  <section class="game-section riddles">
+    <div class="section-header">
+      <h2>Riddle Games</h2>
+      <a href="../pages/riddles.html">Go to Riddles</a>
+    </div>
     <div class="game-carousel">
       <div class="game-card">
         <h3>Riddle Game 1</h3>
         <a href="../pages/riddles/game1/settings.html" target="_blank">Play</a>
       </div>
     </div>
-  </div>
+  </section>
 </main>
 
 </body>
