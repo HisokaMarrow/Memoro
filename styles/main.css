@@ -281,10 +281,14 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 20px;
-  padding: 10px 0;
+  padding: 30px 0;
   margin-bottom: 40px;
-  flex: 0 0 300px; /* or use min-width */
-  max-width: 300px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .main-carousel::-webkit-scrollbar {
