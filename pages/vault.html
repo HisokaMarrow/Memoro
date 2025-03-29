@@ -4,31 +4,26 @@
   <meta charset="UTF-8" />
   <title>Memory Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -40,38 +35,40 @@
 </script>
 
 <main>
-  <h1 class="page-title">Memory Vault</h1>
-  <p class="page-sub">Learn proven memory systems and techniques used by champions, monks, and professionals.</p>
+  <h1 class="main-title">Memory Vault</h1>
+  <p class="main-subtitle">
+    Learn proven memory systems and techniques used by champions, monks, and professionals.
+  </p>
 
-  <div class="game-grid">
-    <div class="game-box">
+  <div class="main-grid">
+    <div class="main-box">
       <h3>Memory Techniques</h3>
       <p>Master powerful memory systems like the Major System and Number Shapes. Learn how to turn numbers into vivid, unforgettable images.</p>
-      <a href="pages/vault/Memory Mnemonics/memorymnemonics.html" class="button">View</a>
+      <a href="/pages/vault/Memory Mnemonics/memorymnemonics.html" class="main-button">View</a>
     </div>
 
-    <div class="game-box">
+    <div class="main-box">
       <h3>Memory Mnemonics</h3>
       <p>Learn how to link cards, facts, or sequences to memorable characters or images. Build faster, stronger associations for recall mastery.</p>
-      <a href="pages/vault/Memory Techniques" class="button">View</a>
+      <a href="/pages/vault/Memory Techniques" class="main-button">View</a>
     </div>
-    
-     <div class="game-box">
+
+    <div class="main-box">
       <h3>Maths</h3>
       <p>Unlock powerful math strategies and mental shortcuts used by top performers. Explore proven techniques for faster calculations, stronger number sense, and confident problem solving.</p>
-      <a href="/pages/vault/Maths/addition.html" class="button">View</a>
+      <a href="/pages/vault/Maths/addition.html" class="main-button">View</a>
     </div>
-    
-    <div class="game-box">
+
+    <div class="main-box">
       <h3>Dooms Day Calculation</h3>
       <p>Learn the Doomsday Algorithm — a mental shortcut that lets you instantly calculate the day of the week for any date. Master this powerful memory-based math trick used by mental athletes and calendar prodigies.</p>
-      <a href="/pages/vault/Doomsday/doomsday.html" class="button">View</a>
+      <a href="/pages/vault/Doomsday/doomsday.html" class="main-button">View</a>
     </div>
   </div>
 </main>
 
+<!-- Footer -->
 <div id="site-footer"></div>
-
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
