@@ -39,6 +39,35 @@
 </head>
 <body>
 
+<!-- Navigation Bar -->
+<div id="site-header"></div>
+
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      // Load header CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      // Highlight the correct active nav link
+      const links = document.querySelectorAll('.top-nav a');
+      const currentPath = window.location.pathname;
+
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+          link.classList.add('active');
+        }
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+
 <main>
   <div class="game-container">
     <h2>Memory Association Technique</h2>
