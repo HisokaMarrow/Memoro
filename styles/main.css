@@ -314,3 +314,27 @@ body.intro-active #memory-lock-overlay {
     visibility: hidden;
   }
 }
+
+.info-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.95em;
+}
+
+.info-text th,
+.info-text td {
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.info-text th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+.info-text h3, .info-text h4 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
