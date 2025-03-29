@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <title>Addition Challenge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
+<!-- Game Header with Timer -->
 <div id="gameheadertimerdown"></div>
-
 <script>
   fetch('/components/gameheadertimerdown/header.html')
     .then(res => res.text())
@@ -26,11 +25,11 @@
 </script>
 
 <main>
-  <div class="game-container" id="gameContainer">
-    <h2 id="gameTitle">Starting in...</h2>
-    <div id="countdown" class="countdown">5</div>
-    <div id="problem" style="font-size: 2em; margin-top: 20px;"></div>
-    <input type="number" id="answerInput" placeholder="Your Answer" />
+  <div class="main-container" id="gameContainer">
+    <h2 id="gameTitle" class="main-title">Starting in...</h2>
+    <div id="countdown" class="main-countdown">5</div>
+    <div id="problem" class="main-word" style="margin-top: 20px;"></div>
+    <input type="number" id="answerInput" class="input-box" placeholder="Your Answer" />
   </div>
 </main>
 
@@ -53,7 +52,6 @@
   const title = document.getElementById("gameTitle");
   const countdownEl = document.getElementById("countdown");
 
- 
   function togglePause() {
     isPaused = !isPaused;
     pauseButton.textContent = isPaused ? "Resume" : "Pause";
@@ -65,11 +63,8 @@
 
   function waitWhilePaused() {
     return new Promise(resolve => {
-      if (!isPaused) {
-        resolve();
-      } else {
-        pauseResolve = resolve;
-      }
+      if (!isPaused) resolve();
+      else pauseResolve = resolve;
     });
   }
 
