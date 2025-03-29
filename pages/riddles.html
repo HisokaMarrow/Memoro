@@ -4,30 +4,26 @@
   <meta charset="UTF-8" />
   <title>Riddles | Memory Trainer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
-      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
-
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
@@ -40,52 +36,52 @@
 
 <!-- Main Content -->
 <main>
-  <h1 class="page-title">Riddles & Mind Puzzles</h1>
-  <p class="page-sub">
+  <h1 class="main-title">Riddles & Mind Puzzles</h1>
+  <p class="main-subtitle">
     Train your lateral thinking and logic with riddles that twist your brain into shape.
   </p>
 
-  <div class="game-grid">
-	<div class="game-box">
+  <div class="main-grid">
+    <div class="main-box">
       <h3>Cipher</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="button disabled">Coming Soon</a>
+      <a class="main-button disabled">Coming Soon</a>
     </div>
-	
-    <div class="game-box">
+
+    <div class="main-box">
       <h3>Wordplay</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="button disabled">Coming Soon</a>
+      <a class="main-button disabled">Coming Soon</a>
     </div>
-	
-	<div class="game-box">
+
+    <div class="main-box">
       <h3>Story</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="button disabled">Coming Soon</a>
+      <a class="main-button disabled">Coming Soon</a>
     </div>
-	
-	<div class="game-box">
+
+    <div class="main-box">
       <h3>Numeric</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a href="riddles/nummeric/nummeric.html" class="button">Start</a>
+      <a href="/pages/riddles/nummeric/nummeric.html" class="main-button">Start</a>
     </div>
-	
-	<div class="game-box">
+
+    <div class="main-box">
       <h3>Logic</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a href="riddles/logic/settings.html" class="button">Start</a>
+      <a href="/pages/riddles/logic/settings.html" class="main-button">Start</a>
     </div>
-	
-	<div class="game-box">
+
+    <div class="main-box">
       <h3>Combined</h3>
       <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="button disabled">Coming Soon</a>
+      <a class="main-button disabled">Coming Soon</a>
     </div>
   </div>
 </main>
 
+<!-- Footer -->
 <div id="site-footer"></div>
-
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
@@ -98,7 +94,6 @@
       document.head.appendChild(style);
     });
 </script>
-
 
 </body>
 </html>
