@@ -7,6 +7,46 @@
   <link rel="stylesheet" href="../styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+    }
+
+    main {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+
+    .section-header a {
+      background-color: var(--primary-color, #4A90E2);
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .section-header a:hover {
+      background-color: #357ABD;
+    }
+
+    .section-header h2 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
     .game-carousel {
       display: flex;
       overflow-x: auto;
@@ -16,34 +56,41 @@
     }
 
     .game-card {
-      flex: 0 0 80%;
+      flex: 0 0 250px;
       scroll-snap-align: start;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      min-height: 300px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
 
     .game-card h3 {
       margin-top: 0;
-      font-size: 1.4rem;
-      color: #222;
+      font-size: 1.2rem;
+      color: #333;
     }
 
     .game-card a {
-      display: inline-block;
-      margin-top: auto;
+      margin-top: 12px;
       padding: 10px 15px;
-      background-color: #4A90E2;
+      background-color: var(--primary-color, #4A90E2);
       color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      text-align: center;
       font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
 
     .game-card a:hover {
@@ -53,7 +100,7 @@
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
 <script>
   fetch('../components/header/header.html')
@@ -82,16 +129,17 @@
   <!-- Memory Section -->
   <section class="game-section memory">
     <div class="section-header">
-      <a href="../pages/memory.html">Memory Games</a>
+      <h2>Memory Games</h2>
+      <a href="../pages/memory.html">Go to Memory</a>
     </div>
     <div class="game-carousel">
       <div class="game-card">
-        <h3>Memory Game 1</h3>
-        <a href="../pages/memory/numbers/settings.html" target="_blank">Play</a>
+        <h3>Numbers</h3>
+        <a href="../pages/memory/numbers/settings.html">Play</a>
       </div>
       <div class="game-card">
-        <h3>Memory Game 2</h3>
-        <a href="../pages/memory/cards/settings.html" target="_blank">Play</a>
+        <h3>Cards</h3>
+        <a href="../pages/memory/cards/settings.html">Play</a>
       </div>
     </div>
   </section>
@@ -99,12 +147,13 @@
   <!-- Math Section -->
   <section class="game-section math">
     <div class="section-header">
-      <a href="../pages/math.html">Math Games</a>
+      <h2>Math Games</h2>
+      <a href="../pages/math.html">Go to Math</a>
     </div>
     <div class="game-carousel">
       <div class="game-card">
-        <h3>Math Game 1</h3>
-        <a href="../pages/math/game1/settings.html" target="_blank">Play</a>
+        <h3>Basic Math</h3>
+        <a href="../pages/math/game1/settings.html">Play</a>
       </div>
     </div>
   </section>
@@ -112,12 +161,13 @@
   <!-- Riddle Section -->
   <section class="game-section riddles">
     <div class="section-header">
-      <a href="../pages/riddles.html">Go to Riddle Games</a>
+      <h2>Riddle Games</h2>
+      <a href="../pages/riddles.html">Go to Riddles</a>
     </div>
     <div class="game-carousel">
       <div class="game-card">
-        <h3>Riddle Game 1</h3>
-        <a href="../pages/riddles/game1/settings.html" target="_blank">Play</a>
+        <h3>Logic Puzzle</h3>
+        <a href="../pages/riddles/game1/settings.html">Play</a>
       </div>
     </div>
   </section>
