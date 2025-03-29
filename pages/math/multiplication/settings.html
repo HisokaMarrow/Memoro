@@ -2,83 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Math Challenge - Multiplication Settings</title>
+  <title>Multiplication Challenge - Settings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
-      // Load header CSS
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/components/header/header.css';
-      document.head.appendChild(link);
-
-      // Highlight the correct active nav link
-      const links = document.querySelectorAll('.top-nav a');
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/header/header.css';
+      document.head.appendChild(style);
       const currentPath = window.location.pathname;
-
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        }
+      document.querySelectorAll('.top-nav a').forEach(link => {
+        if (link.getAttribute('href') === currentPath) link.classList.add('active');
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
 <main>
-  <div class="game-container">
-    <h2>Math Challenge - Multiplication Settings</h2>
+  <div class="main-container">
+    <h2 class="main-title">Multiplication Challenge – Settings</h2>
 
-    <!-- Difficulty Setting -->
-    <label>Game Difficulty:</label>
-    <div class="option-row">
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="beginner" value="beginner" checked />
-        <label for="beginner">Beginner</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="advanced" value="advanced" />
-        <label for="advanced">Advanced</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="difficulty" id="expert" value="expert" />
-        <label for="expert">Expert</label>
-      </div>
+    <!-- Difficulty -->
+    <p class="main-text">Select Difficulty:</p>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="beginner" checked />
+        Beginner
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="advanced" />
+        Advanced
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="expert" />
+        Expert
+      </label>
     </div>
 
-    <!-- Time Limit -->
-    <label>Time Limit:</label>
-    <div class="option-row">
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time1" value="60" checked />
-        <label for="time1">1 Minute</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time2" value="120" />
-        <label for="time2">2 Minutes</label>
-      </div>
-      <div class="option-box">
-        <input type="radio" name="timeLimit" id="time3" value="180" />
-        <label for="time3">3 Minutes</label>
-      </div>
+    <!-- Time -->
+    <p class="main-text">Select Time Limit:</p>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="60" checked />
+        1 Minute
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="120" />
+        2 Minutes
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="180" />
+        3 Minutes
+      </label>
     </div>
 
-    <!-- Start Button -->
-    <button onclick="startMathGame()" class="button" style="width: 100%; padding: 16px; font-size: 1.2em; margin-top: 30px;">Start</button>
+    <!-- Start -->
+    <div class="main-button-block">
+      <button onclick="startMathGame()" class="main-button" style="width: 100%; font-size: 1.2em;">
+        Start Challenge
+      </button>
+    </div>
   </div>
 </main>
 
@@ -86,10 +78,8 @@
   function startMathGame() {
     const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     const timeLimit = document.querySelector('input[name="timeLimit"]:checked').value;
-
     localStorage.setItem("mathDifficulty", difficulty);
     localStorage.setItem("mathTimeLimit", timeLimit);
-
     window.location.href = "game.html";
   }
 </script>
