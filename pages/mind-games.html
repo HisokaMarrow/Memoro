@@ -109,5 +109,23 @@
 
 </main>
 
+<script>
+  document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
+    const carousel = wrapper.querySelector('.main-carousel');
+    const leftBtn = wrapper.querySelector('.carousel-arrow.left');
+    const rightBtn = wrapper.querySelector('.carousel-arrow.right');
+
+    const scrollAmount = 320; // adjust based on .main-box width + gap
+
+    leftBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    rightBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
+</script>
+
 </body>
 </html>
