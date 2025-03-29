@@ -277,6 +277,7 @@ main {
    CAROUSEL
 ========================== */
 .main-carousel {
+  background: var(--color-bg-card);
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
