@@ -69,19 +69,7 @@
 }
 
 #timer {
-  position: relative;
-  z-index: 2;
-}
-
-.timer-placeholder {
-  visibility: hidden;
-  position: absolute;
-  left: 0;
-  width: 100%;
+  min-width: 3ch; /* force width for time like "00" - "99" */
   text-align: center;
-  pointer-events: none;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  display: inline-block;
 }
