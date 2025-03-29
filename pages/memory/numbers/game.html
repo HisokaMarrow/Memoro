@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <title>Number Memory - Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
+<!-- Game Header -->
 <div id="gameheadertimerdown"></div>
-
 <script>
   fetch('/components/gameheadertimerdown/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('gameheadertimerdown').innerHTML = html;
-
       const style = document.createElement('link');
       style.rel = 'stylesheet';
       style.href = '/components/gameheadertimerdown/header.css';
@@ -26,13 +24,14 @@
 </script>
 
 <main>
-  <div class="game-container">
-    <div id="goWrapper">
-      <button class="button" id="startButton" style="padding: 18px 40px; font-size: 1.4em;" onclick="startCountdown()">Go</button>
+  <div class="main-container">
+    <div class="main-button-block" id="goWrapper">
+      <button class="main-button" id="startButton" onclick="startCountdown()">Start Game</button>
     </div>
-    <h2 id="countdownLabel" style="display: none;">Starting in...</h2>
-    <div id="countdown" style="display: none;"></div>
-    <div id="output" style="display: none;"></div>
+
+    <h2 id="countdownLabel" class="main-title" style="display: none;">Starting in...</h2>
+    <div id="countdown" class="main-countdown" style="display: none;"></div>
+    <div id="output" class="main-word" style="display: none;"></div>
   </div>
 </main>
 
@@ -64,11 +63,8 @@
 
   function waitWhilePaused() {
     return new Promise(resolve => {
-      if (!isPaused) {
-        resolve();
-      } else {
-        pauseResolve = resolve;
-      }
+      if (!isPaused) resolve();
+      else pauseResolve = resolve;
     });
   }
 
@@ -82,9 +78,7 @@
   }
 
   function startCountdown() {
-    const unlock = new SpeechSynthesisUtterance('');
-    speechSynthesis.speak(unlock);
-
+    speechSynthesis.cancel();
     document.getElementById("goWrapper").style.display = "none";
     document.getElementById("countdownLabel").style.display = "block";
     document.getElementById("countdown").style.display = "block";
@@ -106,7 +100,6 @@
 
   function beginGame() {
     document.getElementById("output").style.display = "block";
-
     pauseButton = document.getElementById("pauseButton");
     currentSequence = [];
     timerInterval = setInterval(updateTimer, 1000);
@@ -130,9 +123,7 @@
       if (!shouldStopGame) {
         localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
         document.getElementById("output").innerText = "Done!";
-        setTimeout(() => {
-          window.location.href = "results.html";
-        }, 2000);
+        setTimeout(() => window.location.href = "results.html", 2000);
       }
     })();
   }
@@ -151,9 +142,7 @@
       shouldStopGame = true;
       localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
       document.getElementById("output").innerText = "Time's Up!";
-      setTimeout(() => {
-        window.location.href = "results.html";
-      }, 2000);
+      setTimeout(() => window.location.href = "results.html", 2000);
     }
   }
 
@@ -162,11 +151,10 @@
     shouldStopGame = true;
     localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
     document.getElementById("output").innerText = "Done";
-    setTimeout(() => {
-      window.location.href = "results.html";
-    }, 2000);
+    setTimeout(() => window.location.href = "results.html", 2000);
   }
 </script>
 
 </body>
 </html>
+
