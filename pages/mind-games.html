@@ -22,7 +22,7 @@
 
     .section-button {
       display: inline-block;
-      margin: 40px 0 20px;
+      margin-bottom: 20px;
       padding: 12px 24px;
       background-color: var(--primary-color, #4A90E2);
       color: white;
@@ -37,12 +37,20 @@
       background-color: #357ABD;
     }
 
+    .game-section-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 30px 20px;
+      margin-bottom: 40px;
+    }
+
     .game-carousel {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 20px;
-      padding: 10px 0 30px;
+      padding: 10px 0 10px;
     }
 
     .game-card {
@@ -112,62 +120,68 @@
 <main>
 
   <!-- Memory -->
-  <a href="../pages/memory.html" class="section-button">Memory Games</a>
-  <div class="game-carousel">
-    <div class="game-card">
-      <h3>Number Memory</h3>
-      <p>Memorize a growing sequence of numbers and recall them in the correct order. Sharpen your short-term memory and numeric retention.</p>
-      <a href="../pages/memory/numbers/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Words Challenge</h3>
-      <p>Memorize and recall a list of words in order. Build a stronger vocabulary memory and language-based recall skills.</p>
-      <a href="../pages/memory/words/settings.html">Play</a>
+  <div class="game-section-box">
+    <a href="../pages/memory.html" class="section-button">Memory Games</a>
+    <div class="game-carousel">
+      <div class="game-card">
+        <h3>Number Memory</h3>
+        <p>Memorize a growing sequence of numbers and recall them in the correct order. Sharpen your short-term memory and numeric retention.</p>
+        <a href="../pages/memory/numbers/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Words Challenge</h3>
+        <p>Memorize and recall a list of words in order. Build a stronger vocabulary memory and language-based recall skills.</p>
+        <a href="../pages/memory/words/settings.html">Play</a>
+      </div>
     </div>
   </div>
 
   <!-- Math -->
-  <a href="../pages/math.html" class="section-button">Math Games</a>
-  <div class="game-carousel">
-    <div class="game-card">
-      <h3>Addition</h3>
-      <p>Solve progressively harder addition problems. Great for speed, accuracy, and mental arithmetic fluency.</p>
-      <a href="../pages/math/addition/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Subtraction</h3>
-      <p>Test your subtraction skills and improve your reaction time with simple to complex problems.</p>
-      <a href="../pages/math/subtraction/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Multiplication</h3>
-      <p>Sharpen your times table and rapid math recall with classic multiplication challenges.</p>
-      <a href="../pages/math/multiplication/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Division</h3>
-      <p>Work your way through timed division challenges to improve math accuracy and logic.</p>
-      <a href="../pages/math/devision/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Percentage</h3>
-      <p>Practice percentage-based problems, perfect for improving financial math and real-world logic.</p>
-      <a href="../pages/math/percentage/settings.html">Play</a>
+  <div class="game-section-box">
+    <a href="../pages/math.html" class="section-button">Math Games</a>
+    <div class="game-carousel">
+      <div class="game-card">
+        <h3>Addition</h3>
+        <p>Solve progressively harder addition problems. Great for speed, accuracy, and mental arithmetic fluency.</p>
+        <a href="../pages/math/addition/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Subtraction</h3>
+        <p>Test your subtraction skills and improve your reaction time with simple to complex problems.</p>
+        <a href="../pages/math/subtraction/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Multiplication</h3>
+        <p>Sharpen your times table and rapid math recall with classic multiplication challenges.</p>
+        <a href="../pages/math/multiplication/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Division</h3>
+        <p>Work your way through timed division challenges to improve math accuracy and logic.</p>
+        <a href="../pages/math/devision/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Percentage</h3>
+        <p>Practice percentage-based problems, perfect for improving financial math and real-world logic.</p>
+        <a href="../pages/math/percentage/settings.html">Play</a>
+      </div>
     </div>
   </div>
 
   <!-- Riddles -->
-  <a href="../pages/riddles.html" class="section-button">Riddle Games</a>
-  <div class="game-carousel">
-    <div class="game-card">
-      <h3>Logic</h3>
-      <p>Challenge your reasoning skills with brain-teasing logical riddles and lateral thinking tasks.</p>
-      <a href="../pages/riddles/logic/settings.html">Play</a>
-    </div>
-    <div class="game-card">
-      <h3>Numeric</h3>
-      <p>Use numbers and patterns to solve clever numeric riddles designed to test your mental agility.</p>
-      <a href="../pages/riddles/nummeric/settings.html">Play</a>
+  <div class="game-section-box">
+    <a href="../pages/riddles.html" class="section-button">Riddle Games</a>
+    <div class="game-carousel">
+      <div class="game-card">
+        <h3>Logic</h3>
+        <p>Challenge your reasoning skills with brain-teasing logical riddles and lateral thinking tasks.</p>
+        <a href="../pages/riddles/logic/settings.html">Play</a>
+      </div>
+      <div class="game-card">
+        <h3>Numeric</h3>
+        <p>Use numbers and patterns to solve clever numeric riddles designed to test your mental agility.</p>
+        <a href="../pages/riddles/nummeric/settings.html">Play</a>
+      </div>
     </div>
   </div>
 
