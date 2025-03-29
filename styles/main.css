@@ -13,6 +13,12 @@
 /* =======================
    BASE / LAYOUT
 ========================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg); /* Same as main */
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-bg);
