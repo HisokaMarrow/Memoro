@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <title>Math Riddles Challenge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../../../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  
 </head>
 <body>
 
+<!-- Header -->
 <div id="gameheadertimerdown"></div>
-
 <script>
   fetch('/components/gameheadertimerdown/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('gameheadertimerdown').innerHTML = html;
-
       const style = document.createElement('link');
       style.rel = 'stylesheet';
       style.href = '/components/gameheadertimerdown/header.css';
@@ -26,17 +24,16 @@
 </script>
 
 <main>
-  <div class="game-container" id="gameContainer">
-    <h2 id="gameTitle">Starting in...</h2>
-    <div id="countdown" class="countdown">5</div>
-    <div class="problem" id="riddleText"></div> 
-    <input type="text" id="answerInput" placeholder="Your Answer" />
+  <div class="main-container" id="gameContainer">
+    <h2 class="main-title" id="gameTitle">Starting in...</h2>
+    <div class="main-countdown" id="countdown">5</div>
+    <div class="main-word" id="riddleText"></div>
+    <input type="text" id="answerInput" class="input-box" placeholder="Your Answer" />
   </div>
 </main>
 
-<!-- Load riddles -->
+<!-- Riddle Logic -->
 <script src="riddles.js"></script>
-
 <script>
   const totalCount = parseInt(localStorage.getItem("riddleCount") || "2");
   const timerEl = document.getElementById("timer");
@@ -90,18 +87,18 @@
   function startGame() {
     totalStartTime = Date.now();
     riddles = getRandomRiddles(riddleslist, totalCount);
-	startTimer(); // <-- add this line to start updating the timer
+    startTimer();
     showNextRiddle();
   }
-  
+
   function startTimer() {
-  setInterval(() => {
-    if (!isPaused) {
-      const elapsed = Math.floor((Date.now() - totalStartTime) / 1000);
-      timer.textContent = elapsed;
-    }
-  }, 1000);
-}
+    setInterval(() => {
+      if (!isPaused && timerEl) {
+        const elapsed = Math.floor((Date.now() - totalStartTime) / 1000);
+        timerEl.textContent = elapsed;
+      }
+    }, 1000);
+  }
 
   function getRandomRiddles(list, count) {
     const shuffled = [...list].sort(() => 0.5 - Math.random());
