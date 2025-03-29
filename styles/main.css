@@ -286,3 +286,11 @@ main {
 .main-option-box input[type="radio"] {
   accent-color: var(--color-secondary);
 }
+
+.problem,
+#riddleText {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 30px;
+  color: var(--color-text);
+}
