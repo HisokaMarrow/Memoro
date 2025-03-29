@@ -4,103 +4,103 @@
   <meta charset="UTF-8" />
   <title>Mind Games</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
- 
 </head>
 <body>
 
+<!-- Header -->
 <div id="site-header"></div>
 <script>
-  fetch('../components/header/header.html')
+  fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '../components/header/header.css';
+      link.href = '/components/header/header.css';
       document.head.appendChild(link);
     });
 </script>
 
 <main>
 
-  <!-- Memory -->
-  <div class="section-header">
-    <a href="../pages/memory.html" class="section-button">Memory Games</a>
+  <!-- Memory Games Section -->
+  <div class="main-section-header">
+    <a href="/pages/memory.html" class="main-button">Memory Games →</a>
   </div>
-  <div class="game-section-box">
-    <div class="game-carousel">
-      <div class="game-card">
+  <div class="main-section">
+    <div class="main-carousel">
+      <div class="main-carousel-box">
         <h3>Number Memory</h3>
         <p>Memorize a growing sequence of numbers and recall them in the correct order.</p>
-        <a href="../pages/memory/numbers/settings.html" class="button">Play</a>
+        <a href="/pages/memory/numbers/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Words Challenge</h3>
         <p>Memorize and recall a list of words in order. Strengthen vocabulary memory.</p>
-        <a href="../pages/memory/words/settings.html" class="button">Play</a>
+        <a href="/pages/memory/words/settings.html" class="main-button">Play</a>
       </div>
     </div>
   </div>
 
-  <!-- Math -->
-  <div class="section-header">
-    <a href="../pages/math.html" class="section-button">Math Games</a>
+  <!-- Math Games Section -->
+  <div class="main-section-header">
+    <a href="/pages/math.html" class="main-button">Math Games →</a>
   </div>
-  <div class="game-section-box">
-    <div class="game-carousel">
-      <div class="game-card">
+  <div class="main-section">
+    <div class="main-carousel">
+      <div class="main-carousel-box">
         <h3>Addition</h3>
         <p>Sharpen your mental math with quick-fire addition drills.</p>
-        <a href="../pages/math/addition/settings.html" class="button">Play</a>
+        <a href="/pages/math/addition/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Subtraction</h3>
         <p>Improve subtraction speed and problem-solving accuracy.</p>
-        <a href="../pages/math/subtraction/settings.html" class="button">Play</a>
+        <a href="/pages/math/subtraction/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Multiplication</h3>
         <p>Master your multiplication tables with challenge-based gameplay.</p>
-        <a href="../pages/math/multiplication/settings.html" class="button">Play</a>
+        <a href="/pages/math/multiplication/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Division</h3>
         <p>Work through division problems with increasing difficulty.</p>
-        <a href="../pages/math/devision/settings.html" class="button">Play</a>
+        <a href="/pages/math/devision/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Percentage</h3>
         <p>Calculate percentages in real-world inspired scenarios.</p>
-        <a href="../pages/math/percentage/settings.html" class="button">Play</a>
+        <a href="/pages/math/percentage/settings.html" class="main-button">Play</a>
       </div>
     </div>
   </div>
 
-  <!-- Riddles -->
-  <div class="section-header">
-    <a href="../pages/riddles.html" class="section-button">Riddle Games</a>
+  <!-- Riddle Games Section -->
+  <div class="main-section-header">
+    <a href="/pages/riddles.html" class="main-button">Riddle Games →</a>
   </div>
-  <div class="game-section-box">
-    <div class="game-carousel">
-      <div class="game-card">
+  <div class="main-section">
+    <div class="main-carousel">
+      <div class="main-carousel-box">
         <h3>Logic</h3>
         <p>Stretch your reasoning skills with classic logic riddles.</p>
-        <a href="../pages/riddles/logic/settings.html" class="button">Play</a>
+        <a href="/pages/riddles/logic/settings.html" class="main-button">Play</a>
       </div>
-      <div class="game-card">
+      <div class="main-carousel-box">
         <h3>Numeric</h3>
         <p>Decode numeric patterns and number-based challenges.</p>
-        <a href="../pages/riddles/nummeric/settings.html" class="button">Play</a>
+        <a href="/pages/riddles/nummeric/settings.html" class="main-button">Play</a>
       </div>
     </div>
   </div>
 
 </main>
 
+<!-- Footer -->
 <div id="site-footer"></div>
-
 <script>
   fetch('/components/footer/footer.html')
     .then(res => res.text())
