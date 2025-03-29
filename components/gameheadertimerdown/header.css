@@ -49,36 +49,39 @@
 }
 
 #remainingTimer {
-  display: flex;
-  align-items: center;               /* Center vertically (stable) */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   background-color: #333;
   color: white;
-  font-size: 2rem;                   /* Set font size here */
+  font-size: 2rem;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
   padding: 6px 12px;
   border-radius: 5px;
+  height: 48px;
   min-width: 130px;
-  height: 48px;                      /* Lock height to fit 2rem line-height */
-  white-space: nowrap;
   line-height: 1.2;
+  white-space: nowrap;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 #timer {
-  font-weight: inherit;
+  position: relative;
+  z-index: 2;
+}
+
+.timer-placeholder {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
   font-family: inherit;
   font-size: inherit;
+  font-weight: inherit;
   line-height: inherit;
-
-  display: inline-block;
-  text-align: center;
-  min-width: 4ch;                   /* Prevent width jump */
-  padding: 0;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  transition: none !important;
 }
