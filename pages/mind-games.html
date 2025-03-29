@@ -74,19 +74,23 @@
 
 <!-- Navigation Bar -->
 <div id="site-header"></div>
+
 <script>
-  fetch('../components/header/header.html')
+  fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
 
+      // Load header CSS
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '../components/header/header.css';
+      link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
+      // Highlight the correct active nav link
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
+
       links.forEach(link => {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath) {
