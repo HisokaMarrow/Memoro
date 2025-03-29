@@ -13,10 +13,6 @@
 /* =======================
    BASE / LAYOUT
 ========================== */
-html, body {
-  background-color: #e6f5e9 !important;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-bg);
