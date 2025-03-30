@@ -9,19 +9,20 @@
 </head>
 <body>
 
-<!-- Header -->
-<div id="gameheadertimerdown"></div>
+<!-- Game Header with Timer -->
+<div id="site-header"></div>
 <script>
-  fetch('/components/gameheadertimerdown/header.html')
+  fetch('/components/gameheader/gameheadertimerdown.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById('gameheadertimerdown').innerHTML = html;
+      document.getElementById('site-header').innerHTML = html;
 
-      const style = document.createElement('link');
-      style.rel = 'stylesheet';
-      style.href = '/components/gameheadertimerdown/header.css';
-      document.head.appendChild(style);
-    });
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
 <main>
