@@ -34,11 +34,15 @@
 
 <main>
   <div class="main-container">
+    <h2 class="main-title">Math Riddles - Results</h2>
     <div class="result-summary" id="summary">Loading results...</div>
-    <div class="results-grid" id="resultsGrid"></div>
+
+    <!-- Updated grid class -->
+    <div id="resultsGrid" class="riddles-results-grid"></div>
 
     <div class="main-button-block">
-      <a href="/index.html" class="main-button" style="font-size: 1.1em;">Return to Home Page</a>
+      <a href="settings.html" class="main-button">Try Again</a>
+      <a href="/pages/riddles.html" class="main-button">Math Riddles</a>
     </div>
   </div>
 </main>
@@ -61,7 +65,7 @@
     if (isCorrect) correct++;
 
     const box = document.createElement("div");
-    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+    box.className = `main-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
       <strong>Riddle:</strong><br>${item.riddle}<br><br>
       <strong>Your Answer:</strong> ${answers[index] || "—"}
