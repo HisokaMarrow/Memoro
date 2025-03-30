@@ -36,15 +36,17 @@
 }
 
 .footer-right a {
-  color: var(--footer-color-subtext);
+  color: #ffffff; /* Pure white like the rest of the text */
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .footer-right a:hover {
-  color: var(--footer-color-accent);
+  color: var(--footer-color-accent); /* Violet hover */
+  text-decoration: none; /* Keep it clean */
 }
+
 
 /* Responsive Layout */
 @media (max-width: 600px) {
