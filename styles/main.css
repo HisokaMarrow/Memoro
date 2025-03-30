@@ -311,9 +311,10 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 20px;
-  padding: 0px 0;
   margin-bottom: 0px;
   max-width: 1000px;
+  padding: 20px 40px; /* ← this adds 40px left and right */
+  scroll-padding: 0 40px; /* helps with snapping to start/end */
 }
 
 .main-carousel::-webkit-scrollbar {
@@ -350,6 +351,9 @@ main {
 
 .carousel-wrapper {
   position: relative;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .carousel-arrow {
@@ -380,11 +384,11 @@ main {
 }
 
 .carousel-arrow.left {
-  left: 0;
+  left: 10px;
 }
 
 .carousel-arrow.right {
-  right: 0;
+  right: 10px;
 }
 
 @media (max-width: 768px) {
