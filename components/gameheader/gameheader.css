@@ -1,14 +1,16 @@
 :root {
-  /* 🔷 Frosted Mystical Theme Colors */
-  --gameheader-color-bg: #e7ecf3;
-  --gameheader-color-bg-card: #f4f6fa;
-  --gameheader-color-text: #1f2937;
-  --gameheader-color-border: #cdd5df;
+  /* 🧠 Game Header Base – darker than header, HUD-like */
+  --gameheader-color-bg: #12161c;              /* Deep steel/charcoal */
+  --gameheader-color-bg-card: #1a1e26;         /* Slightly lifted card look */
+  --gameheader-color-text: #e4e6eb;            /* Fog white */
+  --gameheader-color-border: #2a2f3a;          /* Soft graphite edge */
 
-  --gameheader-color-secondary: #5fd1c9;
-  --gameheader-color-secondary-hover: #3bbeb5;
+  /* 🎯 Accent – use your site-wide mystical palette */
+  --gameheader-color-secondary: #7f5af0;       /* Violet core action */
+  --gameheader-color-secondary-hover: #6246ea; /* Hover pop, not neon */
 
-  --gameheader-color-dark: #2c2f35;
+  /* 🔒 For timers or contrast areas */
+  --gameheader-color-dark: #0f1115;            /* Pitch dark – timer bg, etc. */
 }
 
 
