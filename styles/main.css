@@ -61,6 +61,15 @@ main {
   margin-top: 30px;
 }
 
+.main-section-link {
+  text-decoration: none; /* 🚫 removes underline */
+  color: var(--color-text); /* keeps color consistent with other headers */
+}
+
+.main-section-link:hover {
+  text-decoration: none; /* still no underline on hover */
+}
+
 /* =======================
    BUTTONS
 ========================== */
