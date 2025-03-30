@@ -468,14 +468,14 @@ main {
   background-color: transparent;
 }
 
-/* When checked: show purple circle inside */
 .main-option-box input[type="checkbox"]:checked + .custom-radio-style::after {
   content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 10px;
   height: 10px;
   background-color: #7f5af0;
   border-radius: 50%;
-  position: absolute;
-  top: 3px;
-  left: 3px;
+  transform: translate(-50%, -50%);
 }
