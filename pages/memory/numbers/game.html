@@ -106,13 +106,31 @@
     }
 
     window.startCountdown = function () {
-      speechSynthesis.cancel();
-      goWrapper.style.display = "none";
-      countdownLabel.style.display = "block";
-      countdownEl.style.display = "block";
+  speechSynthesis.cancel();
+  goWrapper.style.display = "none";
+  countdownLabel.style.display = "block";
+  countdownEl.style.display = "block";
 
-      let count = 5;
+  let count = 5;
+  countdownEl.textContent = count;
+
+  async function runCountdown() {
+    while (count >= 0) {
+      await waitWhilePaused();
       countdownEl.textContent = count;
+      await new Promise(res => setTimeout(res, 1000));
+      count--;
+    }
+
+    countdownLabel.style.display = "none";
+    countdownEl.style.display = "none";
+    if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
+    beginGame();
+  }
+
+  runCountdown();
+};
+
 
       const interval = setInterval(() => {
         count--;
