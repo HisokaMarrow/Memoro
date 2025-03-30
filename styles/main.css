@@ -1,13 +1,13 @@
 :root {
-  --color-bg: #e1e7ec;
-  --color-bg-card: #ffffff;
-  --color-text: #2d2d2d;
-  --color-subtext: #555;
-  --color-border: #dce3ec;
-  --color-secondary: #2aa198;
-  --color-secondary-hover: #248a87;
-  --color-success: #2ecc71;
-  --color-error: #e74c3c;
+  --color-bg: #1a1a1a;               /* Dark but not pitch black */
+  --color-bg-card: #262626;          /* Slightly lighter for contrast */
+  --color-text: #f0f0f0;             /* Soft white for general text */
+  --color-subtext: #b0b0b0;          /* Muted gray for secondary text */
+  --color-border: #333333;           /* Subtle border contrast */
+  --color-secondary: #4fd1c5;        /* Soft teal for actions */
+  --color-secondary-hover: #38b2ac;  /* Deeper teal on hover */
+  --color-success: #48bb78;          /* Gentle green */
+  --color-error: #f56565;            /* Soft red for alerts */
 }
 
 /* =======================
