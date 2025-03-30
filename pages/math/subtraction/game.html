@@ -87,26 +87,44 @@
     }
 
     function generateProblem() {
-      let a, b;
-      switch (difficulty) {
-        case "beginner":
-          a = Math.floor(Math.random() * 10);
-          b = Math.floor(Math.random() * 10);
-          break;
-        case "advanced":
-          a = Math.floor(Math.random() * 90 + 10);
-          b = Math.floor(Math.random() * 90 + 10);
-          break;
-        case "expert":
-          a = Math.floor(Math.random() * 900 + 100);
-          b = Math.floor(Math.random() * 900 + 100);
-          break;
-      }
-      currentAnswer = a - b;
-      problems.push({ a, b, answer: currentAnswer });
-      problemBox.textContent = `${a} - ${b}`;
-    }
+  function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
+  let numbers = [];
+
+  switch (difficulty) {
+    case "beginner":
+      numbers.push(randomInRange(1, 100));
+      numbers.push(randomInRange(1, 9));
+      break;
+
+    case "advanced":
+      numbers.push(randomInRange(10, 99));
+      numbers.push(randomInRange(10, 99));
+      break;
+
+    case "expert":
+      const count = randomInRange(2, 3);
+      for (let i = 0; i < count; i++) {
+        numbers.push(randomInRange(1, 9999));
+      }
+      break;
+
+    default:
+      throw new Error("Unknown difficulty level: " + difficulty);
+  }
+
+  // Sort numbers in descending order
+  numbers.sort((a, b) => b - a);
+
+ currentAnswer = numbers.reduce((acc, num, index) =>
+  index === 0 ? num : acc - num
+);
+  const displayText = numbers.join(" - ");
+  problems.push({ numbers, answer: currentAnswer });
+  problemBox.textContent = displayText;
+}
     function runGame() {
       input.style.display = "block";
       input.focus();
