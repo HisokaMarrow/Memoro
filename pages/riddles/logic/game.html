@@ -9,29 +9,15 @@
 </head>
 <body>
 
-<!-- Header -->
+<!-- Game Header with Timer -->
 <div id="site-header"></div>
-<script>
-  fetch('/components/gameheader/gameheadertimerdown.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/components/gameheader/gameheader.css';
-      document.head.appendChild(link);
-      setTimeout(startRiddleApp, 50);
-    })
-    .catch(err => console.error('Header load error:', err));
-</script>
 
-<!-- Main -->
 <main>
   <div class="main-container">
     <h2 class="main-title" id="gameTitle">Starting in...</h2>
     <div class="main-countdown" id="countdown">5</div>
-    <div id="riddleText" class="problem"></div>
-    <input type="text" id="answerInput" class="input-box" placeholder="Your Answer" style="display: none;" />
+    <div class="problem" id="riddleText"></div>
+    <input type="text" id="answerInput" placeholder="Your Answer" class="input-box" style="display: none;" />
   </div>
 </main>
 
@@ -139,7 +125,6 @@
 
       riddleBox.textContent = "Challenge Complete!";
       input.style.display = "none";
-
       setTimeout(() => window.location.href = "results.html", 2000);
     }
 
@@ -156,6 +141,23 @@
 
     countdownStart();
   }
+</script>
+
+<!-- ✅ Header loading moved to bottom AFTER function is defined -->
+<script>
+  fetch('/components/gameheader/gameheadertimerdown.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+
+      setTimeout(startRiddleApp, 50);
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
 </body>
