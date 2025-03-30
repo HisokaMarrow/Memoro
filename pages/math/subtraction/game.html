@@ -53,29 +53,6 @@
   const title = document.getElementById("gameTitle");
   const countdownEl = document.getElementById("countdown");
 
-  // ✅ Unified Pause/Resume Toggle (works with header button)
-  function togglePause() {
-    const btn = document.getElementById("gameheadertimerdown-button");
-    if (!btn) return;
-
-    isPaused = !isPaused;
-    btn.textContent = isPaused ? "Resume" : "Pause";
-
-    if (!isPaused && pauseCallback) {
-      pauseCallback();
-      pauseCallback = null;
-    }
-  }
-
-  function waitWhilePaused() {
-    return new Promise(resolve => {
-      if (!isPaused) return resolve();
-      pauseCallback = resolve;
-    });
-  }
-
-  showCountdown(5, showWords);
-
   function showCountdown(seconds, callback) {
   let countdown = seconds;
   const countdownEl = document.getElementById("countdown");
@@ -154,6 +131,29 @@
   function endEarly() {
     finishGame();
   }
+
+   // ✅ Unified Pause/Resume Toggle (works with header button)
+  function togglePause() {
+    const btn = document.getElementById("gameheadertimerdown-button");
+    if (!btn) return;
+
+    isPaused = !isPaused;
+    btn.textContent = isPaused ? "Resume" : "Pause";
+
+    if (!isPaused && pauseCallback) {
+      pauseCallback();
+      pauseCallback = null;
+    }
+  }
+
+  function waitWhilePaused() {
+    return new Promise(resolve => {
+      if (!isPaused) return resolve();
+      pauseCallback = resolve;
+    });
+  }
+
+  showCountdown(5, showWords);
 
 </script>
 
