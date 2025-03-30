@@ -90,10 +90,71 @@
     }, 2000);
   }
 
+  <script>
+  const wordList = [
+    "cloud", "piano", "tree", "shoe", "cat", "hat", "duck", "star", "box", "cup",
+    "water", "horse", "grass", "lion", "robot", "rain", "bird", "egg", "bag", "apple"
+  ];
+
+  let currentIndex = 0;
+  let skipDisplay = false;
+  let isPaused = false;
+  let pauseCallback = null;
+
+  const screen = document.getElementById("screen");
+
+  function showCountdown(seconds, callback) {
+    let countdown = seconds;
+    const countdownEl = document.getElementById("countdown");
+    const titleEl = document.getElementById("gameTitle");
+    const interval = setInterval(() => {
+      countdownEl.textContent = countdown;
+      countdown--;
+      if (countdown < 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+        titleEl.style.display = "none";
+        callback();
+      }
+    }, 1000);
+  }
+
+  async function showWords() {
+    screen.innerHTML = `<div class="main-word" id="wordDisplay"></div>`;
+    currentIndex = 0;
+    while (currentIndex < wordList.length && !skipDisplay) {
+      await waitWhilePaused();
+      document.getElementById("wordDisplay").innerText = wordList[currentIndex];
+      currentIndex++;
+      await new Promise(res => setTimeout(res, 3000));
+    }
+
+    if (!skipDisplay) {
+      screen.innerHTML = `<div class="main-word">Test Ended</div>`;
+      localStorage.setItem("shownWords", JSON.stringify(wordList.slice(0, currentIndex)));
+      setTimeout(() => {
+        window.location.href = "results.html";
+      }, 2000);
+    }
+  }
+
+  function endEarly() {
+    skipDisplay = true;
+    screen.innerHTML = `<div class="main-word">Test Ended</div>`;
+    localStorage.setItem("shownWords", JSON.stringify(wordList.slice(0, currentIndex)));
+    setTimeout(() => {
+      window.location.href = "results.html";
+    }, 2000);
+  }
+
+  // ✅ Unified Pause/Resume Toggle (works with header button)
   function togglePause() {
+    const btn = document.getElementById("gameheadertimerdown-pauseButton");
+    if (!btn) return;
+
     isPaused = !isPaused;
-    const btn = document.getElementById("pauseButton");
     btn.textContent = isPaused ? "Resume" : "Pause";
+
     if (!isPaused && pauseCallback) {
       pauseCallback();
       pauseCallback = null;
@@ -109,40 +170,8 @@
 
   showCountdown(5, showWords);
 </script>
-
-<script>
-  let isPaused = false;
-  let gameInterval; // Optional: your timer reference if you use one
-
-  function togglePause() {
-    const pauseBtn = document.getElementById('gameheadertimerdown-pauseButton');
-
-    if (!pauseBtn) return;
-
-    if (isPaused) {
-      resumeGame();
-      pauseBtn.textContent = 'Pause';
-    } else {
-      pauseGame();
-      pauseBtn.textContent = 'Resume';
-    }
-
-    isPaused = !isPaused;
-  }
-
-  function pauseGame() {
-    console.log("Game paused");
-    // ⏸ Add your actual pause logic here
-    // Example: clearInterval(gameInterval), disable input, etc.
-  }
-
-  function resumeGame() {
-    console.log("Game resumed");
-    // ▶️ Add your resume logic here
-    // Example: gameInterval = setInterval(...), enable input, etc.
-  }
+  showCountdown(5, showWords);
 </script>
-
 
 </body>
 </html>
