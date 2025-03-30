@@ -1,1 +1,102 @@
-1
+:root {
+  --gameheadertimerdown-color-bg: #f5f9fc;
+  --gameheadertimerdown-color-bg-card: #ffffff;
+  --gameheadertimerdown-color-text: #2d2d2d;
+  --gameheadertimerdown-color-border: #dce3ec;
+
+  --gameheadertimerdown-color-secondary: #2aa198;
+  --gameheadertimerdown-color-secondary-hover: #248a87;
+
+  --gameheadertimerdown-color-dark: #333;
+}
+
+/* ========== GAME HEADER STYLING ========== */
+.gameheadertimerdown-top-hud {
+  background-color: var(--gameheadertimerdown-color-bg-card);
+  border-bottom: 1px solid var(--gameheadertimerdown-color-border);
+  padding: 15px 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-family: 'Poppins', sans-serif;
+}
+
+.gameheadertimerdown-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.gameheadertimerdown-nav-left,
+.gameheadertimerdown-nav-center,
+.gameheadertimerdown-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.gameheadertimerdown-nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* ========== BUTTONS ========== */
+.gameheadertimerdown-button {
+  background-color: var(--gameheadertimerdown-color-secondary);
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.gameheadertimerdown-button:hover {
+  background-color: var(--gameheadertimerdown-color-secondary-hover);
+}
+
+/* ========== TIMER ========== */
+#gameheadertimerdown-remainingTimer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gameheadertimerdown-color-dark);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-variant-numeric: tabular-nums;
+  padding: 6px 12px;
+  border-radius: 5px;
+  height: 44px;
+  min-width: 110px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  gap: 6px;
+}
+
+#gameheadertimerdown-timer {
+  display: inline-block;
+  min-width: 5ch;
+  text-align: center;
+  line-height: 1;
+  font-size: 1.6rem;
+}
+
+.gameheadertimerdown-timer-label {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
