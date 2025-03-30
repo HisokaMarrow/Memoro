@@ -61,7 +61,7 @@
     const box = document.createElement("div");
     box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a} - ${item.b} = <strong>${userAnswer || "—"}</strong>
+      ${item.a} x ${item.b} = <strong>${userAnswer || "—"}</strong>
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
     `;
     grid.appendChild(box);
