@@ -88,10 +88,10 @@ body.intro-active #memory-lock-overlay {
   }
 
   .letter-block {
-    width: 12vw;
-    height: 12vw;
-    font-size: 6vw;
-    margin: 1vw;
+    width: 10vw;           /* Smaller block */
+    height: 10vw;
+    font-size: 5vw;
+    margin: 0.5vw;         /* Smaller spacing between blocks */
     box-sizing: border-box;
   }
 
@@ -99,7 +99,6 @@ body.intro-active #memory-lock-overlay {
     font-size: 1.2rem;
     text-align: center;
     padding: 0 1rem;
-    word-break: break-word;
   }
 
   .main-text {
