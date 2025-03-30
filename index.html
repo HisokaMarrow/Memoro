@@ -40,15 +40,10 @@
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      const links = document.querySelectorAll('.top-nav a');
-      const currentPath = window.location.pathname;
-
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        }
-      });
+      // ✅ Now dynamically load the JavaScript too:
+      const script = document.createElement('script');
+      script.src = '/components/header/header.js';
+      document.body.appendChild(script);
     })
     .catch(err => console.error('Header load error:', err));
 </script>
