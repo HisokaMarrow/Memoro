@@ -102,7 +102,7 @@
           b = Math.floor(Math.random() * 900 + 100);
           break;
       }
-      currentAnswer = a - b;
+      currentAnswer = parseFloat(((a / 100) * b).toFixed(2)); // rounded to 2 decimal places
       problems.push({ a, b, answer: currentAnswer });
       problemBox.textContent = `What is ${b}% of ${a}?`;
     }
