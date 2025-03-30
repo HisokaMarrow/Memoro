@@ -628,72 +628,12 @@ main {
   }
 }
 
-/* =======================
-   UNIVERSAL CENTERING FIXES
-========================== */
+/* Prevent horizontal overflow on small screens */
+* {
+  box-sizing: border-box;
+}
 
-/* Full-page centering for small screens */
-@media (max-width: 600px) {
-  main,
-  .main-container,
-  .main-container-games,
-  .main-container-daily-chalange,
-  .main-container-carusel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
-    text-align: center;
-  }
-
-  .main-title,
-  .main-subtitle,
-  .main-text,
-  .main-word,
-  .main-countdown,
-  .problem,
-  #riddleText {
-    text-align: center;
-    width: 100%;
-    word-wrap: break-word;
-    word-break: break-word;
-  }
-
-  .main-box {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .input-box {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .results-grid,
-  .riddles-results-grid {
-    grid-template-columns: 1fr !important;
-    justify-items: center;
-  }
-
-  .main-button,
-  .main-button-block,
-  .main-button-row {
-    width: 100%;
-    max-width: 280px;
-    margin: 15px auto 0 auto;
-    text-align: center;
-  }
-
-  .main-button-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .main-option-group {
-    flex-direction: column;
-    align-items: center;
-  }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
