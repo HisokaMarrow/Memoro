@@ -53,36 +53,49 @@
   const title = document.getElementById("gameTitle");
   const countdownEl = document.getElementById("countdown");
 
+  // ✅ Unified Pause/Resume Toggle (works with header button)
   function togglePause() {
+    const btn = document.getElementById("gameheadernotimer-pauseButton");
+    if (!btn) return;
+
     isPaused = !isPaused;
-    pauseButton.textContent = isPaused ? "Resume" : "Pause";
-    if (!isPaused && pauseResolve) {
-      pauseResolve();
-      pauseResolve = null;
+    btn.textContent = isPaused ? "Resume" : "Pause";
+
+    if (!isPaused && pauseCallback) {
+      pauseCallback();
+      pauseCallback = null;
     }
   }
 
   function waitWhilePaused() {
     return new Promise(resolve => {
-      if (!isPaused) resolve();
-      else pauseResolve = resolve;
+      if (!isPaused) return resolve();
+      pauseCallback = resolve;
     });
   }
 
-  function startCountdown() {
-    let count = 5;
-    countdownEl.textContent = count;
-    const interval = setInterval(() => {
-      count--;
-      countdownEl.textContent = count;
-      if (count === 0) {
-        clearInterval(interval);
-        countdownEl.style.display = "none";
-        title.style.display = "none";
-        startGame();
-      }
-    }, 1000);
+  showCountdown(5, showWords);
+
+  function showCountdown(seconds, callback) {
+  let countdown = seconds;
+  const countdownEl = document.getElementById("countdown");
+  const titleEl = document.getElementById("gameTitle");
+
+  async function runCountdown() {
+    while (countdown >= 0) {
+      await waitWhilePaused();
+      countdownEl.textContent = countdown;
+      await new Promise(res => setTimeout(res, 1000));
+      countdown--;
+    }
+
+    countdownEl.style.display = "none";
+    titleEl.style.display = "none";
+    callback();
   }
+
+  runCountdown();
+}
 
   function generateProblem() {
     let a, b;
