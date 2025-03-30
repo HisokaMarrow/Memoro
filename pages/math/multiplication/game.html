@@ -87,25 +87,41 @@
     }
 
     function generateProblem() {
-      let a, b;
-      switch (difficulty) {
-        case "beginner":
-          a = Math.floor(Math.random() * 10);
-          b = Math.floor(Math.random() * 10);
-          break;
-        case "advanced":
-          a = Math.floor(Math.random() * 90 + 10);
-          b = Math.floor(Math.random() * 90 + 10);
-          break;
-        case "expert":
-          a = Math.floor(Math.random() * 900 + 100);
-          b = Math.floor(Math.random() * 900 + 100);
-          break;
-      }
-      currentAnswer = a * b;
-      problems.push({ a, b, answer: currentAnswer });
-      problemBox.textContent = `${a} x ${b}`;
-    }
+  function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  let a, b;
+
+  switch (difficulty) {
+    case "beginner":
+      a = randomInRange(0, 9);
+      b = randomInRange(0, 9);
+      break;
+
+    case "advanced":
+      a = randomInRange(10, 99); // two-digit number
+      b = randomInRange(2, 9);   // one-digit, but not too easy
+      break;
+
+    case "expert":
+      a = randomInRange(10, 99); // two-digit
+      b = randomInRange(10, 99); // two-digit
+      break;
+
+    default:
+      throw new Error("Unknown difficulty level: " + difficulty);
+  }
+
+  currentAnswer = a * b;
+  problems.push({
+    numbers: [a, b],
+    answer: currentAnswer,
+    operator: "×"
+  });
+
+  problemBox.textContent = `${a} × ${b}`;
+}
 
     function runGame() {
       input.style.display = "block";
