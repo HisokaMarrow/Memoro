@@ -91,8 +91,8 @@ body.intro-active #memory-lock-overlay {
   }
 
   .letter-block {
-    width: 12vw;             /* Smaller blocks */
-    height: 12vw;
+    width: 8vw;             /* Smaller blocks */
+    height: 8vw;
     font-size: 5vw;          /* Smaller letters */
     margin: 0.2vw;
     box-sizing: border-box;
