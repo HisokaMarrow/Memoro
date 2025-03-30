@@ -87,25 +87,54 @@
     }
 
     function generateProblem() {
-      let a, b;
-      switch (difficulty) {
-        case "beginner":
-          a = Math.floor(Math.random() * 10);
-          b = Math.floor(Math.random() * 10);
-          break;
-        case "advanced":
-          a = Math.floor(Math.random() * 90 + 10);
-          b = Math.floor(Math.random() * 90 + 10);
-          break;
-        case "expert":
-          a = Math.floor(Math.random() * 900 + 100);
-          b = Math.floor(Math.random() * 900 + 100);
-          break;
-      }
-      currentAnswer = parseFloat(((a / 100) * b).toFixed(2)); // rounded to 2 decimal places
-      problems.push({ a, b, answer: currentAnswer });
-      problemBox.textContent = `What is ${b}% of ${a}?`;
+  function randomFromArray(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function randomInRange(min, max, step = 1) {
+    const range = [];
+    for (let i = min; i <= max; i += step) {
+      range.push(i);
     }
+    return randomFromArray(range);
+  }
+
+  let a, b;
+
+  switch (difficulty) {
+    case "beginner": {
+      const percentOptions = [10, 20, 25, 50, 100];
+      b = randomFromArray(percentOptions);            // percent
+      a = randomInRange(100, 1000, 100);               // base number (rounded)
+      break;
+    }
+
+    case "advanced": {
+      b = randomInRange(10, 90, 5);                    // percent (10% to 90% in steps of 5)
+      a = randomInRange(100, 9000, 100);               // base (100, 200, ..., 9000)
+      break;
+    }
+
+    case "expert": {
+      b = randomInRange(1, 100);                       // any percent
+      a = Math.floor(Math.random() * 8901 + 100);      // any number 100–9000
+      break;
+    }
+
+    default:
+      throw new Error("Unknown difficulty level: " + difficulty);
+  }
+
+  currentAnswer = parseFloat(((b / 100) * a).toFixed(2));
+
+  problems.push({
+    numbers: [b, a], // store as [percent, base]
+    answer: currentAnswer,
+    operator: "%"
+  });
+
+  problemBox.textContent = `What is ${b}% of ${a}?`;
+}
 
     function runGame() {
       input.style.display = "block";
