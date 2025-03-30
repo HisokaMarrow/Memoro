@@ -37,12 +37,14 @@
   <div class="main-container">
     <h2 class="main-title">Riddle Results</h2>
     <div id="summary" class="result-summary">Loading results...</div>
-    
-    <!-- ✅ Updated Grid Class -->
+
+    <!-- ✅ 2-column layout grid -->
     <div id="resultsGrid" class="riddles-results-grid"></div>
 
+    <!-- ✅ Updated Button Block -->
     <div class="main-button-block">
-      <button class="main-button" onclick="goHome()">Return to Home Screen</button>
+      <a href="/pages/riddles/settings.html" class="main-button">Try Again</a>
+      <a href="/pages/riddles/riddles.html" class="main-button">Riddle Games</a>
     </div>
   </div>
 </main>
@@ -91,10 +93,6 @@
   });
 
   summary.innerHTML = `You solved ${correct} of ${riddles.length} correctly (${Math.round((correct / riddles.length) * 100)}%)<br>Total Time: ${totalTime}s`;
-
-  function goHome() {
-    window.location.href = "/index.html";
-  }
 
   const gameTitle = "Logic Riddles";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
