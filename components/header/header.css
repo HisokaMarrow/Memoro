@@ -103,10 +103,10 @@
   font-size: 2rem;
   color: var(--header-color-text);
   cursor: pointer;
-  position: absolute;
+  position: fixed; /* CHANGED from absolute to fixed */
   right: 20px;
   top: 20px;
-  z-index: 101;
+  z-index: 9999; /* Very high to stay on top */
 }
 
 /* Hide elements on mobile unless toggled */
