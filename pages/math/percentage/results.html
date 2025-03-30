@@ -58,22 +58,26 @@
   let correct = 0;
 
   problems.forEach((item, index) => {
-    const userAnswer = answers[index] || "";
-    const isCorrect = parseInt(userAnswer) === item.answer;
+    const userAnswerRaw = answers[index] || "";
+    const userAnswer = parseFloat(userAnswerRaw);
+    const isCorrect = Math.abs(userAnswer - item.answer) < 0.01; // small decimal tolerance
 
     if (isCorrect) correct++;
+
+    const [percent, base] = item.numbers || [item.a, item.b]; // fallback
 
     const box = document.createElement("div");
     box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a}% of ${item.b} = <strong>${userAnswer || "—"}</strong>
-      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
+      What is ${percent}% of ${base}? = <strong>${userAnswerRaw || "—"}</strong>
+      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer.toFixed(2)}</div>` : ""}
     `;
+
     grid.appendChild(box);
   });
 
   const percent = Math.round((correct / problems.length) * 100);
-  summary.innerHTML = `Well done! You got ${correct} out of ${problems.length} correct (${percent}%)`;
+  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
 
   const gameTitle = "Percentage Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
