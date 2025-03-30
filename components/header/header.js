@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+(function activateHamburger() {
   const hamburger = document.getElementById("hamburger");
   const mobileNav = document.getElementById("mobileNav");
   const overlay = document.getElementById("overlay");
@@ -13,5 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileNav.classList.remove("open");
       overlay.classList.remove("active");
     });
+  } else {
+    // Retry once if not ready
+    setTimeout(activateHamburger, 50);
   }
-});
+})();
