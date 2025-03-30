@@ -9,6 +9,7 @@
   --color-success: #2dd4bf;           /* Neon aqua glow — adds life */
   --color-error: #f43f5e;             /* Infrared red — bold but controlled */
   --main-option-box-hover: #1d2026;   /* Slightly lighter card hover effect */
+  --main-box: #252931;          /* Matte dark overlay */
 }
 
 /* =======================
@@ -163,7 +164,7 @@ main {
 }
 
 .main-box {
-  background: var(--color-bg);
+  background: var(--main-box);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   padding: 20px;
