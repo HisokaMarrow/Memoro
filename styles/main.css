@@ -349,29 +349,26 @@ main {
 }
 
 .carousel-wrapper {
-  position: relative; /* Needed for absolutely positioned arrows */
+  position: relative;
 }
 
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.08); /* frosted effect */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.4rem;
+  width: 32px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent black */
   color: white;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease;
+  transition: background-color 0.2s ease, opacity 0.25s ease;
 }
 
 .carousel-wrapper:hover .carousel-arrow {
@@ -379,16 +376,15 @@ main {
 }
 
 .carousel-arrow:hover {
-  background: rgba(255, 255, 255, 0.18);
-  transform: translateY(-50%) scale(1.08);
+  background-color: rgba(0, 0, 0, 0.6); /* brighter on hover */
 }
 
 .carousel-arrow.left {
-  left: 10px;
+  left: 0;
 }
 
 .carousel-arrow.right {
-  right: 10px;
+  right: 0;
 }
 
 @media (max-width: 768px) {
@@ -396,7 +392,6 @@ main {
     display: none;
   }
 }
-
 
 
 /* =======================
