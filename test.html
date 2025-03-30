@@ -47,20 +47,25 @@
   const screen = document.getElementById("screen");
 
   function showCountdown(seconds, callback) {
-    let countdown = seconds;
-    const countdownEl = document.getElementById("countdown");
-    const titleEl = document.getElementById("gameTitle");
-    const interval = setInterval(() => {
+  let countdown = seconds;
+  const countdownEl = document.getElementById("countdown");
+  const titleEl = document.getElementById("gameTitle");
+
+  async function runCountdown() {
+    while (countdown >= 0) {
+      await waitWhilePaused();
       countdownEl.textContent = countdown;
+      await new Promise(res => setTimeout(res, 1000));
       countdown--;
-      if (countdown < 0) {
-        clearInterval(interval);
-        countdownEl.style.display = "none";
-        titleEl.style.display = "none";
-        callback();
-      }
-    }, 1000);
+    }
+
+    countdownEl.style.display = "none";
+    titleEl.style.display = "none";
+    callback();
   }
+
+  runCountdown();
+}
 
   async function showWords() {
     screen.innerHTML = `<div class="main-word" id="wordDisplay"></div>`;
