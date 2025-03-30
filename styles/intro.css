@@ -91,14 +91,17 @@ body.intro-active #memory-lock-overlay {
   }
 
   .letter-block {
-    width: 8vw;             /* Smaller blocks */
-    height: 8vw;
-    font-size: 5vw;          /* Smaller letters */
-    margin: 0.2vw;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5vw;
-  }
+  width: 8vw;
+  height: 8vw;
+  font-size: 5vw;
+  margin: 0.05vw; /* 👈 smaller gap between blocks */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5vw;
+}
+
+* {
+  max-width: 100vw;
 }
