@@ -1,22 +1,24 @@
 :root {
-  /* Header Base Colors */
-  --header-color-bg: #f5f9fc;
-  --header-color-bg-card: #ffffff;
-  --header-color-text: #2d2d2d;
-  --header-color-subtext: #555;
-  --header-color-border: #dce3ec;
+  /* Header Base – Slightly cold + elegant */
+  --header-color-bg: #e7ecf3;                /* Frosted slate */
+  --header-color-bg-card: #f4f6fa;           /* Frosted glass effect */
+  --header-color-text: #1f2937;              /* Deep graphite (warmer than black) */
+  --header-color-subtext: #6b7280;           /* Cool steel gray */
+  --header-color-border: #cdd5df;            /* Misty silver */
 
-  /* Header Primary + Secondary Accent (clean green tone) */
-  --header-color-primary: #1e3a5f;
-  --header-color-primary-hover: #27486e;
+  /* Header Primary – Night navy with bluish tints */
+  --header-color-primary: #3b4d61;           /* Subtle smoky indigo */
+  --header-color-primary-hover: #25384b;     /* Deeper on hover */
 
-  --header-color-secondary: #2aa198;
-  --header-color-secondary-hover: #248a87;
+  /* Header Secondary – Cool teal/blue tone for CTA */
+  --header-color-secondary: #5fd1c9;         /* Aqua mint */
+  --header-color-secondary-hover: #3bbeb5;   /* Shift toward cyan-teal on hover */
 
-  /* Header Feedback */
-  --header-color-success: #2ecc71;
-  --header-color-error: #e74c3c;
+  /* Feedback */
+  --header-color-success: #22c55e;           /* Rich emerald */
+  --header-color-error: #ef4444;             /* Infrared red */
 }
+
 
 /* ========== HEADER NAVIGATION ========== */
 .header-site-header {
