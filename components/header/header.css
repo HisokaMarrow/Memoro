@@ -1,24 +1,19 @@
 :root {
-  /* Header Base – Lighter than main but still mysterious */
-  --header-color-bg: #1c1f26;               /* Steely slate black */
-  --header-color-bg-card: #252931;          /* Matte dark overlay */
-  --header-color-text: #f2f2f3;             /* Soft light text (not pure white) */
-  --header-color-subtext: #9ca3af;          /* Dim silver-blue gray */
-  --header-color-border: #323843;           /* Thin subtle edge */
+  --header-color-bg: #1c1f26;
+  --header-color-bg-card: #252931;
+  --header-color-text: #f2f2f3;
+  --header-color-subtext: #9ca3af;
+  --header-color-border: #323843;
 
-  /* Header Primary – Deep violet (to match main accents) */
-  --header-color-primary: #7c3aed;          /* Mystic violet */
-  --header-color-primary-hover: #5b21b6;    /* Shadowy purple */
+  --header-color-primary: #7c3aed;
+  --header-color-primary-hover: #5b21b6;
 
-  /* Header Secondary – Teal as an alternate CTA accent */
-  --header-color-secondary: #7c3aed;          /* Mystic violet */
-  --header-color-secondary-hover: #5b21b6;    /* Shadowy purple */
+  --header-color-secondary: #7c3aed;
+  --header-color-secondary-hover: #5b21b6;
 
-  /* Feedback */
-  --header-color-success: #22c55e;          /* Soft green */
-  --header-color-error: #ef4444;            /* Infrared red */
+  --header-color-success: #22c55e;
+  --header-color-error: #ef4444;
 }
-
 
 /* ========== HEADER NAVIGATION ========== */
 .header-site-header {
@@ -36,6 +31,7 @@
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .header-nav-left,
@@ -85,7 +81,7 @@
   letter-spacing: 1px;
 }
 
-/* Header CTA (e.g., Sign In) */
+/* Header CTA */
 .header-cta-button {
   background-color: var(--header-color-secondary);
   padding: 10px 18px;
@@ -101,32 +97,19 @@
   background-color: var(--header-color-secondary-hover);
 }
 
-
-/* Hide desktop nav on mobile */
-@media (max-width: 768px) {
-  .header-nav-center,
-  .header-nav-right {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-    font-size: 2rem;
-    color: var(--header-color-text);
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    z-index: 101;
-  }
-}
-
-/* Default hidden */
+/* ================= MOBILE NAVIGATION ================= */
 .hamburger {
   display: none;
+  font-size: 2rem;
+  color: var(--header-color-text);
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 101;
 }
 
-/* Slide-in mobile drawer */
+/* Hide elements on mobile unless toggled */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -189,4 +172,27 @@
 
 .overlay.active {
   display: block;
+}
+
+/* ========== RESPONSIVE ========== */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
