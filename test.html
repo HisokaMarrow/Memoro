@@ -110,5 +110,39 @@
   showCountdown(5, showWords);
 </script>
 
+<script>
+  let isPaused = false;
+  let gameInterval; // Optional: your timer reference if you use one
+
+  function togglePause() {
+    const pauseBtn = document.getElementById('gameheadertimerdown-pauseButton');
+
+    if (!pauseBtn) return;
+
+    if (isPaused) {
+      resumeGame();
+      pauseBtn.textContent = 'Pause';
+    } else {
+      pauseGame();
+      pauseBtn.textContent = 'Resume';
+    }
+
+    isPaused = !isPaused;
+  }
+
+  function pauseGame() {
+    console.log("Game paused");
+    // ⏸ Add your actual pause logic here
+    // Example: clearInterval(gameInterval), disable input, etc.
+  }
+
+  function resumeGame() {
+    console.log("Game resumed");
+    // ▶️ Add your resume logic here
+    // Example: gameInterval = setInterval(...), enable input, etc.
+  }
+</script>
+
+
 </body>
 </html>
