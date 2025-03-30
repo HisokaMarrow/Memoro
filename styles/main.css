@@ -449,3 +449,33 @@ main {
     font-size: 2.2rem;
   }
 }
+
+/* Hide native checkbox */
+.main-option-box input[type="checkbox"] {
+  display: none;
+}
+
+/* Custom radio-looking checkbox */
+.main-option-box .custom-radio-style {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #7f5af0;  /* your purple */
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+  background-color: transparent;
+}
+
+/* When checked: show purple circle inside */
+.main-option-box input[type="checkbox"]:checked + .custom-radio-style::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #7f5af0;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
