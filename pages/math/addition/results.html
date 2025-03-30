@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Math Results – Addition Challenge</title>
+  <title>Addition Results</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
@@ -16,7 +16,6 @@
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/header/header.css';
@@ -25,19 +24,23 @@
       const links = document.querySelectorAll('.top-nav a');
       const currentPath = window.location.pathname;
       links.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
           link.classList.add('active');
         }
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
 <main>
   <div class="main-container">
-    <h2 class="main-title">Addition Challenge – Results</h2>
-    <div id="summary" class="result-summary">Loading results...</div>
+    <h2 class="main-title">Addition Results</h2>
+    <p class="main-text" id="summary">Loading results...</p>
     <div id="resultsGrid" class="results-grid"></div>
+    <div class="main-button-block">
+      <a href="settings.html" class="main-button">Try Again</a>
+      <a href="/pages/math.html" class="main-button">Maths Games</a>
+    </div>
   </div>
 </main>
 
@@ -53,26 +56,25 @@
   problems.forEach((item, index) => {
     const userAnswer = answers[index] || "";
     const isCorrect = parseInt(userAnswer) === item.answer;
-
     if (isCorrect) correct++;
 
     const box = document.createElement("div");
-    box.className = `main-box ${isCorrect ? "correct" : "incorrect"}`;
+    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a} + ${item.b} = <strong>${userAnswer || "—"}</strong>
+      ${item.a} - ${item.b} = <strong>${userAnswer || "—"}</strong>
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
     `;
     grid.appendChild(box);
   });
 
   const percent = Math.round((correct / problems.length) * 100);
-  summary.innerHTML = `Well done! You got ${correct} out of ${problems.length} correct (${percent}%)`;
+  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
 
-  const gameTitle = "Addition Challenge";
+  const gameTitle = "Addition Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
-<!-- Footer -->
+  <!-- Footer -->
 <div id="site-footer"></div>
 <script>
   fetch('/components/footer/footer.html')
@@ -86,6 +88,6 @@
       document.head.appendChild(style);
     });
 </script>
-
+  
 </body>
 </html>
