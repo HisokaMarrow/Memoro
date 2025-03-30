@@ -4,18 +4,14 @@
   --header-color-text: #f2f2f3;
   --header-color-subtext: #9ca3af;
   --header-color-border: #323843;
-
   --header-color-primary: #7c3aed;
   --header-color-primary-hover: #5b21b6;
-
   --header-color-secondary: #7c3aed;
   --header-color-secondary-hover: #5b21b6;
-
   --header-color-success: #22c55e;
   --header-color-error: #ef4444;
 }
 
-/* ========== HEADER NAVIGATION ========== */
 .header-site-header {
   background-color: var(--header-color-bg-card);
   padding: 20px 0;
@@ -31,7 +27,7 @@
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
-  position: relative;
+  position: relative; /* Required for positioning hamburger */
 }
 
 .header-nav-left,
@@ -72,7 +68,6 @@
   color: white;
 }
 
-/* Header Logo */
 .header-logo {
   font-size: 1.8em;
   font-weight: bold;
@@ -81,7 +76,6 @@
   letter-spacing: 1px;
 }
 
-/* Header CTA */
 .header-cta-button {
   background-color: var(--header-color-secondary);
   padding: 10px 18px;
@@ -98,18 +92,19 @@
 }
 
 /* ================= MOBILE NAVIGATION ================= */
+
 .hamburger {
   display: none;
   font-size: 2rem;
   color: var(--header-color-text);
   cursor: pointer;
-  position: fixed;      /* Use fixed instead of absolute */
+  position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 9999;        /* Max z-index to stay on top of everything */
+  z-index: 9999;
+  pointer-events: auto;
 }
 
-/* Hide elements on mobile unless toggled */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -158,14 +153,13 @@
   font-weight: bold;
 }
 
-/* Overlay */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 90;
   display: none;
 }
@@ -196,3 +190,4 @@
     display: block;
   }
 }
+
