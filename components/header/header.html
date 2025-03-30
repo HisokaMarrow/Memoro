@@ -4,14 +4,31 @@
       <a href="/" class="header-logo">Memoro</a>
     </div>
 
-    <div class="header-nav-center">
+    <!-- Desktop Nav -->
+    <div class="header-nav-center desktop-only">
       <a href="/index.html">Home</a>
       <a href="/pages/mind-games.html">Mind Games</a>
       <a href="/pages/vault.html">Vault</a>
     </div>
 
-    <div class="header-nav-right">
+    <div class="header-nav-right desktop-only">
       <a href="/signin" class="header-cta-button">Sign In</a>
     </div>
+
+    <!-- Hamburger for Mobile -->
+    <div class="mobile-only hamburger" id="hamburger">&#9776;</div>
   </nav>
+
+  <!-- Slide-out Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <ul class="nav-list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/pages/mind-games.html">Mind Games</a></li>
+      <li><a href="/pages/vault.html">Vault</a></li>
+      <hr>
+      <li class="sign-in"><a href="/signin">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <div class="overlay" id="overlay"></div>
 </header>
