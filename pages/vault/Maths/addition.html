@@ -9,6 +9,30 @@
 </head>
 <body>
 
+<!-- Navigation Bar -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      const links = document.querySelectorAll('.top-nav a');
+      const currentPath = window.location.pathname;
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+          link.classList.add('active');
+        }
+      });
+    });
+</script>
+
 <main>
   <div class="main-container">
     <h2 class="main-title">Memory Association Technique</h2>
