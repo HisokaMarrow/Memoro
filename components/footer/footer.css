@@ -1,8 +1,8 @@
 :root {
-  --footer-color-bg: #0f1115;                /* Dark but clean */
-  --footer-color-border: #2a2f3a;            /* Soft graphite divider */
+  --footer-color-bg: #0f1115;                /* Dark base */
+  --footer-color-border: #2a2f3a;            /* Soft divider */
   --footer-color-subtext: #9ca3af;           /* Muted gray text */
-  --footer-color-accent: #7f5af0;            /* Violet for hover */
+  --footer-color-accent: #7f5af0;            /* Violet hover */
 }
 
 .footer-site-footer {
@@ -11,7 +11,7 @@
   padding: 40px 24px 24px;
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
-  color: var(--footer-color-subtext);
+  color: #ffffff;
   margin-top: 60px;
 }
 
@@ -26,7 +26,7 @@
 
 .footer-left p {
   margin: 0;
-  color: var(--footer-color-subtext);
+  color: #ffffff;
 }
 
 .footer-right {
@@ -35,18 +35,18 @@
   flex-wrap: wrap;
 }
 
-.footer-right a {
-  color: #ffffff; /* Pure white like the rest of the text */
+/* ✅ Universal footer link styling */
+.footer-site-footer a {
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.footer-right a:hover {
-  color: var(--footer-color-accent); /* Violet hover */
-  text-decoration: none; /* Keep it clean */
+.footer-site-footer a:hover {
+  color: var(--footer-color-accent);
+  text-decoration: none;
 }
-
 
 /* Responsive Layout */
 @media (max-width: 600px) {
