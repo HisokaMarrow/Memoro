@@ -88,21 +88,23 @@ body.intro-active #memory-lock-overlay {
   }
 
   .letter-block {
-    width: 10vw;           /* Smaller block */
-    height: 10vw;
-    font-size: 5vw;
-    margin: 0.5vw;         /* Smaller spacing between blocks */
+    width: 13vw;
+    height: 13vw;
+    font-size: 6vw;
+    margin: 0.5vw;
     box-sizing: border-box;
   }
 
-  .main-title {
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 0 1rem;
+  .letter-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 1vw;
+    box-sizing: border-box;
+    max-width: 100vw;
   }
 
-  .main-text {
-    font-size: 1rem;
+  .main-title, .main-text {
     text-align: center;
     padding: 0 1rem;
   }
