@@ -27,8 +27,8 @@
 
 
 
-<!-- Header -->
 <div id="site-header"></div>
+
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
@@ -40,8 +40,8 @@
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // ✅ Wait a bit to ensure the DOM is updated, then wire up the hamburger
-      setTimeout(() => {
+      // ✅ Activate hamburger after header is injected
+      const activateHamburger = () => {
         const hamburger = document.getElementById("hamburger");
         const mobileNav = document.getElementById("mobileNav");
         const overlay = document.getElementById("overlay");
@@ -57,9 +57,12 @@
             overlay.classList.remove("active");
           });
         } else {
-          console.warn("❌ Hamburger elements not found.");
+          console.warn("❌ Hamburger setup failed: Elements not found");
         }
-      }, 100); // delay to wait for header to load
+      };
+
+      // Run the activation after the DOM updates
+      setTimeout(activateHamburger, 50);
     })
     .catch(err => console.error('Header load error:', err));
 </script>
