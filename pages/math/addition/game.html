@@ -87,25 +87,41 @@
     }
 
     function generateProblem() {
-      let a, b;
-      switch (difficulty) {
-        case "beginner":
-          a = Math.floor(Math.random() * 10);
-          b = Math.floor(Math.random() * 10);
-          break;
-        case "advanced":
-          a = Math.floor(Math.random() * 90 + 10);
-          b = Math.floor(Math.random() * 90 + 10);
-          break;
-        case "expert":
-          a = Math.floor(Math.random() * 900 + 100);
-          b = Math.floor(Math.random() * 900 + 100);
-          break;
+  function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  let numbers = [];
+  let displayText = "";
+
+  switch (difficulty) {
+    case "beginner":
+      numbers.push(randomInRange(1, 100));
+      numbers.push(randomInRange(1, 9));
+      break;
+
+    case "advanced":
+      numbers.push(randomInRange(10, 99));
+      numbers.push(randomInRange(10, 99));
+      break;
+
+    case "expert":
+      const count = randomInRange(2, 3); // Now between 2 and 3 numbers
+      for (let i = 0; i < count; i++) {
+        numbers.push(randomInRange(1, 9999));
       }
-      currentAnswer = a + b;
-      problems.push({ a, b, answer: currentAnswer });
-      problemBox.textContent = `${a} + ${b}`;
-    }
+      break;
+
+    default:
+      throw new Error("Unknown difficulty level: " + difficulty);
+  }
+
+  currentAnswer = numbers.reduce((sum, num) => sum + num, 0);
+  displayText = numbers.join(" + ");
+  problems.push({ numbers, answer: currentAnswer });
+  problemBox.textContent = displayText;
+}
+
 
     function runGame() {
       input.style.display = "block";
