@@ -92,7 +92,6 @@
   }
 
   let numbers = [];
-  let displayText = "";
 
   switch (difficulty) {
     case "beginner":
@@ -106,7 +105,7 @@
       break;
 
     case "expert":
-      const count = randomInRange(2, 3); // Now between 2 and 3 numbers
+      const count = randomInRange(2, 3);
       for (let i = 0; i < count; i++) {
         numbers.push(randomInRange(1, 9999));
       }
@@ -116,11 +115,15 @@
       throw new Error("Unknown difficulty level: " + difficulty);
   }
 
+  // Sort numbers in descending order
+  numbers.sort((a, b) => b - a);
+
   currentAnswer = numbers.reduce((sum, num) => sum + num, 0);
-  displayText = numbers.join(" + ");
+  const displayText = numbers.join(" + ");
   problems.push({ numbers, answer: currentAnswer });
   problemBox.textContent = displayText;
 }
+
 
 
     function runGame() {
