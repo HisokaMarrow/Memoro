@@ -110,6 +110,19 @@ main {
   flex-wrap: wrap;
 }
 
+.gameheadertimerdown-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.gameheadernotimer-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+
 /* =======================
    CONTAINERS
 ========================== */
