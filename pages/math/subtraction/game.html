@@ -9,8 +9,19 @@
 </head>
 <body>
 
-<!-- Game Header with Timer -->
+<!-- Game Header -->
 <div id="site-header"></div>
+
+<main>
+  <div class="main-container" id="gameContainer">
+    <h2 class="main-title" id="gameTitle">Starting in...</h2>
+    <div class="main-countdown" id="countdown">5</div>
+    <div id="problem" class="main-word"></div>
+    <input type="number" id="answerInput" class="input-box" placeholder="Your Answer" style="display: none;" />
+  </div>
+</main>
+
+<!-- Header Load + Game Logic -->
 <script>
   fetch('/components/gameheader/gameheadertimerdown.html')
     .then(res => res.text())
@@ -21,135 +32,126 @@
       link.rel = 'stylesheet';
       link.href = '/components/gameheader/gameheader.css';
       document.head.appendChild(link);
+
+      // 💡 GAME LOGIC starts only after header loads
+      startGameApp();
     })
     .catch(err => console.error('Header load error:', err));
-  
-<script>
-  fetch('/components/gameheader/gameheadertimerdown.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
 
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/components/gameheader/gameheader.css';
-      document.head.appendChild(link);
+  function startGameApp() {
+    const difficulty = localStorage.getItem("mathDifficulty") || "beginner";
+    const totalTime = parseInt(localStorage.getItem("mathTimeLimit") || "60");
 
-      // ✅ All your game logic goes here AFTER header is loaded:
-      const difficulty = localStorage.getItem("mathDifficulty") || "beginner";
-      const totalTime = parseInt(localStorage.getItem("mathTimeLimit") || "60");
+    let timeLeft = totalTime;
+    let isPaused = false;
+    let pauseCallback = null;
+    let timerInterval;
+    let currentAnswer;
+    let problems = [];
+    let userAnswers = [];
 
-      let timeLeft = totalTime;
-      let isPaused = false;
-      let pauseCallback = null;
-      let timerInterval;
-      let currentAnswer;
-      let problems = [];
-      let userAnswers = [];
+    const timerDisplay = document.getElementById("gameheadertimerdown-timer");
+    const input = document.getElementById("answerInput");
+    const problemBox = document.getElementById("problem");
+    const title = document.getElementById("gameTitle");
+    const countdownEl = document.getElementById("countdown");
 
-      const timerDisplay = document.getElementById("gameheadertimerdown-timer");
-      const input = document.getElementById("answerInput");
-      const problemBox = document.getElementById("problem");
-      const title = document.getElementById("gameTitle");
-      const countdownEl = document.getElementById("countdown");
-
-      function startCountdown(seconds, callback) {
-        let countdown = seconds;
-        async function runCountdown() {
-          while (countdown >= 0) {
-            await waitWhilePaused();
-            countdownEl.textContent = countdown;
-            await new Promise(res => setTimeout(res, 1000));
-            countdown--;
-          }
-          countdownEl.style.display = "none";
-          title.style.display = "none";
-          callback();
+    function startCountdown(seconds, callback) {
+      let countdown = seconds;
+      async function runCountdown() {
+        while (countdown >= 0) {
+          await waitWhilePaused();
+          countdownEl.textContent = countdown;
+          await new Promise(res => setTimeout(res, 1000));
+          countdown--;
         }
-        runCountdown();
+        countdownEl.style.display = "none";
+        title.style.display = "none";
+        callback();
       }
+      runCountdown();
+    }
 
-      function generateProblem() {
-        let a, b;
-        switch (difficulty) {
-          case "beginner":
-            a = Math.floor(Math.random() * 10);
-            b = Math.floor(Math.random() * 10);
-            break;
-          case "advanced":
-            a = Math.floor(Math.random() * 90 + 10);
-            b = Math.floor(Math.random() * 90 + 10);
-            break;
-          case "expert":
-            a = Math.floor(Math.random() * 900 + 100);
-            b = Math.floor(Math.random() * 900 + 100);
-            break;
+    function generateProblem() {
+      let a, b;
+      switch (difficulty) {
+        case "beginner":
+          a = Math.floor(Math.random() * 10);
+          b = Math.floor(Math.random() * 10);
+          break;
+        case "advanced":
+          a = Math.floor(Math.random() * 90 + 10);
+          b = Math.floor(Math.random() * 90 + 10);
+          break;
+        case "expert":
+          a = Math.floor(Math.random() * 900 + 100);
+          b = Math.floor(Math.random() * 900 + 100);
+          break;
+      }
+      currentAnswer = a - b;
+      problems.push({ a, b, answer: currentAnswer });
+      problemBox.textContent = `${a} - ${b}`;
+    }
+
+    function runGame() {
+      input.style.display = "block";
+      input.focus();
+      generateProblem();
+      timerDisplay.textContent = timeLeft;
+
+      timerInterval = setInterval(async () => {
+        if (!isPaused) {
+          timeLeft--;
+          timerDisplay.textContent = timeLeft;
+          if (timeLeft <= 0) endGame();
         }
-        currentAnswer = a - b;
-        problems.push({ a, b, answer: currentAnswer });
-        problemBox.textContent = `${a} - ${b}`;
-      }
+      }, 1000);
 
-      function startGame() {
-        input.style.display = "block";
-        input.focus();
-        generateProblem();
-        timerDisplay.textContent = timeLeft;
-
-        timerInterval = setInterval(async () => {
-          if (!isPaused) {
-            timeLeft--;
-            timerDisplay.textContent = timeLeft;
-            if (timeLeft <= 0) finishGame();
-          }
-        }, 1000);
-
-        input.addEventListener("keyup", async function (e) {
-          if (e.key === "Enter" && input.value.trim() !== "") {
-            userAnswers.push(input.value.trim());
-            input.value = "";
-            await waitWhilePaused();
-            generateProblem();
-          }
-        });
-      }
-
-      function finishGame() {
-        clearInterval(timerInterval);
-        localStorage.setItem("mathProblems", JSON.stringify(problems));
-        localStorage.setItem("mathUserAnswers", JSON.stringify(userAnswers));
-        problemBox.textContent = "Time’s Up!";
-        input.style.display = "none";
-        setTimeout(() => window.location.href = "results.html", 2000);
-      }
-
-      function endEarly() {
-        finishGame();
-      }
-
-      function togglePause() {
-        const btn = document.getElementById("gameheadertimerdown-pauseButton");
-        if (!btn) return;
-        isPaused = !isPaused;
-        btn.textContent = isPaused ? "Resume" : "Pause";
-        if (!isPaused && pauseCallback) {
-          pauseCallback();
-          pauseCallback = null;
+      input.addEventListener("keyup", async function (e) {
+        if (e.key === "Enter" && input.value.trim() !== "") {
+          userAnswers.push(input.value.trim());
+          input.value = "";
+          await waitWhilePaused();
+          generateProblem();
         }
-      }
+      });
+    }
 
-      function waitWhilePaused() {
-        return new Promise(resolve => {
-          if (!isPaused) return resolve();
-          pauseCallback = resolve;
-        });
-      }
+    function endGame() {
+      clearInterval(timerInterval);
+      localStorage.setItem("mathProblems", JSON.stringify(problems));
+      localStorage.setItem("mathUserAnswers", JSON.stringify(userAnswers));
+      problemBox.textContent = "Time’s Up!";
+      input.style.display = "none";
+      setTimeout(() => window.location.href = "results.html", 2000);
+    }
 
-      startCountdown(5, startGame);
-    })
-    .catch(err => console.error('Header load error:', err));
+    window.endEarly = endGame;
+
+    window.togglePause = function () {
+      const btn = document.getElementById("gameheadertimerdown-pauseButton");
+      if (!btn) return;
+
+      isPaused = !isPaused;
+      btn.textContent = isPaused ? "Resume" : "Pause";
+
+      if (!isPaused && pauseCallback) {
+        pauseCallback();
+        pauseCallback = null;
+      }
+    };
+
+    function waitWhilePaused() {
+      return new Promise(resolve => {
+        if (!isPaused) return resolve();
+        pauseCallback = resolve;
+      });
+    }
+
+    // ⏱ Start with countdown
+    startCountdown(5, runGame);
+  }
 </script>
-
 
 </body>
 </html>
