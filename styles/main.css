@@ -1,14 +1,14 @@
 :root {
-  --color-bg: #1a1a1a;               /* Dark but not pitch black */
-  --color-bg-card: #262626;          /* Slightly lighter for contrast */
-  --color-text: #f0f0f0;             /* Soft white for general text */
-  --color-subtext: #b0b0b0;          /* Muted gray for secondary text */
-  --color-border: #333333;           /* Subtle border contrast */
-  --color-secondary: #4fd1c5;        /* Soft teal for actions */
-  --color-secondary-hover: #38b2ac;  /* Deeper teal on hover */
-  --color-success: #48bb78;          /* Gentle green */
-  --color-error: #f56565; 
-  --main-option-box-hover: #f9fbfd;
+  --color-bg: #0f1115;                /* Deep charcoal with a blue undertone */
+  --color-bg-card: #181a1f;           /* Slightly lifted, matte black */
+  --color-text: #e6e8eb;              /* Fog white — soft, not clinical */
+  --color-subtext: #8a8f98;           /* Dusty silver — subdued, cerebral */
+  --color-border: #2a2d33;            /* Graphite gray — barely there lines */
+  --color-secondary: #7f5af0;         /* Mystical violet (cool + attention-catching) */
+  --color-secondary-hover: #6246ea;   /* Deepened electric purple */
+  --color-success: #2dd4bf;           /* Neon aqua glow — adds life */
+  --color-error: #f43f5e;             /* Infrared red — bold but controlled */
+  --main-option-box-hover: #1d2026;   /* Slightly lighter card hover effect */
 }
 
 /* =======================
