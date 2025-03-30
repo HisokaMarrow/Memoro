@@ -59,7 +59,7 @@
   const countdownEl = document.getElementById("countdown");
   const titleEl = document.getElementById("gameTitle");
 
-  async function startCountdown() {
+  async function runCountdown() {
     while (countdown >= 0) {
       await waitWhilePaused();
       countdownEl.textContent = countdown;
