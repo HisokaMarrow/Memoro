@@ -166,3 +166,53 @@
   pointer-events: none;
   cursor: default;
 }
+
+/* ===============================
+   MOBILE STYLES — GAME HEADER
+=============================== */
+@media (max-width: 768px) {
+  .gameheadertimerdown-top-hud,
+  .gameheadernotimer-top-hud {
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gameheadertimerdown-top-nav,
+  .gameheadernotimer-top-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gameheadertimerdown-nav-left,
+  .gameheadernotimer-nav-left,
+  .gameheadertimerdown-nav-center,
+  .gameheadernotimer-nav-center,
+  .gameheadertimerdown-nav-right,
+  .gameheadernotimer-nav-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gameheadertimerdown-button,
+  .gameheadernotimer-button {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  #gameheadertimerdown-timer {
+    font-size: 1.5rem;
+  }
+
+  .gameheadertimerdown-top-nav,
+  .gameheadernotimer-top-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
