@@ -1,24 +1,23 @@
 :root {
-  /* Header Base – Slightly cold + elegant */
-  --header-color-bg: #e7ecf3;                /* Frosted slate */
-  --header-color-bg-card: #f4f6fa;           /* Frosted glass effect */
-  --header-color-text: #1f2937;              /* Deep graphite (warmer than black) */
-  --header-color-subtext: #6b7280;           /* Cool steel gray */
-  --header-color-border: #cdd5df;            /* Misty silver */
+  /* Header Base – Lighter than main but still mysterious */
+  --header-color-bg: #1c1f26;               /* Steely slate black */
+  --header-color-bg-card: #252931;          /* Matte dark overlay */
+  --header-color-text: #f2f2f3;             /* Soft light text (not pure white) */
+  --header-color-subtext: #9ca3af;          /* Dim silver-blue gray */
+  --header-color-border: #323843;           /* Thin subtle edge */
 
-  /* Header Primary – Night navy with bluish tints */
-  --header-color-primary: #3b4d61;           /* Subtle smoky indigo */
-  --header-color-primary-hover: #25384b;     /* Deeper on hover */
+  /* Header Primary – Deep violet (to match main accents) */
+  --header-color-primary: #7c3aed;          /* Mystic violet */
+  --header-color-primary-hover: #5b21b6;    /* Shadowy purple */
 
-  /* Header Secondary – Cool teal/blue tone for CTA */
-  --header-color-secondary: #5fd1c9;         /* Aqua mint */
-  --header-color-secondary-hover: #3bbeb5;   /* Shift toward cyan-teal on hover */
+  /* Header Secondary – Teal as an alternate CTA accent */
+  --header-color-secondary: #2dd4bf;        /* Calm neon aqua */
+  --header-color-secondary-hover: #14b8a6;  /* Darker teal on hover */
 
   /* Feedback */
-  --header-color-success: #22c55e;           /* Rich emerald */
-  --header-color-error: #ef4444;             /* Infrared red */
+  --header-color-success: #22c55e;          /* Soft green */
+  --header-color-error: #ef4444;            /* Infrared red */
 }
-
 
 
 /* ========== HEADER NAVIGATION ========== */
