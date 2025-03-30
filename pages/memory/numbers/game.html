@@ -6,39 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  <style>
-    .disabled {
-      opacity: 0.5;
-      pointer-events: none;
-      cursor: default;
-    }
-  </style>
 </head>
 <body>
 
 <!-- Game Header -->
 <div id="site-header"></div>
-<script>
-  fetch('/components/gameheader/gameheadertimerdown.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('site-header').innerHTML = html;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/components/gameheader/gameheader.css';
-      document.head.appendChild(link);
-
-      setTimeout(startGameApp, 50);
-    })
-    .catch(err => console.error('Header load error:', err));
-</script>
 
 <main>
   <div class="main-container">
     <div class="main-button-block" id="goWrapper">
-      <button class="main-button" id="startButton" onclick="startCountdown()">Start Game</button>
+      <button class="main-button" onclick="startCountdown()">Start Game</button>
     </div>
-
     <h2 id="countdownLabel" class="main-title" style="display: none;">Starting in...</h2>
     <div id="countdown" class="main-countdown" style="display: none;"></div>
     <div id="output" class="main-word" style="display: none;"></div>
@@ -46,151 +24,152 @@
 </main>
 
 <script>
-  function startGameApp() {
-    let isPaused = false;
-    let pauseResolve;
-    let shouldStopGame = false;
+  // Load header then boot game logic
+  fetch('/components/gameheader/gameheadertimerdown.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
 
-    const delay = (parseFloat(localStorage.getItem("delay")) || 2) * 1000;
-    const rangeMax = parseInt(localStorage.getItem("rangeMax")) || 99;
-    const testTime = (parseInt(localStorage.getItem("testTime")) || 30) * 1000;
-    const padZeros = localStorage.getItem("padZeros") === "true";
-    const enableVoice = localStorage.getItem("enableVoice") === "true";
-    const speakIndividually = localStorage.getItem("speakIndividually") === "true";
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
 
-    let currentSequence = [];
-    let remainingTime = testTime / 1000;
-    let timerInterval;
+<script>
+  let isPaused = false;
+  let pauseResolve;
+  let pauseButton;
+  let shouldStopGame = false;
 
-    const output = document.getElementById("output");
-    const countdownEl = document.getElementById("countdown");
-    const countdownLabel = document.getElementById("countdownLabel");
-    const goWrapper = document.getElementById("goWrapper");
+  const delay = (parseFloat(localStorage.getItem("delay")) || 2) * 1000;
+  const rangeMax = parseInt(localStorage.getItem("rangeMax")) || 99;
+  const testTime = (parseInt(localStorage.getItem("testTime")) || 30) * 1000;
+  const padZeros = localStorage.getItem("padZeros") === "true";
+  const enableVoice = localStorage.getItem("enableVoice") === "true";
+  const speakIndividually = localStorage.getItem("speakIndividually") === "true";
+
+  let currentSequence = [];
+  let remainingTime = testTime / 1000;
+  let timerInterval;
+
+  // Wait while paused
+  function waitWhilePaused() {
+    return new Promise(resolve => {
+      if (!isPaused) resolve();
+      else pauseResolve = resolve;
+    });
+  }
+
+  // Pause toggle
+  function togglePause() {
+    isPaused = !isPaused;
     const pauseBtn = document.getElementById("gameheadertimerdown-pauseButton");
-    const timerDisplay = document.getElementById("gameheadertimerdown-timer");
-    const endEarlyBtn = document.getElementById("endEarlyBtn");
+    if (pauseBtn) {
+      pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+    }
 
+    if (!isPaused && pauseResolve) {
+      pauseResolve();
+      pauseResolve = null;
+    }
+  }
+
+  // Speech
+  function speak(text) {
+    if (!enableVoice) return;
+    const utter = new SpeechSynthesisUtterance();
+    utter.text = speakIndividually ? text.toString().split('').join(' ') : text;
+    utter.lang = 'en-US';
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utter);
+  }
+
+  // Countdown + fade-in logic
+  window.startCountdown = function () {
+    speechSynthesis.cancel();
+    document.getElementById("goWrapper").style.display = "none";
+    document.getElementById("countdownLabel").style.display = "block";
+    document.getElementById("countdown").style.display = "block";
+
+    const endEarlyBtn = document.getElementById("endEarlyBtn");
     if (endEarlyBtn) endEarlyBtn.classList.add("disabled");
 
-    window.togglePause = function () {
-      isPaused = !isPaused;
-      if (pauseBtn) pauseBtn.textContent = isPaused ? "Resume" : "Pause";
-      if (!isPaused && pauseResolve) {
-        pauseResolve();
-        pauseResolve = null;
-      }
-    };
+    let countdownValue = 5;
 
-    window.endEarly = function () {
+    async function countdownLoop() {
+      while (countdownValue >= 0) {
+        await waitWhilePaused();
+        document.getElementById("countdown").innerText = countdownValue;
+        await new Promise(res => setTimeout(res, 1000));
+        countdownValue--;
+      }
+
+      document.getElementById("countdownLabel").style.display = "none";
+      document.getElementById("countdown").style.display = "none";
+      if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
+      beginGame();
+    }
+
+    countdownLoop();
+  }
+
+  function beginGame() {
+    document.getElementById("output").style.display = "block";
+    pauseButton = document.getElementById("gameheadertimerdown-pauseButton");
+    currentSequence = [];
+    timerInterval = setInterval(updateTimer, 1000);
+    const startTime = Date.now();
+
+    (async function runLoop() {
+      while (Date.now() - startTime < testTime && !shouldStopGame) {
+        await waitWhilePaused();
+
+        let num = getRandomNumber(1, rangeMax);
+        if (padZeros && num < 10) num = "0" + num;
+        currentSequence.push(num);
+
+        document.getElementById("output").innerText = num;
+        speak(num);
+
+        await new Promise(res => setTimeout(res, delay));
+      }
+
+      if (!shouldStopGame) {
+        endGame("Done!");
+      }
+    })();
+  }
+
+  function updateTimer() {
+    if (isPaused) return;
+    remainingTime--;
+    const timer = document.getElementById("gameheadertimerdown-timer");
+    if (timer) timer.innerText = remainingTime;
+
+    if (remainingTime <= 0) {
       clearInterval(timerInterval);
       shouldStopGame = true;
-      localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-      output.innerText = "Done";
-      setTimeout(() => window.location.href = "results.html", 2000);
-    };
-
-    function waitWhilePaused() {
-      return new Promise(resolve => {
-        if (!isPaused) return resolve();
-        pauseResolve = resolve;
-      });
-    }
-
-    function speak(text) {
-      if (!enableVoice) return;
-      const utter = new SpeechSynthesisUtterance();
-      utter.text = speakIndividually ? text.toString().split('').join(' ') : text;
-      utter.lang = 'en-US';
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utter);
-    }
-
-    window.startCountdown = function () {
-  speechSynthesis.cancel();
-  goWrapper.style.display = "none";
-  countdownLabel.style.display = "block";
-  countdownEl.style.display = "block";
-
-  let count = 5;
-  countdownEl.textContent = count;
-
-  async function runCountdown() {
-    while (count >= 0) {
-      await waitWhilePaused();
-      countdownEl.textContent = count;
-      await new Promise(res => setTimeout(res, 1000));
-      count--;
-    }
-
-    countdownLabel.style.display = "none";
-    countdownEl.style.display = "none";
-    if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
-    beginGame();
-  }
-
-  runCountdown();
-};
-
-
-      const interval = setInterval(() => {
-        count--;
-        countdownEl.textContent = count;
-        if (count <= 0) {
-          clearInterval(interval);
-          countdownLabel.style.display = "none";
-          countdownEl.style.display = "none";
-          if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
-          beginGame();
-        }
-      }, 1000);
-    };
-
-    function beginGame() {
-      output.style.display = "block";
-      currentSequence = [];
-      remainingTime = testTime / 1000;
-
-      if (timerDisplay) timerDisplay.textContent = remainingTime;
-
-      timerInterval = setInterval(() => {
-        if (!isPaused) {
-          remainingTime--;
-          if (timerDisplay) timerDisplay.textContent = remainingTime;
-          if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-            shouldStopGame = true;
-            localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-            output.innerText = "Time's Up!";
-            setTimeout(() => window.location.href = "results.html", 2000);
-          }
-        }
-      }, 1000);
-
-      const startTime = Date.now();
-
-      (async function loop() {
-        while ((Date.now() - startTime) < testTime && !shouldStopGame) {
-          await waitWhilePaused();
-          let num = getRandomNumber(1, rangeMax);
-          if (padZeros && num < 10) num = "0" + num;
-          currentSequence.push(num);
-          output.innerText = num;
-          speak(num);
-          await new Promise(res => setTimeout(res, delay));
-        }
-
-        if (!shouldStopGame) {
-          localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-          output.innerText = "Done!";
-          setTimeout(() => window.location.href = "results.html", 2000);
-        }
-      })();
-    }
-
-    function getRandomNumber(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      endGame("Time's Up!");
     }
   }
+
+  function endGame(message) {
+    clearInterval(timerInterval);
+    shouldStopGame = true;
+    localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+    document.getElementById("output").innerText = message;
+    setTimeout(() => window.location.href = "results.html", 2000);
+  }
+
+  // Make these available to header buttons
+  window.endEarly = () => endGame("Ended Early");
+  window.togglePause = togglePause;
+
+  // Style for .disabled already in your CSS:
+  // .disabled { opacity: 0.5; pointer-events: none; cursor: default; }
 </script>
 
 </body>
