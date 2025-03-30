@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Header -->
 <div id="site-header"></div>
 <script>
   fetch('/components/header/header.html')
@@ -31,10 +31,10 @@
           link.classList.add('active');
         }
       });
-    })
-    .catch(err => console.error('Header load error:', err));
+    });
 </script>
 
+<!-- Main -->
 <main>
   <div class="main-container">
     <h2 class="main-title">Write all the words you remember</h2>
@@ -50,6 +50,7 @@
   </div>
 </main>
 
+<!-- Script -->
 <script>
   const shownWords = JSON.parse(localStorage.getItem("shownWords") || "[]");
 
@@ -81,7 +82,7 @@
 
     inputs.forEach((input, index) => {
       const entered = input.value.trim().toLowerCase();
-      const correctAnswer = shownWords[index].toLowerCase();
+      const correctAnswer = shownWords[index]?.toLowerCase() || "";
       const feedback = input.nextElementSibling;
 
       if (entered === correctAnswer) {
@@ -97,18 +98,18 @@
     });
 
     const percent = Math.round((correct / shownWords.length) * 100);
-    const summary = `You remembered ${correct} out of ${shownWords.length} words (${percent}%)`;
-    document.getElementById("summaryText").innerHTML = summary;
+    document.getElementById("summaryText").innerHTML =
+      `You remembered <strong>${correct}</strong> out of ${shownWords.length} words (${percent}%)`;
   }
 
-  function goHome() {
-    window.location.href = "/index.html";
+  function tryAgain() {
+    window.location.href = "settings.html";
   }
 
   renderInputs();
   sessionStorage.setItem("dailyGame_Word Memory", "true");
 </script>
-  
+
 <!-- Footer -->
 <div id="site-footer"></div>
 <script>
@@ -123,6 +124,6 @@
       document.head.appendChild(style);
     });
 </script>
-  
+
 </body>
 </html>
