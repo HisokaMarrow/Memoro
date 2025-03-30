@@ -34,7 +34,7 @@
 
 <main>
   <div class="main-container">
-    <h2 class="main-title">Subtraction Master</h2>
+    <h2 class="main-title">Subtraction Results</h2>
     <p class="main-text" id="summary">Loading results...</p>
     <div id="resultsGrid" class="results-grid"></div>
     <div class="main-button-block">
@@ -70,7 +70,7 @@
   const percent = Math.round((correct / problems.length) * 100);
   summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
 
-  const gameTitle = "Subtraction Challenge";
+  const gameTitle = "Subtraction Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
