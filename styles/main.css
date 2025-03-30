@@ -7,7 +7,8 @@
   --color-secondary: #4fd1c5;        /* Soft teal for actions */
   --color-secondary-hover: #38b2ac;  /* Deeper teal on hover */
   --color-success: #48bb78;          /* Gentle green */
-  --color-error: #f56565;            /* Soft red for alerts */
+  --color-error: #f56565; 
+  --main-option-box-hover: #f9fbfd;
 }
 
 /* =======================
@@ -247,7 +248,7 @@ main {
 
 .main-option-box:hover {
   border-color: var(--color-secondary);
-  background-color: #f9fbfd;
+  background-color: var(--main-option-box-hover);
 }
 
 .main-option-box input[type="radio"] {
