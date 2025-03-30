@@ -16,7 +16,7 @@
     </div>
 
     <!-- Hamburger for Mobile -->
-    <div class="mobile-only hamburger" id="hamburger">&#9776;</div>
+    <div class="hamburger mobile-only" id="hamburger">&#9776;</div>
   </nav>
 
   <!-- Slide-out Mobile Nav -->
@@ -31,22 +31,24 @@
   </nav>
 
   <div class="overlay" id="overlay"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const mobileNav = document.getElementById("mobileNav");
+      const overlay = document.getElementById("overlay");
+
+      if (hamburger && mobileNav && overlay) {
+        hamburger.addEventListener("click", () => {
+          mobileNav.classList.toggle("open");
+          overlay.classList.toggle("active");
+        });
+
+        overlay.addEventListener("click", () => {
+          mobileNav.classList.remove("open");
+          overlay.classList.remove("active");
+        });
+      }
+    });
+  </script>
 </header>
-
-<script>
-  const hamburger = document.getElementById("hamburger");
-  const mobileNav = document.getElementById("mobileNav");
-  const overlay = document.getElementById("overlay");
-
-  if (hamburger && mobileNav && overlay) {
-    hamburger.addEventListener("click", () => {
-      mobileNav.classList.toggle("open");
-      overlay.classList.toggle("active");
-    });
-
-    overlay.addEventListener("click", () => {
-      mobileNav.classList.remove("open");
-      overlay.classList.remove("active");
-    });
-  }
-</script>
