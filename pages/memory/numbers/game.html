@@ -6,21 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Game Header with Timer -->
+<!-- Game Header -->
 <div id="site-header"></div>
 <script>
   fetch('/components/gameheader/gameheadertimerdown.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = '/components/gameheader/gameheader.css';
       document.head.appendChild(link);
+
+      setTimeout(startGameApp, 50);
     })
     .catch(err => console.error('Header load error:', err));
 </script>
@@ -38,125 +46,134 @@
 </main>
 
 <script>
-  let isPaused = false;
-  let pauseResolve;
-  let pauseButton;
-  let shouldStopGame = false;
+  function startGameApp() {
+    let isPaused = false;
+    let pauseResolve;
+    let shouldStopGame = false;
 
-  const delay = (parseFloat(localStorage.getItem("delay")) || 2) * 1000;
-  const rangeMax = parseInt(localStorage.getItem("rangeMax")) || 99;
-  const testTime = (parseInt(localStorage.getItem("testTime")) || 30) * 1000;
-  const padZeros = localStorage.getItem("padZeros") === "true";
-  const enableVoice = localStorage.getItem("enableVoice") === "true";
-  const speakIndividually = localStorage.getItem("speakIndividually") === "true";
+    const delay = (parseFloat(localStorage.getItem("delay")) || 2) * 1000;
+    const rangeMax = parseInt(localStorage.getItem("rangeMax")) || 99;
+    const testTime = (parseInt(localStorage.getItem("testTime")) || 30) * 1000;
+    const padZeros = localStorage.getItem("padZeros") === "true";
+    const enableVoice = localStorage.getItem("enableVoice") === "true";
+    const speakIndividually = localStorage.getItem("speakIndividually") === "true";
 
-  let currentSequence = [];
-  let remainingTime = testTime / 1000;
-  let timerInterval;
+    let currentSequence = [];
+    let remainingTime = testTime / 1000;
+    let timerInterval;
 
-  function speak(text) {
-    if (!enableVoice) return;
-    const utter = new SpeechSynthesisUtterance();
-    utter.text = speakIndividually ? text.toString().split('').join(' ') : text;
-    utter.lang = 'en-US';
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utter);
-  }
+    const output = document.getElementById("output");
+    const countdownEl = document.getElementById("countdown");
+    const countdownLabel = document.getElementById("countdownLabel");
+    const goWrapper = document.getElementById("goWrapper");
+    const pauseBtn = document.getElementById("gameheadertimerdown-pauseButton");
+    const timerDisplay = document.getElementById("gameheadertimerdown-timer");
+    const endEarlyBtn = document.getElementById("endEarlyBtn");
 
-  function waitWhilePaused() {
-    return new Promise(resolve => {
-      if (!isPaused) resolve();
-      else pauseResolve = resolve;
-    });
-  }
+    if (endEarlyBtn) endEarlyBtn.classList.add("disabled");
 
-  function togglePause() {
-    isPaused = !isPaused;
-    pauseButton.textContent = isPaused ? "Resume" : "Pause";
-    if (!isPaused && pauseResolve) {
-      pauseResolve();
-      pauseResolve = null;
-    }
-  }
-
-  function startCountdown() {
-    speechSynthesis.cancel();
-    document.getElementById("goWrapper").style.display = "none";
-    document.getElementById("countdownLabel").style.display = "block";
-    document.getElementById("countdown").style.display = "block";
-
-    let countdownValue = 5;
-    document.getElementById("countdown").innerText = countdownValue;
-
-    const countdownInterval = setInterval(() => {
-      countdownValue--;
-      document.getElementById("countdown").innerText = countdownValue;
-      if (countdownValue === 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdownLabel").style.display = "none";
-        document.getElementById("countdown").style.display = "none";
-        beginGame();
+    window.togglePause = function () {
+      isPaused = !isPaused;
+      if (pauseBtn) pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+      if (!isPaused && pauseResolve) {
+        pauseResolve();
+        pauseResolve = null;
       }
-    }, 1000);
-  }
+    };
 
-  function beginGame() {
-    document.getElementById("output").style.display = "block";
-    pauseButton = document.getElementById("pauseButton");
-    currentSequence = [];
-    timerInterval = setInterval(updateTimer, 1000);
-
-    const startTime = Date.now();
-
-    (async function runLoop() {
-      while (Date.now() - startTime < testTime && !shouldStopGame) {
-        await waitWhilePaused();
-
-        let num = getRandomNumber(1, rangeMax);
-        if (padZeros && num < 10) num = "0" + num;
-        currentSequence.push(num);
-
-        document.getElementById("output").innerText = num;
-        speak(num);
-
-        await new Promise(res => setTimeout(res, delay));
-      }
-
-      if (!shouldStopGame) {
-        localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-        document.getElementById("output").innerText = "Done!";
-        setTimeout(() => window.location.href = "results.html", 2000);
-      }
-    })();
-  }
-
-  function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  function updateTimer() {
-    if (isPaused) return;
-    remainingTime--;
-    document.getElementById("timer").innerText = remainingTime;
-
-    if (remainingTime <= 0) {
+    window.endEarly = function () {
       clearInterval(timerInterval);
       shouldStopGame = true;
       localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-      document.getElementById("output").innerText = "Time's Up!";
+      output.innerText = "Done";
       setTimeout(() => window.location.href = "results.html", 2000);
-    }
-  }
+    };
 
-  function endEarly() {
-    clearInterval(timerInterval);
-    shouldStopGame = true;
-    localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
-    document.getElementById("output").innerText = "Done";
-    setTimeout(() => window.location.href = "results.html", 2000);
+    function waitWhilePaused() {
+      return new Promise(resolve => {
+        if (!isPaused) return resolve();
+        pauseResolve = resolve;
+      });
+    }
+
+    function speak(text) {
+      if (!enableVoice) return;
+      const utter = new SpeechSynthesisUtterance();
+      utter.text = speakIndividually ? text.toString().split('').join(' ') : text;
+      utter.lang = 'en-US';
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utter);
+    }
+
+    window.startCountdown = function () {
+      speechSynthesis.cancel();
+      goWrapper.style.display = "none";
+      countdownLabel.style.display = "block";
+      countdownEl.style.display = "block";
+
+      let count = 5;
+      countdownEl.textContent = count;
+
+      const interval = setInterval(() => {
+        count--;
+        countdownEl.textContent = count;
+        if (count <= 0) {
+          clearInterval(interval);
+          countdownLabel.style.display = "none";
+          countdownEl.style.display = "none";
+          if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
+          beginGame();
+        }
+      }, 1000);
+    };
+
+    function beginGame() {
+      output.style.display = "block";
+      currentSequence = [];
+      remainingTime = testTime / 1000;
+
+      if (timerDisplay) timerDisplay.textContent = remainingTime;
+
+      timerInterval = setInterval(() => {
+        if (!isPaused) {
+          remainingTime--;
+          if (timerDisplay) timerDisplay.textContent = remainingTime;
+          if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            shouldStopGame = true;
+            localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+            output.innerText = "Time's Up!";
+            setTimeout(() => window.location.href = "results.html", 2000);
+          }
+        }
+      }, 1000);
+
+      const startTime = Date.now();
+
+      (async function loop() {
+        while ((Date.now() - startTime) < testTime && !shouldStopGame) {
+          await waitWhilePaused();
+          let num = getRandomNumber(1, rangeMax);
+          if (padZeros && num < 10) num = "0" + num;
+          currentSequence.push(num);
+          output.innerText = num;
+          speak(num);
+          await new Promise(res => setTimeout(res, delay));
+        }
+
+        if (!shouldStopGame) {
+          localStorage.setItem("generatedNumbers", JSON.stringify(currentSequence));
+          output.innerText = "Done!";
+          setTimeout(() => window.location.href = "results.html", 2000);
+        }
+      })();
+    }
+
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
   }
 </script>
 
 </body>
 </html>
-
