@@ -27,8 +27,8 @@
 
 
 
+<!-- Header -->
 <div id="site-header"></div>
-
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
@@ -40,29 +40,15 @@
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      // ✅ Activate hamburger after header is injected
-      const activateHamburger = () => {
-        const hamburger = document.getElementById("hamburger");
-        const mobileNav = document.getElementById("mobileNav");
-        const overlay = document.getElementById("overlay");
+      const links = document.querySelectorAll('.top-nav a');
+      const currentPath = window.location.pathname;
 
-        if (hamburger && mobileNav && overlay) {
-          hamburger.addEventListener("click", () => {
-            mobileNav.classList.toggle("open");
-            overlay.classList.toggle("active");
-          });
-
-          overlay.addEventListener("click", () => {
-            mobileNav.classList.remove("open");
-            overlay.classList.remove("active");
-          });
-        } else {
-          console.warn("❌ Hamburger setup failed: Elements not found");
+      links.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+          link.classList.add('active');
         }
-      };
-
-      // Run the activation after the DOM updates
-      setTimeout(activateHamburger, 50);
+      });
     })
     .catch(err => console.error('Header load error:', err));
 </script>
