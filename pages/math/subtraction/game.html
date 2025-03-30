@@ -53,7 +53,8 @@
   const title = document.getElementById("gameTitle");
   const countdownEl = document.getElementById("countdown");
 
-  function showCountdown(seconds, callback) {
+
+  function startCountdown(seconds, callback) {
   let countdown = seconds;
   const countdownEl = document.getElementById("countdown");
   const titleEl = document.getElementById("gameTitle");
@@ -132,9 +133,9 @@
     finishGame();
   }
 
-   // ✅ Unified Pause/Resume Toggle (works with header button)
+  // ✅ Unified Pause/Resume Toggle (works with header button)
   function togglePause() {
-    const btn = document.getElementById("gameheadertimerdown-button");
+    const btn = document.getElementById("gameheadernotimer-pauseButton");
     if (!btn) return;
 
     isPaused = !isPaused;
@@ -153,8 +154,8 @@
     });
   }
 
-  showCountdown(5, showWords);
 
+  startCountdown();
 </script>
 
 </body>
