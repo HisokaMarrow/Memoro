@@ -58,10 +58,18 @@
     const isCorrect = parseInt(userAnswer) === item.answer;
     if (isCorrect) correct++;
 
+    // Use operator if it exists, fallback to "+"
+    const operator = item.operator || "-";
+
+    // Build expression from numbers array
+    const expression = item.numbers
+      ? item.numbers.join(` ${operator} `)
+      : `${item.a} - ${item.b}`; // Fallback for older data
+
     const box = document.createElement("div");
     box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a} - ${item.b} = <strong>${userAnswer || "—"}</strong>
+      ${expression} = <strong>${userAnswer || "—"}</strong>
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
     `;
     grid.appendChild(box);
@@ -70,7 +78,7 @@
   const percent = Math.round((correct / problems.length) * 100);
   summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
 
-  const gameTitle = "Subtraction Master";
+  const gameTitle = "Addition Master"; // Optional: rename dynamically based on mode
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
