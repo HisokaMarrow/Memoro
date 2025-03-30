@@ -56,21 +56,32 @@
     const title = document.getElementById("gameTitle");
     const countdownEl = document.getElementById("countdown");
 
-    function startCountdown(seconds, callback) {
-      let countdown = seconds;
-      async function runCountdown() {
-        while (countdown >= 0) {
-          await waitWhilePaused();
-          countdownEl.textContent = countdown;
-          await new Promise(res => setTimeout(res, 1000));
-          countdown--;
-        }
-        countdownEl.style.display = "none";
-        title.style.display = "none";
-        callback();
-      }
-      runCountdown();
+    const endEarlyBtn = document.getElementById("endEarlyBtn");
+endEarlyBtn.classList.add("disabled"); // disable at start
+
+function startCountdown(seconds, callback) {
+  let countdown = seconds;
+
+  async function runCountdown() {
+    while (countdown >= 0) {
+      await waitWhilePaused();
+      countdownEl.textContent = countdown;
+      await new Promise(res => setTimeout(res, 1000));
+      countdown--;
     }
+
+    // ✅ Countdown ended — re-enable End Early
+    endEarlyBtn.classList.remove("disabled");
+
+    countdownEl.style.display = "none";
+    title.style.display = "none";
+    callback();
+  }
+
+  runCountdown();
+}
+
+
 
     function generateProblem() {
       let a, b;
