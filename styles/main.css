@@ -62,13 +62,16 @@ main {
 }
 
 .main-section-link {
-  text-decoration: none; /* 🚫 removes underline */
-  color: var(--color-text); /* keeps color consistent with other headers */
+  text-decoration: none;
+  color: var(--color-text); /* normal color */
+  transition: color 0.2s ease;
 }
 
 .main-section-link:hover {
-  text-decoration: none; /* still no underline on hover */
+  color: var(--color-secondary-hover); /* changes on hover */
+  text-decoration: none; /* keeps it clean */
 }
+
 
 /* =======================
    BUTTONS
