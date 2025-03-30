@@ -58,12 +58,21 @@
     const isCorrect = parseInt(userAnswer) === item.answer;
     if (isCorrect) correct++;
 
+    // Use stored operator, default to "÷"
+    const operator = item.operator || "÷";
+
+    // Support new or legacy format
+    const expression = item.numbers
+      ? item.numbers.join(` ${operator} `)
+      : `${item.a} ${operator} ${item.b}`;
+
     const box = document.createElement("div");
     box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
     box.innerHTML = `
-      ${item.a} / ${item.b} = <strong>${userAnswer || "—"}</strong>
+      ${expression} = <strong>${userAnswer || "—"}</strong>
       ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
     `;
+
     grid.appendChild(box);
   });
 
@@ -73,6 +82,7 @@
   const gameTitle = "Division Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
+
 
   <!-- Footer -->
 <div id="site-footer"></div>
