@@ -361,13 +361,14 @@ main {
   top: 50%;
   transform: translateY(-50%);
   width: 32px;
-  height: 80px;
-  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent black */
+  height: 120px;
+  background-color: rgba(128, 128, 128, 0.15); /* subtle transparent grey */
   color: white;
   font-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none; /* removed dark edge */
   border-radius: 10px;
   cursor: pointer;
   z-index: 10;
@@ -380,7 +381,7 @@ main {
 }
 
 .carousel-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.6); /* brighter on hover */
+  background-color: rgba(128, 128, 128, 0.25); /* more visible on hover */
 }
 
 .carousel-arrow.left {
@@ -396,6 +397,7 @@ main {
     display: none;
   }
 }
+
 
 
 /* =======================
