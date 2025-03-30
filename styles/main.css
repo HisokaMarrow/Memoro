@@ -519,3 +519,111 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+
+/* ================================================
+   MOBILE RESPONSIVE STYLES — DROP AT BOTTOM OF main.css
+================================================= */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 0 12px;
+  }
+
+  main {
+    padding: 20px 10px;
+  }
+
+  .main-container,
+  .main-container-games,
+  .main-container-daily-chalange,
+  .main-container-carusel {
+    padding: 20px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-title {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  .main-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .main-countdown {
+    font-size: 2.2rem;
+    margin: 15px 0;
+  }
+
+  .main-word,
+  .problem,
+  #riddleText {
+    font-size: 1.6rem;
+    margin-top: 20px;
+  }
+
+  .input-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .main-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .main-button-block,
+  .main-button-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .main-grid,
+  .results-grid,
+  .riddles-results-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+  }
+
+  .main-box,
+  .result-box {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-carousel-box {
+    flex: 0 0 100%;
+  }
+
+  .main-carousel {
+    padding: 10px 20px;
+    gap: 15px;
+  }
+
+  .carousel-arrow {
+    display: none; /* hide arrows on small screens */
+  }
+
+  .result-summary {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  .correct-answer {
+    font-size: 0.9rem;
+  }
+}
