@@ -105,32 +105,38 @@
    MOBILE STYLES — MAIN HEADER
 =============================== */
 @media (max-width: 600px) {
-  .top-header {
+  .header-nav-bar {
     flex-direction: column;
     align-items: center;
-    padding: 20px 15px;
-    text-align: center;
+    gap: 15px;
+    padding: 20px 10px;
+    overflow-x: hidden;
   }
 
-  .top-header-logo {
-    font-size: 2rem;
-    margin-bottom: 10px;
+  .header-nav-left,
+  .header-nav-right {
+    display: none;
   }
 
-  .top-nav {
+  .header-logo {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .header-nav-center {
+    display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 12px;
+    align-items: center;
     width: 100%;
   }
 
-  .top-nav a {
+  .header-nav-center a {
     font-size: 1.1rem;
-    width: 100%;
     padding: 8px 0;
-  }
-
-  .top-nav .sign-in {
-    display: none; /* hide sign-in on mobile */
+    width: 100%;
+    text-align: center;
   }
 }
