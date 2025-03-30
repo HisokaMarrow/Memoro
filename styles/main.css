@@ -426,6 +426,14 @@ main {
   font-weight: bold;
 }
 
+.result-box.correct {
+  color: var(--color-success);
+}
+
+.result-box.incorrect {
+  color: var(--color-error);
+}
+
 /* =======================
    ANIMATIONS
 ========================== */
