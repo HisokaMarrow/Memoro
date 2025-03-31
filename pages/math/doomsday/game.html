@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doomsday Challenge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Game Header -->
+<div id="site-header"></div>
+
+<main>
+  <div class="main-container-games" id="gameContainer">
+    <h2 class="main-title" id="gameTitle">Starting in...</h2>
+    <div class="main-countdown" id="countdown">5</div>
+    <div id="problem" class="main-word"></div>
+    <input type="text" id="answerInput" class="input-box" placeholder="Enter weekday (e.g. Monday)" style="display: none;" />
+  </div>
+</main>
+
+<!-- Header + Game Logic -->
+<script>
+  fetch('/components/gameheader/gameheadertimerdown.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+
+      setTimeout(startGameApp, 50); // wait for header
+    });
+</script>
+
+<script>
+  function startGameApp() {
+    const difficulty = localStorage.getItem("doomsdayDifficulty") || "beginner";
+    const totalTime = parseInt(localStorage.getItem("doomsdayTimeLimit") || "60");
+
+    let timeLeft = totalTime;
+    let isPaused = false;
+    let pauseCallback = null;
+    let timerInterval;
+    let problems = [];
+    let userAnswers = [];
+
+    const timerDisplay = document.getElementById("gameheadertimerdown-timer");
+    const input = document.getElementById("answerInput");
+    const problemBox = document.getElementById("problem");
+    const title = document.getElementById("gameTitle");
+    const countdownEl = document.getElementById("countdown");
+    const endEarlyBtn = document.getElementById("endEarlyBtn");
+    const pauseBtn = document.getElementById("gameheadertimerdown-pauseButton");
+
+    if (endEarlyBtn) endEarlyBtn.classList.add("disabled");
+
+    function startCountdown(seconds, callback) {
+      let countdown = seconds;
+
+      async function runCountdown() {
+        while (countdown >= 0) {
+          await waitWhilePaused();
+          countdownEl.textContent = countdown;
+          await new Promise(res => setTimeout(res, 1000));
+          countdown--;
+        }
+
+        countdownEl.style.display = "none";
+        title.style.display = "none";
+        if (endEarlyBtn) endEarlyBtn.classList.remove("disabled");
+        callback();
+      }
+
+      runCountdown();
+    }
+
+    function waitWhilePaused() {
+      return new Promise(resolve => {
+        if (!isPaused) return resolve();
+        pauseCallback = resolve;
+      });
+    }
+
+    function getRandomDate(level) {
+      const randomInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+      let year;
+      switch (level) {
+        case "beginner":
+          year = new Date().getFullYear();
+          break;
+        case "advanced":
+          year = Math.random() < 0.5 ? randomInRange(1600, 1699) : randomInRange(2000, 2099);
+          break;
+        case "expert":
+          year = randomInRange(1, 9999);
+          break;
+      }
+
+      const month = randomInRange(0, 11);
+      const day = randomInRange(1, new Date(year, month + 1, 0).getDate());
+      return new Date(year, month, day);
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function getWeekdayName(date) {
+      return date.toLocaleDateString("en-US", { weekday: "long" });
+    }
+
+    function generateProblem() {
+      const date = getRandomDate(difficulty);
+      const formatted = formatDate(date);
+      const correctAnswer = getWeekdayName(date);
+
+      problems.push({
+        question: formatted,
+        date: date.toISOString(),
+        answer: correctAnswer
+      });
+
+      currentAnswer = correctAnswer;
+      problemBox.textContent = formatted;
+    }
+
+    function runGame() {
+      input.style.display = "block";
+      input.focus();
+      generateProblem();
+
+      if (timerDisplay) timerDisplay.textContent = timeLeft;
+
+      timerInterval = setInterval(async () => {
+        if (!isPaused) {
+          timeLeft--;
+          if (timerDisplay) timerDisplay.textContent = timeLeft;
+          if (timeLeft <= 0) endGame();
+        }
+      }, 1000);
+
+      input.addEventListener("keyup", async function (e) {
+        if (e.key === "Enter" && input.value.trim() !== "") {
+          userAnswers.push(input.value.trim());
+          input.value = "";
+          await waitWhilePaused();
+          generateProblem();
+        }
+      });
+    }
+
+    function endGame() {
+      clearInterval(timerInterval);
+      localStorage.setItem("doomsdayProblems", JSON.stringify(problems));
+      localStorage.setItem("doomsdayUserAnswers", JSON.stringify(userAnswers));
+      problemBox.textContent = "Time’s Up!";
+      input.style.display = "none";
+      setTimeout(() => window.location.href = "results.html", 2000);
+    }
+
+    window.endEarly = endGame;
+
+    window.togglePause = function () {
+      if (!pauseBtn) return;
+      isPaused = !isPaused;
+      pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+      if (!isPaused && pauseCallback) {
+        pauseCallback();
+        pauseCallback = null;
+      }
+    };
+
+    startCountdown(5, runGame);
+  }
+</script>
+
+</body>
+</html>
