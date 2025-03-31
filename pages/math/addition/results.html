@@ -55,29 +55,32 @@
 
   let correct = 0;
 
-  problems.forEach((item, index) => {
-    const userAnswer = answers[index] || "";
-    const isCorrect = parseInt(userAnswer) === item.answer;
-    if (isCorrect) correct++;
+  const totalAnswered = answers.filter(a => a !== "").length;
 
-    // Safely extract operator and numbers (fallbacks included)
-    const operator = item.operator || "×";
-    const expression = item.numbers
-      ? item.numbers.join(` ${operator} `)
-      : `${item.a} ${operator} ${item.b}`;
+problems.forEach((item, index) => {
+  const userAnswer = answers[index];
+  if (!userAnswer) return; // Skip unanswered problems
 
-    const box = document.createElement("div");
-    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
-    box.innerHTML = `
-      ${expression} = <strong>${userAnswer || "—"}</strong>
-      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
-    `;
+  const isCorrect = parseFloat(userAnswer) === item.answer;
+  if (isCorrect) correct++;
 
-    grid.appendChild(box);
-  });
+  const operator = item.operator || "×";
+  const expression = item.numbers
+    ? item.numbers.join(` ${operator} `)
+    : `${item.a} ${operator} ${item.b}`;
 
-  const percent = Math.round((correct / problems.length) * 100);
-  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
+  const box = document.createElement("div");
+  box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+  box.innerHTML = `
+    ${expression} = <strong>${userAnswer}</strong>
+    ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
+  `;
+
+  grid.appendChild(box);
+});
+
+  const percent = Math.round((correct / totalAnswered) * 100 || 0);
+summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
 
   const gameTitle = "Multiplication Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
