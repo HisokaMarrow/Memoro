@@ -638,3 +638,47 @@ html, body {
   overflow-x: hidden;
 }
 
+/* ==== Card Sorting Page ==== */
+.card-sorting-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.card-sortable {
+  width: 80px;
+  height: auto;
+  cursor: grab;
+  user-select: none;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.card-sortable:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.card-sortable.correct {
+  border: 3px solid #38c172;
+}
+
+.card-sortable.incorrect {
+  border: 3px solid #e3342f;
+}
+
+.card-image {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.card-image.correct {
+  border: 3px solid var(--color-success);
+}
+
+.card-image.incorrect {
+  border: 3px solid var(--color-error);
+}
