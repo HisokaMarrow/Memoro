@@ -189,7 +189,7 @@
     color: var(--header-color-text);
     cursor: pointer;
     z-index: 9999;
-    opacity: 0;
+    opacity: 100;
     transition: opacity 0.3s ease;
     pointer-events: auto;
   }
