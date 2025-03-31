@@ -171,48 +171,65 @@
    MOBILE STYLES — GAME HEADER
 =============================== */
 @media (max-width: 768px) {
-  .gameheadertimerdown-top-hud,
-  .gameheadernotimer-top-hud {
-    padding: 10px 15px;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
+  /* Wrapper stays row layout to keep left and right sides */
   .gameheadertimerdown-top-nav,
   .gameheadernotimer-top-nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    flex-wrap: nowrap;
   }
 
+  /* Stack the left-side buttons */
   .gameheadertimerdown-nav-left,
-  .gameheadernotimer-nav-left,
+  .gameheadernotimer-nav-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Center pause button if needed (optional) */
   .gameheadertimerdown-nav-center,
-  .gameheadernotimer-nav-center,
+  .gameheadernotimer-nav-center {
+    display: none; /* Hides pause from center */
+  }
+
+  /* You can move Pause to left if you want it stacked too */
+  /* OR keep it center by removing display: none; above */
+
+  /* Right side: timer display */
   .gameheadertimerdown-nav-right,
   .gameheadernotimer-nav-right {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .gameheadertimerdown-button,
   .gameheadernotimer-button {
     width: 100%;
-    text-align: center;
-    font-size: 1rem;
-    padding: 10px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
   }
 
-  #gameheadertimerdown-timer {
-    font-size: 1.5rem;
+  #gameheadertimerdown-remainingTimer {
+    min-width: auto;
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    text-align: right;
   }
 
-  .gameheadertimerdown-top-nav,
-  .gameheadernotimer-top-nav {
-    flex-wrap: wrap;
-    justify-content: center;
+  .gameheadertimerdown-timer-label {
+    font-size: 0.9rem;
   }
 }
 
+/* Optional: Hide label on very small screens */
+@media (max-width: 480px) {
+  .gameheadertimerdown-timer-label {
+    display: none;
+  }
+}
