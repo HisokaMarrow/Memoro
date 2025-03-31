@@ -91,20 +91,7 @@
   background-color: var(--header-color-secondary-hover);
 }
 
-/* ================= MOBILE NAVIGATION ================= */
-
-.hamburger {
-  display: none;
-  font-size: 2rem;
-  color: var(--header-color-text);
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  pointer-events: auto;
-}
-
+/* ====== MOBILE NAVIGATION ====== */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -168,7 +155,7 @@
   display: block;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ====== RESPONSIVE ====== */
 .desktop-only {
   display: flex;
 }
@@ -186,8 +173,32 @@
     display: block;
   }
 
+  /* New mobile header row */
+  .header-nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    position: relative;
+  }
+
+  /* Hide full nav bar */
+  .header-nav-bar {
+    display: none;
+  }
+
   .hamburger {
-    display: block;
+    font-size: 2rem;
+    color: var(--header-color-text);
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
+  }
+
+  body.intro-complete .hamburger {
+    opacity: 1;
   }
 }
-
