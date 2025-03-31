@@ -52,32 +52,38 @@
     Learn proven memory systems and techniques used by champions, monks, and professionals.
   </p>
 
-  <div class="main-grid">
-    <div class="main-box">
-      <h3>Memory Techniques</h3>
-      <p>Master powerful memory systems like the Major System and Number Shapes. Learn how to turn numbers into vivid, unforgettable images.</p>
-      <a href="/pages/vault/Memory Mnemonics/memorymnemonics.html" class="main-button">View</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Memory Mnemonics</h3>
-      <p>Learn how to link cards, facts, or sequences to memorable characters or images. Build faster, stronger associations for recall mastery.</p>
-      <a href="/pages/vault/Memory Techniques" class="main-button">View</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Maths</h3>
-      <p>Unlock powerful math strategies and mental shortcuts used by top performers. Explore proven techniques for faster calculations, stronger number sense, and confident problem solving.</p>
-      <a href="/pages/vault/Maths/addition.html" class="main-button">View</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Dooms Day Calculation</h3>
-      <p>Learn the Doomsday Algorithm — a mental shortcut that lets you instantly calculate the day of the week for any date. Master this powerful memory-based math trick used by mental athletes and calendar prodigies.</p>
-      <a href="/pages/vault/Doomsday/doomsday.html" class="main-button">View</a>
-    </div>
-  </div>
+  <div class="main-grid" id="vaultGrid"></div>
 </main>
+
+<script>
+  function renderVaultContent(entries) {
+    const container = document.getElementById("vaultGrid");
+    if (!container) return;
+
+    entries.forEach(entry => {
+      const box = document.createElement("div");
+      box.className = "main-box";
+
+      const hasLink = !!entry.link && entry.link.trim() !== "";
+      const buttonHTML = hasLink
+        ? `<a href="${entry.link}" class="main-button">View</a>`
+        : `<a class="main-button disabled">Coming Soon</a>`;
+
+      box.innerHTML = `
+        <h3>${entry.title}</h3>
+        <p>${entry.description}</p>
+        ${buttonHTML}
+      `;
+
+      container.appendChild(box);
+    });
+  }
+
+  fetch('/data/vault.json')
+    .then(res => res.json())
+    .then(data => renderVaultContent(data))
+    .catch(err => console.error("❌ Failed to load vault content:", err));
+</script>
 
 <!-- Footer -->
 <div id="site-footer"></div>
