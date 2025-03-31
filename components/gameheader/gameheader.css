@@ -233,3 +233,22 @@
     display: none;
   }
 }
+
+/* By default: show desktop pause, hide mobile */
+.pause-mobile {
+  display: none;
+}
+
+.pause-desktop {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .pause-mobile {
+    display: flex;
+  }
+
+  .pause-desktop {
+    display: none;
+  }
+}
