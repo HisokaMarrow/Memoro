@@ -22,6 +22,7 @@
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
+      // ✅ Wait a bit to ensure the DOM is updated, then wire up the hamburger
       setTimeout(() => {
         const hamburger = document.getElementById("hamburger");
         const mobileNav = document.getElementById("mobileNav");
@@ -40,7 +41,7 @@
         } else {
           console.warn("❌ Hamburger elements not found.");
         }
-      }, 100);
+      }, 100); // delay to wait for header to load
     })
     .catch(err => console.error('Header load error:', err));
 </script>
