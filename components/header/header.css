@@ -165,6 +165,18 @@
   display: none;
 }
 
+/* Keyframes for hamburger delayed reveal */
+@keyframes fadeInHamburger {
+  0%, 85% {
+    opacity: 0;
+    pointer-events: none;
+  }
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 /* Show Memoro + hamburger on mobile */
 @media (max-width: 768px) {
   .desktop-only {
@@ -185,16 +197,13 @@
   }
 
   .hamburger {
-  font-size: 2rem;
-  color: var(--header-color-text);
-  cursor: pointer;
-  z-index: 9999;
-  opacity: 0;                    /* Hidden by default */
-  transition: opacity 0.3s ease;
-  pointer-events: none;         /* Also disable clicks while hidden */
-}
-
-body.intro-complete .hamburger {
-  opacity: 1;                   /* Show only after intro */
-  pointer-events: auto;         /* Enable interaction */
+    font-size: 2rem;
+    color: var(--header-color-text);
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    animation: fadeInHamburger 3s ease forwards;
+    animation-delay: 0s;
+  }
 }
