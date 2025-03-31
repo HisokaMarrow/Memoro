@@ -185,16 +185,16 @@
   }
 
   .hamburger {
-    font-size: 2rem;
-    color: var(--header-color-text);
-    cursor: pointer;
-    z-index: 9999;
-    opacity: 100;
-    transition: opacity 0.3s ease;
-    pointer-events: auto;
-  }
+  font-size: 2rem;
+  color: var(--header-color-text);
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;                    /* Hidden by default */
+  transition: opacity 0.3s ease;
+  pointer-events: none;         /* Also disable clicks while hidden */
+}
 
-  body.intro-complete .hamburger {
-    opacity: 1;
-  }
+body.intro-complete .hamburger {
+  opacity: 1;                   /* Show only after intro */
+  pointer-events: auto;         /* Enable interaction */
 }
