@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileNav = document.getElementById("mobileNav");
   const overlay = document.getElementById("overlay");
 
-  // ✅ Add .intro-complete after 3s (or match your intro duration)
-  setTimeout(() => {
-    document.body.classList.add("intro-complete");
-  }, 3000); // 3000ms = 3 seconds
-
+  // ✅ Handle hamburger toggle
   if (hamburger && mobileNav && overlay) {
     hamburger.addEventListener("click", () => {
       mobileNav.classList.toggle("open");
@@ -19,4 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.remove("active");
     });
   }
+
+  // ✅ Watch for intro end (when .intro-active is removed from <body>)
+  const observer = new MutationObserver(() => {
+    if (!document.body.classList.contains("intro-active")) {
+      document.body.classList.add("intro-complete");
+      console.log("✅ intro-complete added after intro");
+      observer.disconnect(); // Stop watching
+    }
+  });
+
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
 });
