@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Card Sorting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <style>
+    #sortable {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .card-sortable {
+      width: 80px;
+      height: auto;
+      cursor: grab;
+      transition: transform 0.2s ease;
+    }
+    .card-sortable:active {
+      transform: scale(1.05);
+    }
+    .submit-btn {
+      margin-top: 30px;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/gameheader/gameheadernotimer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+    });
+</script>
+
+<main>
+  <div class="main-container" style="text-align: center;">
+    <h2 class="main-title">Sort the Cards in the Original Order</h2>
+    <p class="main-text">Drag and drop the cards into the order you remember.</p>
+
+    <div id="sortable"></div>
+
+    <button class="main-button submit-btn" onclick="submitOrder()">Submit</button>
+  </div>
+</main>
+
+<script>
+  const originalSequence = JSON.parse(localStorage.getItem("cardSequence") || "[]");
+  const shuffled = [...originalSequence].sort(() => 0.5 - Math.random());
+
+  const container = document.getElementById("sortable");
+
+  shuffled.forEach(cardName => {
+    const img = document.createElement("img");
+    img.src = `/assets/cards/${cardName}.png`;
+    img.alt = cardName;
+    img.className = "card-sortable";
+    img.setAttribute("data-card", cardName);
+    container.appendChild(img);
+  });
+
+  new Sortable(container, {
+    animation: 150
+  });
+
+  function submitOrder() {
+    const currentOrder = [...container.querySelectorAll("img")].map(img => img.getAttribute("data-card"));
+    localStorage.setItem("userCardOrder", JSON.stringify(currentOrder));
+    window.location.href = "results.html";
+  }
+</script>
+
+</body>
+</html>
