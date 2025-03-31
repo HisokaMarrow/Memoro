@@ -8,17 +8,14 @@
 </head>
 <body>
 
-<!-- Game Header -->
+<!-- Game Header with Timer -->
 <div id="site-header"></div>
 
 <main>
-  <div class="main-container" style="text-align: center;">
-    <h2 class="main-title" id="gameTitle">Memorize the Cards</h2>
-    <div id="countdownLabel" class="main-text" style="margin-bottom: 10px;">Memorization Time Left:</div>
-    <div id="countdown" class="main-countdown"></div>
-    <div id="cardDisplay" style="margin-top: 20px;">
-      <img id="cardImage" src="" alt="Card" style="height: 200px; display: none;" />
-    </div>
+  <div class="main-container" id="gameContainer">
+    <h2 class="main-title" id="gameTitle">Starting in...</h2>
+    <div class="main-countdown" id="countdown">5</div>
+    <div id="wordBox" class="main-word"></div>
   </div>
 </main>
 
