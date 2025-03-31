@@ -64,5 +64,17 @@
     "title": "Math Riddles",
     "description": "Use both logic and math to crack these riddles.",
     "link": "/pages/riddles/numeric/settings.html"
+  },
+  {
+    "category": "Riddles",
+    "title": "Cipher",
+    "description": "Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.",
+    "link": ""
+  },
+  {
+    "category": "Riddles",
+    "title": "Numeric",
+    "description": "Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.",
+    "link": "/pages/riddles/nummeric/nummeric.html"
   }
 ]
