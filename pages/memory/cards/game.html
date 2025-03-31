@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<!-- Game Header without Timer -->
+<!-- Game Header with Timer -->
 <div id="site-header"></div>
 <script>
-  fetch('/components/gameheader/gameheadernotimer.html')
+  fetch('/components/gameheader/gameheadertimerdown.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
@@ -21,8 +21,11 @@
       link.href = '/components/gameheader/gameheader.css';
       document.head.appendChild(link);
 
-      // After loading the header, initialize the game
-      initializeGame();
+      setTimeout(() => {
+        const endEarlyBtn = document.getElementById("endEarlyBtn");
+        if (endEarlyBtn) endEarlyBtn.classList.add("disabled"); // 🔒 Disable until game starts
+        startRiddleApp();
+      }, 50);
     })
     .catch(err => console.error('Header load error:', err));
 </script>
