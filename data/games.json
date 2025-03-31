@@ -41,6 +41,12 @@
     "description": "Speed through percentage calculation tasks under pressure.",
     "link": "/pages/math/percentage/settings.html"
   },
+   {
+    "category": "Math",
+    "title": "Doomsday Master",
+    "description": "Practice doomsday calculation formulas for any date.",
+    "link": "/pages/math/addition/settings.html"
+  },
   {
     "category": "Riddles",
     "title": "Logic Riddles",
