@@ -9,22 +9,41 @@
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Header -->
 <div id="site-header"></div>
 <script>
   fetch('/components/header/header.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('site-header').innerHTML = html;
-      const style = document.createElement('link');
-      style.rel = 'stylesheet';
-      style.href = '/components/header/header.css';
-      document.head.appendChild(style);
-      const currentPath = window.location.pathname;
-      document.querySelectorAll('.top-nav a').forEach(link => {
-        if (link.getAttribute('href') === currentPath) link.classList.add('active');
-      });
-    });
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      // ✅ Wait a bit to ensure the DOM is updated, then wire up the hamburger
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        } else {
+          console.warn("❌ Hamburger elements not found.");
+        }
+      }, 100); // delay to wait for header to load
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
 <main>
