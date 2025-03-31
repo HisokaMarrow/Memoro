@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doomsday Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        }
+      }, 100);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+
+<main>
+  <div class="main-container">
+    <h2 class="main-title">Doomsday Challenge Results</h2>
+    <p class="main-text" id="summary">Loading results...</p>
+    <div id="resultsGrid" class="results-grid"></div>
+  </div>
+</main>
+
+<script>
+  const problems = JSON.parse(localStorage.getItem("doomsdayProblems") || "[]");
+  const answers = JSON.parse(localStorage.getItem("doomsdayUserAnswers") || "[]");
+
+  const grid = document.getElementById("resultsGrid");
+  const summary = document.getElementById("summary");
+
+  let correct = 0;
+  const totalAnswered = answers.filter(a => a !== "").length;
+
+  problems.forEach((item, index) => {
+    const userAnswer = answers[index];
+    if (!userAnswer) return;
+
+    const isCorrect = userAnswer.trim().toLowerCase() === item.answer.trim().toLowerCase();
+    if (isCorrect) correct++;
+
+    const box = document.createElement("div");
+    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+    box.innerHTML = `
+      ${item.question} = <strong>${userAnswer}</strong>
+      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
+    `;
+    grid.appendChild(box);
+  });
+
+  const percent = Math.round((correct / totalAnswered) * 100 || 0);
+  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
+
+  const gameTitle = "Doomsday Challenge";
+  sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
+</script>
+
+<!-- Footer -->
+<div id="site-footer"></div>
+<script>
+  fetch('/components/footer/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/footer/footer.css';
+      document.head.appendChild(style);
+    });
+</script>
+
+</body>
+</html>
