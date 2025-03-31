@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Card Memory - Game Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        }
+      }, 100);
+    });
+</script>
+
+<!-- Main -->
+<main>
+  <div class="main-container" style="display: flex; flex-direction: column; align-items: center;">
+    <h2 class="main-title">Card Memory Game Settings</h2>
+
+    <div class="main-option-group">
+      <div class="main-option-box">
+        <label for="deckCount">Number of Decks:</label>
+        <input type="number" id="deckCount" value="1" min="1" max="99" />
+      </div>
+
+      <div class="main-option-box">
+        <label for="switchInterval">Card Switch Interval (sec):</label>
+        <input type="number" id="switchInterval" value="3" min="1" />
+      </div>
+
+      <div class="main-option-box">
+        <label for="memorizeTime">Memorization Time:</label>
+        <select id="memorizeTime">
+          <option value="60">1 Minute</option>
+          <option value="120">2 Minutes</option>
+          <option value="180">3 Minutes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="main-button-block" style="max-width: 500px; width: 100%;">
+      <button class="main-button" style="width: 100%; padding: 16px; font-size: 1.2em;" onclick="startCardGame()">Start</button>
+    </div>
+  </div>
+</main>
+
+<!-- Script -->
+<script>
+  function startCardGame() {
+    const deckCount = document.getElementById("deckCount").value;
+    const switchInterval = document.getElementById("switchInterval").value;
+    const memorizeTime = document.getElementById("memorizeTime").value;
+
+    localStorage.setItem("cardDeckCount", deckCount);
+    localStorage.setItem("cardSwitchInterval", switchInterval);
+    localStorage.setItem("cardMemorizeTime", memorizeTime);
+
+    window.location.href = "game.html";
+  }
+</script>
+
+<!-- Footer -->
+<div id="site-footer"></div>
+<script>
+  fetch('/components/footer/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/footer/footer.css';
+      document.head.appendChild(style);
+    });
+</script>
+
+</body>
+</html>
