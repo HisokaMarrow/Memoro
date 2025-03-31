@@ -12,6 +12,7 @@
   --header-color-error: #ef4444;
 }
 
+/* ====== HEADER BASE ====== */
 .header-site-header {
   background-color: var(--header-color-bg-card);
   padding: 20px 0;
@@ -27,7 +28,7 @@
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;
-  position: relative; /* Required for positioning hamburger */
+  position: relative;
 }
 
 .header-nav-left,
@@ -164,6 +165,7 @@
   display: none;
 }
 
+/* Show Memoro + hamburger on mobile */
 @media (max-width: 768px) {
   .desktop-only {
     display: none !important;
@@ -173,7 +175,6 @@
     display: block;
   }
 
-  /* New mobile header row */
   .header-nav-mobile {
     display: flex;
     justify-content: space-between;
@@ -181,11 +182,6 @@
     padding: 0 20px;
     height: 60px;
     position: relative;
-  }
-
-  /* Hide full nav bar */
-  .header-nav-bar {
-    display: none;
   }
 
   .hamburger {
