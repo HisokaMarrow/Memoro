@@ -45,6 +45,14 @@
     })
     .catch(err => console.error('Header load error:', err));
 </script>
+
+<main>
+  <div class="main-container">
+    <h2 class="main-title">Results</h2>
+    <p class="main-text" id="summary">Loading results...</p>
+    <div id="resultsGrid" class="results-grid"></div>
+  </div>
+</main>
   
 <script>
   const problems = JSON.parse(localStorage.getItem("mathProblems") || "[]");
