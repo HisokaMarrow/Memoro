@@ -188,8 +188,8 @@
     font-size: 2rem;
     color: var(--header-color-text);
     cursor: pointer;
-    z-index: 9999;
-    opacity: 0;
+    z-index: 999;
+    opacity: 1;
     transition: opacity 0.3s ease;
     pointer-events: auto;
   }
