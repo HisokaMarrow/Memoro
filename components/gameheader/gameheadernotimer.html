@@ -2,10 +2,15 @@
   <nav class="gameheadernotimer-top-nav">
     <div class="gameheadernotimer-nav-left">
       <a href="index.html" class="gameheadernotimer-button">Give Up</a>
-       <a href="#" id="endEarlyBtn" onclick="endEarly()" class="gameheadernotimer-button">End Early</a>
+      <a href="#" id="endEarlyBtn" onclick="endEarly()" class="gameheadernotimer-button">End Early</a>
+
+      <!-- Mobile version of Pause button -->
+      <a href="#" id="pauseBtn-notimer-mobile" onclick="togglePause()" class="gameheadernotimer-button pause-mobile">Pause</a>
     </div>
+
+    <!-- Desktop version of Pause button -->
     <div class="gameheadernotimer-nav-center">
-      <a href="#" id="gameheadernotimer-pauseButton" class="gameheadernotimer-button" onclick="togglePause()">Pause</a>
+      <a href="#" id="pauseBtn-notimer-desktop" onclick="togglePause()" class="gameheadernotimer-button pause-desktop">Pause</a>
     </div>
   </nav>
 </header>
