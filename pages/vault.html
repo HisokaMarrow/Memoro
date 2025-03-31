@@ -46,6 +46,7 @@
     .catch(err => console.error('Header load error:', err));
 </script>
 
+<!-- Main Content -->
 <main>
   <h1 class="main-title">Memory Vault</h1>
   <p class="main-subtitle">
@@ -56,32 +57,33 @@
 </main>
 
 <script>
-  function renderVaultContent(entries) {
+  function renderVaultContent(games) {
+    const vaultItems = games.filter(g => g.category === "Vault");
     const container = document.getElementById("vaultGrid");
     if (!container) return;
 
-    entries.forEach(entry => {
+    vaultItems.forEach(item => {
       const box = document.createElement("div");
       box.className = "main-box";
 
-      const hasLink = !!entry.link && entry.link.trim() !== "";
-      const buttonHTML = hasLink
-        ? `<a href="${entry.link}" class="main-button">View</a>`
-        : `<a class="main-button disabled">Coming Soon</a>`;
+      const isComingSoon = !item.link || item.link.trim() === "";
+      const button = isComingSoon
+        ? `<a class="main-button disabled">Coming Soon</a>`
+        : `<a href="${item.link}" class="main-button">View</a>`;
 
       box.innerHTML = `
-        <h3>${entry.title}</h3>
-        <p>${entry.description}</p>
-        ${buttonHTML}
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        ${button}
       `;
 
       container.appendChild(box);
     });
   }
 
-  fetch('/data/vault.json')
+  fetch('/data/games.json')
     .then(res => res.json())
-    .then(data => renderVaultContent(data))
+    .then(games => renderVaultContent(games))
     .catch(err => console.error("❌ Failed to load vault content:", err));
 </script>
 
