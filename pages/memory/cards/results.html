@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Card Memory – Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        }
+      }, 100);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+
+<main>
+  <div class="main-container">
+    <h2 class="main-title">Card Order Results</h2>
+    <div id="resultsGrid" class="results-grid"></div>
+
+    <div class="main-button-row">
+      <button class="main-button" onclick="tryAgain()">Try Again</button>
+      <a href="/pages/memory.html" class="main-button">Memory Games</a>
+    </div>
+
+    <div id="summary" class="result-summary"></div>
+  </div>
+</main>
+
+<script>
+  const correctOrder = JSON.parse(localStorage.getItem("cardOriginalOrder") || "[]");
+  const userOrder = JSON.parse(localStorage.getItem("cardUserOrder") || "[]");
+  const container = document.getElementById("resultsGrid");
+  const summary = document.getElementById("summary");
+
+  let correctCount = 0;
+
+  correctOrder.forEach((card, index) => {
+    const userCard = userOrder[index] || "";
+    const isCorrect = card === userCard;
+    if (isCorrect) correctCount++;
+
+    const img = document.createElement("img");
+    img.src = `/assets/cards/${userCard || "back"}.png`;
+    img.alt = userCard;
+    img.className = `card-image ${isCorrect ? "correct" : "incorrect"}`;
+
+    container.appendChild(img);
+  });
+
+  const percent = Math.round((correctCount / correctOrder.length) * 100);
+  summary.innerHTML = `You got <strong>${correctCount}</strong> out of ${correctOrder.length} correct (${percent}%)`;
+
+  function tryAgain() {
+    window.location.href = "settings.html";
+  }
+
+  sessionStorage.setItem("dailyGame_Card Challenge", "true");
+</script>
+
+<!-- Footer -->
+<div id="site-footer"></div>
+<script>
+  fetch('/components/footer/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/footer/footer.css';
+      document.head.appendChild(style);
+    });
+</script>
+
+</body>
+</html>
