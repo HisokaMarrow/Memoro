@@ -47,7 +47,7 @@
     "description": "Speed through percentage calculation tasks under pressure.",
     "link": "/pages/math/percentage/settings.html"
   },
-   {
+  {
     "category": "Math",
     "title": "Doomsday Master",
     "description": "Practice doomsday calculation formulas for any date.",
@@ -78,23 +78,27 @@
     "link": "/pages/riddles/nummeric/nummeric.html"
   },
   {
+    "category": "Vault",
     "title": "Memory Techniques",
     "description": "Master powerful memory systems like the Major System and Number Shapes. Learn how to turn numbers into vivid, unforgettable images.",
     "link": "/pages/vault/Memory Mnemonics/memorymnemonics.html"
   },
   {
+    "category": "Vault",
     "title": "Memory Mnemonics",
     "description": "Learn how to link cards, facts, or sequences to memorable characters or images. Build faster, stronger associations for recall mastery.",
     "link": "/pages/vault/Memory Techniques"
   },
   {
+    "category": "Vault",
     "title": "Maths",
     "description": "Unlock powerful math strategies and mental shortcuts used by top performers. Explore proven techniques for faster calculations, stronger number sense, and confident problem solving.",
     "link": "/pages/vault/Maths/addition.html"
   },
   {
+    "category": "Vault",
     "title": "Dooms Day Calculation",
     "description": "Learn the Doomsday Algorithm — a mental shortcut that lets you instantly calculate the day of the week for any date. Master this powerful memory-based math trick used by mental athletes and calendar prodigies.",
     "link": "/pages/vault/Doomsday/doomsday.html"
-  },
+  }
 ]
