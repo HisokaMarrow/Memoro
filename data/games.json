@@ -12,6 +12,12 @@
     "link": "/pages/memory/words/settings.html"
   },
   {
+    "category": "Memory",
+    "title": "Card Challenge",
+    "description": "Train your memory by recalling the order of shuffled playing cards. A classic test of visual memory and sequencing.",
+    "link": ""
+  },
+  {
     "category": "Math",
     "title": "Addition Master",
     "description": "Solve as many addition problems as you can in limited time.",
