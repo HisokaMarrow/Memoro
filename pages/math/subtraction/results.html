@@ -67,32 +67,32 @@
 
   let correct = 0;
 
-  problems.forEach((item, index) => {
-    const userAnswer = answers[index] || "";
-    const isCorrect = parseInt(userAnswer) === item.answer;
-    if (isCorrect) correct++;
+  roblems.forEach((item, index) => {
+  const userAnswer = answers[index];
+  if (!userAnswer) return; // Skip unanswered problems
 
-    // Use operator if it exists, fallback to "+"
-    const operator = item.operator || "-";
+  const isCorrect = parseFloat(userAnswer) === item.answer;
+  if (isCorrect) correct++;
 
-    // Build expression from numbers array
-    const expression = item.numbers
-      ? item.numbers.join(` ${operator} `)
-      : `${item.a} - ${item.b}`; // Fallback for older data
+  const operator = item.operator || "×";
+  const expression = item.numbers
+    ? item.numbers.join(` ${operator} `)
+    : `${item.a} ${operator} ${item.b}`;
 
-    const box = document.createElement("div");
-    box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
-    box.innerHTML = `
-      ${expression} = <strong>${userAnswer || "—"}</strong>
-      ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
-    `;
-    grid.appendChild(box);
-  });
+  const box = document.createElement("div");
+  box.className = `result-box ${isCorrect ? "correct" : "incorrect"}`;
+  box.innerHTML = `
+    ${expression} = <strong>${userAnswer}</strong>
+    ${!isCorrect ? `<div class="correct-answer">Correct: ${item.answer}</div>` : ""}
+  `;
 
-  const percent = Math.round((correct / problems.length) * 100);
-  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${problems.length} correct (${percent}%)`;
+  grid.appendChild(box);
+});
 
-  const gameTitle = "Addition Master"; // Optional: rename dynamically based on mode
+  const percent = Math.round((correct / totalAnswered) * 100 || 0);
+summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
+  const gameTitle = "Subtraction Master"; // Optional: rename dynamically based on mode
+
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
 </script>
 
