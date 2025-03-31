@@ -1,1 +1,118 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doomsday Challenge – Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- Header -->
+<div id="site-header"></div>
+<script>
+  fetch('/components/header/header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/header/header.css';
+      document.head.appendChild(link);
+
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        } else {
+          console.warn("❌ Hamburger elements not found.");
+        }
+      }, 100);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+
+<main>
+  <div class="main-container">
+    <h2 class="main-title">Doomsday Challenge – Settings</h2>
+
+    <label class="main-subtitle">Select Difficulty:</label>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="beginner" checked />
+        Beginner (Current Year Dates)
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="advanced" />
+        Advanced (1600–1699 & 2000–2099)
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="difficulty" value="expert" />
+        Expert (0001–9999)
+      </label>
+    </div>
+
+    <label class="main-subtitle" style="margin-top: 30px;">Time Limit:</label>
+    <div class="main-option-group">
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="60" checked />
+        1 Minute
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="120" />
+        2 Minutes
+      </label>
+      <label class="main-option-box">
+        <input type="radio" name="timeLimit" value="180" />
+        3 Minutes
+      </label>
+    </div>
+
+    <div class="main-button-block">
+      <button onclick="startDoomsdayGame()" class="main-button">Start Challenge</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  function startDoomsdayGame() {
+    const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    const timeLimit = document.querySelector('input[name="timeLimit"]:checked').value;
+
+    localStorage.setItem("doomsdayDifficulty", difficulty);
+    localStorage.setItem("doomsdayTimeLimit", timeLimit);
+
+    window.location.href = "game.html";
+  }
+</script>
+
+<!-- Footer -->
+<div id="site-footer"></div>
+<script>
+  fetch('/components/footer/footer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-footer').innerHTML = html;
+
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/components/footer/footer.css';
+      document.head.appendChild(style);
+    });
+</script>
+
+</body>
+</html>
