@@ -11,17 +11,25 @@
 
 <!-- Game Header with Timer -->
 <div id="site-header"></div>
+<script>
+  fetch('/components/gameheader/gameheadertimerdown.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
 
-<main>
-  <div class="main-container">
-    <div class="main-button-block" id="goWrapper">
-      <button class="main-button" id="startButton">Start Game</button>
-    </div>
-    <h2 id="countdownLabel" class="main-title" style="display: none;">Starting in...</h2>
-    <div id="countdown" class="main-countdown" style="display: none;"></div>
-    <div id="output" class="main-word" style="display: none;"></div>
-  </div>
-</main>
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+
+      setTimeout(() => {
+        const endEarlyBtn = document.getElementById("endEarlyBtn");
+        if (endEarlyBtn) endEarlyBtn.classList.add("disabled"); // 🔒 Disable until game starts
+        startRiddleApp();
+      }, 50);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
 
 <script>
   // Global vars
