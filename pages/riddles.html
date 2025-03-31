@@ -53,44 +53,39 @@
     Train your lateral thinking and logic with riddles that twist your brain into shape.
   </p>
 
-  <div class="main-grid">
-    <div class="main-box">
-      <h3>Cipher</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="main-button disabled">Coming Soon</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Wordplay</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="main-button disabled">Coming Soon</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Story</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="main-button disabled">Coming Soon</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Numeric</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a href="/pages/riddles/nummeric/nummeric.html" class="main-button">Start</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Logic</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a href="/pages/riddles/logic/settings.html" class="main-button">Start</a>
-    </div>
-
-    <div class="main-box">
-      <h3>Combined</h3>
-      <p>Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.</p>
-      <a class="main-button disabled">Coming Soon</a>
-    </div>
-  </div>
+  <div class="main-grid" id="riddleGamesGrid"></div>
 </main>
+
+<script>
+  function renderRiddleGames(games) {
+    const riddles = games.filter(g => g.category === "Riddles");
+    const container = document.getElementById("riddleGamesGrid");
+    if (!container) return;
+
+    riddles.forEach(game => {
+      const box = document.createElement("div");
+      box.className = "main-box";
+
+      const isComingSoon = !game.link || game.link.trim() === "";
+      const button = isComingSoon
+        ? `<a class="main-button disabled">Coming Soon</a>`
+        : `<a href="${game.link}" class="main-button">Start</a>`;
+
+      box.innerHTML = `
+        <h3>${game.title}</h3>
+        <p>${game.description}</p>
+        ${button}
+      `;
+
+      container.appendChild(box);
+    });
+  }
+
+  fetch('/data/games.json')
+    .then(res => res.json())
+    .then(games => renderRiddleGames(games))
+    .catch(err => console.error("❌ Failed to load riddles:", err));
+</script>
 
 <!-- Footer -->
 <div id="site-footer"></div>
