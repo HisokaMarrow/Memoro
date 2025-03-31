@@ -76,5 +76,26 @@
     "title": "Numeric",
     "description": "Unravel encrypted codes and hidden patterns. This challenge tests your ability to decode messages using logic, intuition, and pattern recognition.",
     "link": "/pages/riddles/nummeric/nummeric.html"
-  }
+  },
+     [
+  {
+    "title": "Memory Techniques",
+    "description": "Master powerful memory systems like the Major System and Number Shapes. Learn how to turn numbers into vivid, unforgettable images.",
+    "link": "/pages/vault/Memory Mnemonics/memorymnemonics.html"
+  },
+  {
+    "title": "Memory Mnemonics",
+    "description": "Learn how to link cards, facts, or sequences to memorable characters or images. Build faster, stronger associations for recall mastery.",
+    "link": "/pages/vault/Memory Techniques"
+  },
+  {
+    "title": "Maths",
+    "description": "Unlock powerful math strategies and mental shortcuts used by top performers. Explore proven techniques for faster calculations, stronger number sense, and confident problem solving.",
+    "link": "/pages/vault/Maths/addition.html"
+  },
+  {
+    "title": "Dooms Day Calculation",
+    "description": "Learn the Doomsday Algorithm — a mental shortcut that lets you instantly calculate the day of the week for any date. Master this powerful memory-based math trick used by mental athletes and calendar prodigies.",
+    "link": "/pages/vault/Doomsday/doomsday.html"
+  },
 ]
