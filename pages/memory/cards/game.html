@@ -8,16 +8,24 @@
 </head>
 <body>
 
-<!-- Game Header with Timer -->
+<!-- Game Header without Timer -->
 <div id="site-header"></div>
+<script>
+  fetch('/components/gameheader/gameheadernotimer.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('site-header').innerHTML = html;
 
-<main>
-  <div class="main-container" id="gameContainer">
-    <h2 class="main-title" id="gameTitle">Starting in...</h2>
-    <div class="main-countdown" id="countdown">5</div>
-    <div id="wordBox" class="main-word"></div>
-  </div>
-</main>
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/components/gameheader/gameheader.css';
+      document.head.appendChild(link);
+
+      // After loading the header, initialize the game
+      initializeGame();
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
 
 <script>
   const deckCount = parseInt(localStorage.getItem("cardDeckCount") || "1");
