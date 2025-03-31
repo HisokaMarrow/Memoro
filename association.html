@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+<!-- Header -->
 <div id="site-header"></div>
 <script>
   fetch('/components/header/header.html')
@@ -22,15 +22,26 @@
       link.href = '/components/header/header.css';
       document.head.appendChild(link);
 
-      const links = document.querySelectorAll('.top-nav a');
-      const currentPath = window.location.pathname;
+      // ✅ Wait a bit to ensure the DOM is updated, then wire up the hamburger
+      setTimeout(() => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
 
-      links.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-          link.classList.add('active');
+        if (hamburger && mobileNav && overlay) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+            overlay.classList.toggle("active");
+          });
+
+          overlay.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            overlay.classList.remove("active");
+          });
+        } else {
+          console.warn("❌ Hamburger elements not found.");
         }
-      });
+      }, 100); // delay to wait for header to load
     })
     .catch(err => console.error('Header load error:', err));
 </script>
