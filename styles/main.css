@@ -340,6 +340,7 @@ main {
   gap: 25px;
   padding: 0 0px;
   box-sizing: border-box;
+  z-index: 0;
 }
 
 /* Hide scrollbar for WebKit */
