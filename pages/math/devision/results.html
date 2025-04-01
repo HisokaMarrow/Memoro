@@ -49,7 +49,7 @@
 <main>
   <div class="main-container">
     <h2 class="main-title">Results</h2>
-    <p class="main-text" id="summary">Loading results...</p>
+    <div id="summary" class="result-summary">Loading results...</div>
     <div id="resultsGrid" class="results-grid"></div>
     
     <div class="main-button-block">
@@ -91,7 +91,7 @@
 });
 
   const percent = Math.round((correct / totalAnswered) * 100 || 0);
-summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
+  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
 
   const gameTitle = "Division Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
