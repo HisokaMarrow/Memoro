@@ -321,17 +321,13 @@ main {
 /* =======================
    CAROUSEL
 ========================== */
-.main-carusel {
-  max-width: 1000px;           /* smaller than full screen */
-  margin: 0 auto;              /* centers it perfectly */
-  flex-direction: row;        /* ensures they go side by side */
-  flex-wrap: nowrap;
-  padding: 30px 20px;
-  background: var(--color-bg-card);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  position: relative;
-  box-sizing: border-box;
+.main-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 10px 0;
+  margin-bottom: 40px;
 }
 
 .main-carousel::-webkit-scrollbar {
