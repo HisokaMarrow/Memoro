@@ -90,8 +90,8 @@
   grid.appendChild(box);
 });
 
-  const percent = Math.round((correct / totalAnswered) * 100 || 0);
-  summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
+   const percent = Math.round((correct / totalAnswered) * 100 || 0);
+summary.innerHTML = `Well done! You got <strong>${correct}</strong> out of ${totalAnswered} correct (${percent}%)`;
 
   const gameTitle = "Division Master";
   sessionStorage.setItem(`dailyGame_${gameTitle}`, "true");
