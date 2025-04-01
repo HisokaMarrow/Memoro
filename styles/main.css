@@ -326,6 +326,7 @@ main {
   position: relative;
   max-width: 800px;
   width: 100%;
+  overflow: visible; /* <- important so arrows aren't clipped */
   margin: 0 auto;
 }
 
@@ -378,11 +379,11 @@ main {
 
 /* Left and right arrow positioning */
 .carousel-arrow.left {
-  left: 0;
+  left: -50;
 }
 
 .carousel-arrow.right {
-  right: 0;
+  right: -50;
 }
 
 @media (max-width: 768px) {
