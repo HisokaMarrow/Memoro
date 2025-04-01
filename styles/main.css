@@ -377,15 +377,19 @@ main {
   transition: background-color 0.2s ease, opacity 0.25s ease;
 }
 
-/* Left and right arrow positioning */
 .carousel-arrow.left {
-  left: -50;
+  position: absolute;
+  left: -40px;   /* ← moves it outside the wrapper */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .carousel-arrow.right {
-  right: -50;
-}
-
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  
 @media (max-width: 768px) {
   .carousel-arrow {
     display: none;
