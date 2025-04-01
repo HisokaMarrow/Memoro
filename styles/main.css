@@ -323,6 +323,7 @@ main {
 ========================== */
 .main-carousel {
   max-width: 1000px
+  flex-wrap: nowrap;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
