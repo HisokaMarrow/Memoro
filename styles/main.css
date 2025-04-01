@@ -411,11 +411,11 @@ main {
 }
 
 .carousel-arrow.left {
-  left: 40px;
+  left: -5px;
 }
 
 .carousel-arrow.right {
-  right: 40px;
+  right: -5px;
 }
 
 @media (max-width: 768px) {
