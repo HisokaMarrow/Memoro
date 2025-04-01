@@ -330,7 +330,6 @@ main {
 
 /* Scrollable row of cards */
 .main-carousel {
-  height: 400px;
   display: flex;
   overflow-y: visible;
   overflow-x: auto;
@@ -348,7 +347,6 @@ main {
 
 /* Basic card */
 .main-carousel-box {
-  height: 300px;
   flex: 0 0 280px;
   scroll-snap-align: start;
   background: lightgray;
