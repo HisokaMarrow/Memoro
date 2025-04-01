@@ -31,6 +31,15 @@
     .catch(err => console.error('Header load error:', err));
 </script>
 
+<div id="gameContainer">
+  <div id="goWrapper">
+    <button id="startButton">Start</button>
+  </div>
+  <div id="countdownLabel" style="display:none;">Get Ready</div>
+  <div id="countdown" style="display:none;"></div>
+  <div id="output" style="display:none;"></div>
+</div>
+
 <script>
   // Global vars
   let isPaused = false;
