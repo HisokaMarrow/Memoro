@@ -324,7 +324,7 @@ main {
 /* Carousel wrapper to position arrows */
 .carousel-wrapper {
   position: relative;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   overflow: visible; /* <- important so arrows aren't clipped */
   margin: 0 auto;
