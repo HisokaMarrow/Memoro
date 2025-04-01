@@ -322,8 +322,9 @@ main {
    CAROUSEL
 ========================== */
 .main-carousel {
-  max-width: 1000px
   width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
   flex-wrap: nowrap;
   display: flex;
   overflow-x: auto;
@@ -370,7 +371,9 @@ main {
 .carousel-wrapper {
   position: relative;
   overflow: hidden;
+  width: 100%;
   max-width: 1000px;
+  box-sizing: border-box;
   margin: 0 auto;
 }
 
