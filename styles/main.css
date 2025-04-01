@@ -321,97 +321,59 @@ main {
 /* =======================
    CAROUSEL
 ========================== */
-.main-carousel {
-  width: 100%;
+/* Carousel wrapper to position arrows */
+.carousel-wrapper {
+  position: relative;
   max-width: 1000px;
-  box-sizing: border-box;
-  flex-wrap: nowrap;
+  margin: 0 auto;
+}
+
+/* Scrollable row of cards */
+.main-carousel {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding:  60px;         /* ensures snapping aligns with edges */
+  scroll-padding: 60px;
   gap: 20px;
-  padding: 0px 60px;             /* ← this gives you visual gutter space */
-  margin-bottom: 40px;
-  scroll-behavior: smooth;
+  padding: 0 60px;
+  box-sizing: border-box;
 }
 
+/* Hide scrollbar for WebKit */
 .main-carousel::-webkit-scrollbar {
   display: none;
 }
 
+/* Basic card */
 .main-carousel-box {
   flex: 0 0 280px;
-  max-width: 280px;
   scroll-snap-align: start;
-  background: var(--color-bg-card);
+  background: lightgray;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  min-height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-radius: 8px;
 }
 
-.main-carousel-box h3 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-}
-
-.main-carousel-box p {
-  font-size: 0.95rem;
-  color: var(--color-subtext);
-  margin-bottom: auto;
-}
-
-.main-carousel-box .main-button {
-  margin-top: 20px;
-}
-
-.carousel-wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1000px;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-
+/* Arrows */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 32px;
-  height: 120px;
-  background-color: rgba(128, 128, 128, 0.15); /* subtle transparent grey */
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.2);
   color: white;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none; /* removed dark edge */
-  border-radius: 10px;
+  border: none;
   cursor: pointer;
-  z-index: 10;
-  opacity: 0;
-  transition: background-color 0.2s ease, opacity 0.25s ease;
+  z-index: 1;
 }
 
-.carousel-wrapper:hover .carousel-arrow {
-  opacity: 1;
-}
-
-.carousel-arrow:hover {
-  background-color: rgba(128, 128, 128, 0.25); /* more visible on hover */
-}
-
+/* Left and right arrow positioning */
 .carousel-arrow.left {
-  left: 0px;
+  left: 0;
 }
 
 .carousel-arrow.right {
-  right: 0px;
+  right: 0;
 }
 
 @media (max-width: 768px) {
