@@ -331,7 +331,8 @@ main {
 /* Scrollable row of cards */
 .main-carousel {
   display: flex;
-  overflow-x: visible;
+  overflow-y: visible;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding: 60px;
   gap: 20px;
