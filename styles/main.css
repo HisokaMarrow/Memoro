@@ -338,7 +338,7 @@ main {
   gap: 20px;
   margin-bottom: 0px;
   max-width: 1000px;
-  padding: 20px 40px; /* ← this adds 40px left and right */
+  padding: 40px 40px; /* ← this adds 40px left and right */
   scroll-padding: 0 40px; /* helps with snapping to start/end */
 }
 
