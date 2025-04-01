@@ -31,14 +31,16 @@
     .catch(err => console.error('Header load error:', err));
 </script>
 
-<div id="gameContainer">
-  <div id="goWrapper">
-    <button id="startButton">Start</button>
-  </div>
-  <div id="countdownLabel" style="display:none;">Get Ready</div>
-  <div id="countdown" style="display:none;"></div>
-  <div id="output" style="display:none;"></div>
-</div>
+<main>
+   <div class="main-container">
+     <div class="main-button-block" id="goWrapper">
+       <button class="main-button" id="startButton">Start Game</button>
+     </div>
+     <h2 id="countdownLabel" class="main-title" style="display: none;">Starting in...</h2>
+     <div id="countdown" class="main-countdown" style="display: none;"></div>
+     <div id="output" class="main-word" style="display: none;"></div>
+   </div>
+ </main>
 
 <script>
   // Global vars
