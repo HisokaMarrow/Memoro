@@ -70,7 +70,7 @@
   const isCorrect = parseFloat(userAnswer) === item.answer;
   if (isCorrect) correct++;
 
-  const operator = item.operator || "×";
+  const operator = item.operator || "-";
   const expression = item.numbers
     ? item.numbers.join(` ${operator} `)
     : `${item.a} ${operator} ${item.b}`;
