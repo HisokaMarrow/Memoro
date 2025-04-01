@@ -335,7 +335,7 @@ main {
 }
 
 .main-carousel-box {
-  flex: 0 0 80%;
+  flex: 0 0 33.33333%;
   scroll-snap-align: start;
   background: var(--color-bg-card);
   padding: 20px;
