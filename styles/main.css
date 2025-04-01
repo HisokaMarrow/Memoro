@@ -343,7 +343,7 @@ main {
   margin-bottom: 0px;
   max-width: 1000px;
   padding: 40px 40px; /* ← this adds 40px left and right */
-  scroll-padding: 0 40px; /* helps with snapping to start/end */
+  scroll-padding: 20px 20px; /* helps with snapping to start/end */
 }
 
 .main-carousel::-webkit-scrollbar {
@@ -414,11 +414,11 @@ main {
 }
 
 .carousel-arrow.left {
-  left: -5px;
+  left: 0px;
 }
 
 .carousel-arrow.right {
-  right: -5px;
+  right: 0px;
 }
 
 @media (max-width: 768px) {
