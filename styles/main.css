@@ -336,8 +336,8 @@ main {
   overflow-y: visible;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  scroll-padding: 60px;
-  gap: 20px;
+  scroll-padding: 0px;
+  gap: 40px;
   padding: 0 0px;
   box-sizing: border-box;
 }
