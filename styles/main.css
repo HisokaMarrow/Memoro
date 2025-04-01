@@ -330,6 +330,7 @@ main {
 
 /* Scrollable row of cards */
 .main-carousel {
+  height: 400px;
   display: flex;
   overflow-y: visible;
   overflow-x: auto;
@@ -347,6 +348,7 @@ main {
 
 /* Basic card */
 .main-carousel-box {
+  height: 300px;
   flex: 0 0 280px;
   scroll-snap-align: start;
   background: lightgray;
@@ -360,12 +362,19 @@ main {
   top: 50%;
   transform: translateY(-50%);
   width: 32px;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.2);
+  height: 120px;
+  background-color: rgba(128, 128, 128, 0.15); /* subtle transparent grey */
   color: white;
-  border: none;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none; /* removed dark edge */
+  border-radius: 10px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 10;
+  opacity: 0;
+  transition: background-color 0.2s ease, opacity 0.25s ease;
 }
 
 /* Left and right arrow positioning */
