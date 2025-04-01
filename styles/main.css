@@ -324,7 +324,8 @@ main {
 /* Carousel wrapper to position arrows */
 .carousel-wrapper {
   position: relative;
-  max-width: 1000px;
+  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -332,7 +333,7 @@ main {
 .main-carousel {
   display: flex;
   overflow-y: visible;
-  overflow-x: auto;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-padding: 60px;
   gap: 20px;
