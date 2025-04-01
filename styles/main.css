@@ -322,12 +322,13 @@ main {
    CAROUSEL
 ========================== */
 .main-carousel {
+  max-width: 1000px
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding: 60px 60px;         /* ensures snapping aligns with edges */
+  scroll-padding:  60px;         /* ensures snapping aligns with edges */
   gap: 20px;
-  padding: 60px 60px;             /* ← this gives you visual gutter space */
+  padding: 0px 60px;             /* ← this gives you visual gutter space */
   margin-bottom: 40px;
   scroll-behavior: smooth;
 }
@@ -367,7 +368,7 @@ main {
 .carousel-wrapper {
   position: relative;
   overflow: hidden;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
