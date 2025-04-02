@@ -70,10 +70,16 @@
 
     function togglePause() {
       isPaused = !isPaused;
-      if (pauseBtn) pauseBtn.textContent = isPaused ? "Resume" : "Pause";
-      if (!isPaused && pauseCallback) {
-        pauseCallback();
-        pauseCallback = null;
+
+      const pauseBtnDesktop = document.getElementById("gameheadertimerdown-pauseButton");
+      const pauseBtnMobile = document.getElementById("pauseBtn-timer-mobile");
+
+      if (pauseBtnDesktop) pauseBtnDesktop.textContent = isPaused ? "Resume" : "Pause";
+      if (pauseBtnMobile) pauseBtnMobile.textContent = isPaused ? "Resume" : "Pause";
+
+      if (!isPaused && pauseResolve) {
+        pauseResolve();
+        pauseResolve = null;
       }
     }
 
