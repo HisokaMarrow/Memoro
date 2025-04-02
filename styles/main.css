@@ -612,6 +612,8 @@ main {
 
   .carousel-arrow {
     display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .result-summary {
