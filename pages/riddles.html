@@ -53,13 +53,13 @@
     Train your lateral thinking and logic with riddles that twist your brain into shape.
   </p>
 
-  <div class="main-grid" id="riddleGamesGrid"></div>
+  <div class="main-grid" id="gamecardgrid"></div>
 </main>
 
 <script>
   function renderRiddleGames(games) {
     const riddles = games.filter(g => g.category === "Riddles");
-    const container = document.getElementById("riddleGamesGrid");
+    const container = document.getElementById("gamecardgrid");
     if (!container) return;
 
     riddles.forEach(game => {
