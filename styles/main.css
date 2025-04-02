@@ -330,6 +330,13 @@ main {
   color: var(--color-secondary-hover);
 }
 
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
 /* =======================
    COUNTDOWN & PROBLEM TEXT
 ========================== */
