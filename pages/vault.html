@@ -59,7 +59,7 @@
 <script>
   function renderVaultContent(games) {
     const vaultItems = games.filter(g => g.category === "Vault");
-    const container = document.getElementById("vaultGrid");
+    const container = document.getElementById("main-grid");
     if (!container) return;
 
     vaultItems.forEach(item => {
