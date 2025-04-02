@@ -51,13 +51,13 @@
   <h1 class="main-title">Memory Games</h1>
   <p class="main-subtitle">Train your memory through fast-paced, fun recall challenges.</p>
 
-  <div class="main-grid" id="memoryGamesGrid"></div>
+  <div class="main-grid" id="gamecardgrid"></div>
 </main>
 
 <script>
   function renderMemoryGames(games) {
     const memoryGames = games.filter(g => g.category === "Memory");
-    const container = document.getElementById("memoryGamesGrid");
+    const container = document.getElementById("gamecardgrid");
     if (!container) return;
 
     memoryGames.forEach(game => {
