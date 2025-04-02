@@ -215,7 +215,7 @@ main {
   padding: 20px;
   text-align: center;
   transition: transform 0.2s ease;
-  width: 300%;
+  width: 300px;
   flex: 0 0 auto;
   box-sizing: border-box;
 }
@@ -555,8 +555,8 @@ main {
   .main-container-games,
   .main-container-daily-chalange,
   .main-container-carusel {
-    padding: 20px;
-    margin: 20px 20px;
+    padding: 20px 20px;
+    margin: 0px 0px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
