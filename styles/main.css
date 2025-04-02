@@ -373,6 +373,7 @@ main {
   padding: 20px 10px;
   box-sizing: border-box;
   z-index: 0;
+  text-align: center;
 }
 
 /* Hide scrollbar for WebKit */
@@ -431,7 +432,7 @@ main {
 
 .carousel-arrow.right {
   position: absolute;
-  right: -50px;
+  right: -40px;
   top: 50%;
   transform: translateY(-50%);
   
