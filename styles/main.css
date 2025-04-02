@@ -628,26 +628,26 @@ main {
 
   .main-grid,
     grid-template-columns: 1fr !important;
-    align-items: center;
     gap: 15px;
-    justify-items: center;
   }
   
   .results-grid,
     grid-template-columns: 1fr !important;
-    align-items: center;
     gap: 15px;
-    justify-items: center;
   }
   
   .riddles-results-grid {
     grid-template-columns: 1fr !important;
-    align-items: center;
     gap: 15px;
-    justify-items: center;
   }
 
   .main-box,
+    width: 100%;
+    display: flex !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
   .result-box {
     width: 100%;
     max-width: 100%;
