@@ -53,13 +53,13 @@
     Learn proven memory systems and techniques used by champions, monks, and professionals.
   </p>
 
-  <div class="main-grid" id="vaultGrid"></div>
+  <div class="main-grid" id="gamecardgrid"></div>
 </main>
 
 <script>
   function renderVaultContent(games) {
     const vaultItems = games.filter(g => g.category === "Vault");
-    const container = document.getElementById("vaultGrid");
+    const container = document.getElementById("gamecardgrid");
     if (!container) return;
 
     vaultItems.forEach(item => {
