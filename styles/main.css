@@ -544,7 +544,7 @@ main {
   .main-container {
     padding: 20px;
     margin: 20px auto;
-    width: 100%
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -552,14 +552,14 @@ main {
   .main-container-games {
     padding: 20px;
     margin: 20px auto;
-    width: 100%
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
 
   .main-container-daily-chalange {
     padding: 20px;
     margin: 20px auto;
-    width: 100%
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -567,7 +567,7 @@ main {
   .main-container-carusel {
     padding: 20px;
     margin: 20px auto;
-    width: 100%
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
   }
