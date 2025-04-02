@@ -437,6 +437,14 @@ main {
   transform: translateY(-50%);
   
 
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
+}
+
+
+
 /* =======================
    RESULTS & FEEDBACK
 ========================== */
@@ -478,55 +486,64 @@ main {
   }
 }
 
-/* ==== Card Sorting Page ==== */
-.card-sorting-grid {
+/* =======================
+   RESPONSIVE
+========================== */
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 1.6rem;
+  }
+
+  .main-subtitle {
+    font-size: 1rem;
+  }
+
+  .main-countdown {
+    font-size: 2.2rem;
+  }
+}
+
+/* Hide native checkbox */
+.main-option-box input[type="checkbox"] {
+  display: none;
+}
+
+/* Custom radio-looking checkbox */
+.main-option-box .custom-radio-style {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #7f5af0;  /* your purple */
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+  background-color: transparent;
+}
+
+.main-option-box input[type="checkbox"]:checked + .custom-radio-style::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #7f5af0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#gameContainer {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding-top: 20px;
 }
 
-.card-sortable {
-  width: 80px;
-  height: auto;
-  cursor: grab;
-  user-select: none;
-  border-radius: 6px;
-  transition: transform 0.2s ease;
-}
-
-.card-sortable:active {
-  cursor: grabbing;
-  transform: scale(1.05);
-}
-
-.card-sortable.correct {
-  border: 3px solid #38c172;
-}
-
-.card-sortable.incorrect {
-  border: 3px solid #e3342f;
-}
-
-.card-image {
-  width: 80px;
-  height: auto;
-  border-radius: 6px;
-}
-
-.card-image.correct {
-  border: 3px solid var(--color-success);
-}
-
-.card-image.incorrect {
-  border: 3px solid var(--color-error);
-}
 
 /* ================================================
    MOBILE RESPONSIVE STYLES — DROP AT BOTTOM OF main.css
 ================================================= */
-
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -537,33 +554,14 @@ main {
     padding: 20px 10px;
   }
 
-  .main-container {
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .main-container-games {
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .main-container-daily-chalange {
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
-
+  .main-container,
+  .main-container-games,
+  .main-container-daily-chalange,
   .main-container-carusel {
     padding: 20px;
-    margin: 0 auto;
+    margin: 20px auto;
+    width: 100%;
     max-width: 100%;
-    overflow: hidden;
     box-sizing: border-box;
   }
 
@@ -624,7 +622,6 @@ main {
   .main-box,
   .result-box {
     width: 100%;
-    max-width: 100%;
     box-sizing: border-box;
   }
 
@@ -636,7 +633,11 @@ main {
     padding: 10px 20px;
     gap: 15px;
   }
-  
+
+  .carousel-arrow {
+    display: none; /* hide arrows on small screens */
+  }
+
   .result-summary {
     font-size: 1rem;
     padding: 10px 0;
@@ -647,34 +648,57 @@ main {
   }
 }
 
-/* =======================
-   RESPONSIVE
-========================== */
-@media (max-width: 600px) {
-  .main-title {
-    font-size: 1.6rem;
-  }
-
-  .main-subtitle {
-    font-size: 1rem;
-  }
-
-  .main-countdown {
-    font-size: 2.2rem;
-  }
-  
-  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  #gameContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
+/* Prevent horizontal overflow on small screens */
+* {
+  box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
+/* ==== Card Sorting Page ==== */
+.card-sorting-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.card-sortable {
+  width: 80px;
+  height: auto;
+  cursor: grab;
+  user-select: none;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.card-sortable:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.card-sortable.correct {
+  border: 3px solid #38c172;
+}
+
+.card-sortable.incorrect {
+  border: 3px solid #e3342f;
+}
+
+.card-image {
+  width: 80px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.card-image.correct {
+  border: 3px solid var(--color-success);
+}
+
+.card-image.incorrect {
+  border: 3px solid var(--color-error);
+}
