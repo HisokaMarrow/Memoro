@@ -50,13 +50,13 @@
   <h1 class="main-title">Math Training</h1>
   <p class="main-subtitle">Sharpen your mental math and numeric agility with rapid challenges.</p>
 
-  <div class="main-grid" id="mathGamesGrid"></div>
+  <div class="main-grid" id="gamecardgrid"></div>
 </main>
 
   <script>
   function renderMathGames(games) {
     const mathGames = games.filter(g => g.category === "Math");
-    const container = document.getElementById("mathGamesGrid");
+    const container = document.getElementById("gamecardgrid");
     if (!container) return;
 
     mathGames.forEach(game => {
