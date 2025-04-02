@@ -25,11 +25,8 @@ body {
 
 main {
   max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 40px 20px;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -119,36 +116,6 @@ main {
   cursor: default;
 }
 
-/* Hide native checkbox */
-.main-option-box input[type="checkbox"] {
-  display: none;
-}
-
-/* Custom radio-looking checkbox */
-.main-option-box .custom-radio-style {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #7f5af0;  /* your purple */
-  border-radius: 50%;
-  margin-right: 10px;
-  position: relative;
-  top: 2px;
-  background-color: transparent;
-}
-
-.main-option-box input[type="checkbox"]:checked + .custom-radio-style::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: #7f5af0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
 
 /* =======================
    CONTAINERS
@@ -177,13 +144,24 @@ main {
 .main-container-daily-chalange {
   background: var(--color-bg-card);
   border-radius: 12px;
-  padding: 40px 40px;
+  padding: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin: 40px 40px;
+  margin: 40px auto;
   text-align: center;
   max-width: 1000px;
-  overflow: hidden;
-  box-sizing: border-box;
+}
+
+.main-container-carusel {
+  background: var(--color-bg-card); /* white card */
+  padding: 40px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  max-width: 1000px;
+  max-height: auto;
+  overflow-x: auto;
+  padding: 30px 20px; /* top/bottom, left/right */
 }
 
 /* =======================
@@ -353,58 +331,62 @@ main {
 /* =======================
    CAROUSEL
 ========================== */
-/* Carousel wrapper to position arrows */
-.carousel-wrapper {
-  position: relative;
-  max-width: 1000px;
-  width: 100%;
-  overflow: visible; /* <- important so arrows aren't clipped */
-  margin: 0 auto;
-}
-
-/* Scrollable row of cards */
 .main-carousel {
   display: flex;
-  overflow-y: visible;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding: 0px;
-  gap: 25px;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  z-index: 0;
-  text-align: center;
+  gap: 20px;
+  margin-bottom: 0px;
+  max-width: 1000px;
+  padding: 20px 40px; /* ← this adds 40px left and right */
+  scroll-padding: 0 40px; /* helps with snapping to start/end */
 }
 
-/* Hide scrollbar for WebKit */
 .main-carousel::-webkit-scrollbar {
   display: none;
 }
 
-/* Basic card */
 .main-carousel-box {
-  flex: 0 0 280px;
+  flex: 0 0 80%;
   scroll-snap-align: start;
-  background: lightgray;
+  background: var(--color-bg-card);
   padding: 20px;
-  border-radius: 8px;
-  position: relative;      /* <-- required for z-index to work */
-  z-index: 1;              /* base layer */
-  
-}
-.main-carousel-box:hover {
-  transform: scale(1.05);
-  z-index: 20;             /* pops above other elements */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Arrows */
+.main-carousel-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.main-carousel-box p {
+  font-size: 0.95rem;
+  color: var(--color-subtext);
+  margin-bottom: auto;
+}
+
+.main-carousel-box .main-button {
+  margin-top: 20px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 32px;
-  height: 140px;
+  height: 120px;
   background-color: rgba(128, 128, 128, 0.15); /* subtle transparent grey */
   color: white;
   font-size: 1.6rem;
@@ -423,19 +405,17 @@ main {
   opacity: 1;
 }
 
+.carousel-arrow:hover {
+  background-color: rgba(128, 128, 128, 0.25); /* more visible on hover */
+}
+
 .carousel-arrow.left {
-  position: absolute;
-  left: -40px;   /* ← moves it outside the wrapper */
-  top: 50%;
-  transform: translateY(-50%);
+  left: 10px;
 }
 
 .carousel-arrow.right {
-  position: absolute;
-  right: -40px;
-  top: 50%;
-  transform: translateY(-50%);
-  
+  right: 10px;
+}
 
 @media (max-width: 768px) {
   .carousel-arrow {
@@ -656,49 +636,4 @@ main {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
-}
-
-/* ==== Card Sorting Page ==== */
-.card-sorting-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  padding-top: 20px;
-}
-
-.card-sortable {
-  width: 80px;
-  height: auto;
-  cursor: grab;
-  user-select: none;
-  border-radius: 6px;
-  transition: transform 0.2s ease;
-}
-
-.card-sortable:active {
-  cursor: grabbing;
-  transform: scale(1.05);
-}
-
-.card-sortable.correct {
-  border: 3px solid #38c172;
-}
-
-.card-sortable.incorrect {
-  border: 3px solid #e3342f;
-}
-
-.card-image {
-  width: 80px;
-  height: auto;
-  border-radius: 6px;
-}
-
-.card-image.correct {
-  border: 3px solid var(--color-success);
-}
-
-.card-image.incorrect {
-  border: 3px solid var(--color-error);
 }
