@@ -536,16 +536,34 @@ main {
     padding: 20px 10px;
   }
 
-  .main-container,
-  .main-container-games,
-  .main-container-carusel,
+  .main-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-container-games {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .main-container-daily-chalange {
     padding: 20px;
     margin: 0 auto;
-    width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
     overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .main-container-carusel {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
   }
 
   .main-title {
