@@ -75,15 +75,19 @@
   }
 
   function togglePause() {
-    isPaused = !isPaused;
-    const pauseBtn = document.getElementById("gameheadertimerdown-pauseButton");
-    if (pauseBtn) pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+      isPaused = !isPaused;
 
-    if (!isPaused && pauseResolve) {
-      pauseResolve();
-      pauseResolve = null;
+      const pauseBtnDesktop = document.getElementById("gameheadertimerdown-pauseButton");
+      const pauseBtnMobile = document.getElementById("pauseBtn-timer-mobile");
+
+      if (pauseBtnDesktop) pauseBtnDesktop.textContent = isPaused ? "Resume" : "Pause";
+      if (pauseBtnMobile) pauseBtnMobile.textContent = isPaused ? "Resume" : "Pause";
+
+      if (!isPaused && pauseResolve) {
+        pauseResolve();
+        pauseResolve = null;
+      }
     }
-  }
 
   function endEarly() {
     shouldStopGame = true;
