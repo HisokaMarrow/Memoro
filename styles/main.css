@@ -416,6 +416,10 @@ main {
   transition: background-color 0.2s ease, opacity 0.25s ease;
 }
 
+.carousel-wrapper:hover .carousel-arrow {
+  opacity: 1;
+}
+
 .carousel-arrow.left {
   position: absolute;
   left: -40px;   /* ← moves it outside the wrapper */
