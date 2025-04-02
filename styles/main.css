@@ -177,13 +177,11 @@ main {
 .main-container-daily-chalange {
   background: var(--color-bg-card);
   border-radius: 12px;
-  padding: 40px 40px;
+  padding: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin: 40px 40px;
+  margin: 40px auto;
   text-align: center;
   max-width: 1000px;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* =======================
@@ -435,7 +433,13 @@ main {
   right: -40px;
   top: 50%;
   transform: translateY(-50%);
-  
+}
+
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
+}
 
 /* =======================
    RESULTS & FEEDBACK
@@ -539,31 +543,32 @@ main {
 
   .main-container {
     padding: 20px;
-    margin: 0 auto;
+    margin: 20px auto;
+    width: 100%
     max-width: 100%;
     box-sizing: border-box;
   }
 
   .main-container-games {
     padding: 20px;
-    margin: 0 auto;
+    margin: 20px auto;
+    width: 100%
     max-width: 100%;
     box-sizing: border-box;
-  }
 
   .main-container-daily-chalange {
     padding: 20px;
-    margin: 0 auto;
+    margin: 20px auto;
+    width: 100%
     max-width: 100%;
-    overflow: hidden;
     box-sizing: border-box;
   }
 
   .main-container-carusel {
     padding: 20px;
-    margin: 0 auto;
+    margin: 20px auto;
+    width: 100%
     max-width: 100%;
-    overflow: hidden;
     box-sizing: border-box;
   }
 
@@ -645,6 +650,10 @@ main {
   .correct-answer {
     font-size: 0.9rem;
   }
+  
+  .carousel-arrow {
+    display: none; /* hide arrows on small screens */
+  }
 }
 
 /* =======================
@@ -663,16 +672,22 @@ main {
     font-size: 2.2rem;
   }
   
-  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
   #gameContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  /* Prevent horizontal overflow on small screens */
+  * {
+    box-sizing: border-box;
+  }
+  
+  
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
 }
