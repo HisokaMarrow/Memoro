@@ -631,6 +631,7 @@ main {
   .riddles-results-grid {
     grid-template-columns: 1fr !important;
     gap: 15px;
+    justify-items: center;
   }
 
   .main-box,
