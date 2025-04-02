@@ -69,9 +69,14 @@
     if (input) input.style.display = "none";
 
     function togglePause() {
-      if (!pauseBtn) return;
       isPaused = !isPaused;
-      pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+
+      const pauseBtnDesktop = document.getElementById("gameheadertimerdown-pauseButton");
+      const pauseBtnMobile = document.getElementById("pauseBtn-timer-mobile");
+
+      if (pauseBtnDesktop) pauseBtnDesktop.textContent = isPaused ? "Resume" : "Pause";
+      if (pauseBtnMobile) pauseBtnMobile.textContent = isPaused ? "Resume" : "Pause";
+
       if (!isPaused && pauseResolve) {
         pauseResolve();
         pauseResolve = null;
