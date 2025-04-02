@@ -119,6 +119,36 @@ main {
   cursor: default;
 }
 
+/* Hide native checkbox */
+.main-option-box input[type="checkbox"] {
+  display: none;
+}
+
+/* Custom radio-looking checkbox */
+.main-option-box .custom-radio-style {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #7f5af0;  /* your purple */
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+  background-color: transparent;
+}
+
+.main-option-box input[type="checkbox"]:checked + .custom-radio-style::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #7f5af0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 /* =======================
    CONTAINERS
@@ -185,7 +215,7 @@ main {
   padding: 20px;
   text-align: center;
   transition: transform 0.2s ease;
-  width: 100%;
+  width: 300%;
   flex: 0 0 auto;
   box-sizing: border-box;
 }
@@ -526,7 +556,7 @@ main {
   .main-container-daily-chalange,
   .main-container-carusel {
     padding: 20px;
-    margin: 20px auto;
+    margin: 20px 20px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
