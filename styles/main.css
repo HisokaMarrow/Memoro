@@ -662,5 +662,19 @@ main {
   .main-countdown {
     font-size: 2.2rem;
   }
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  #gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
 }
+
 
