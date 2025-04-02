@@ -713,7 +713,7 @@ main {
   
 }
 
-#mathGamesGrid {
+#gamecardgrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
@@ -723,7 +723,7 @@ main {
   margin: 0 auto;
 }
 
-#mathGamesGrid .main-box {
+#gamecardgrid .main-box {
   width: 100%;
   max-width: 300px;
   box-sizing: border-box;
