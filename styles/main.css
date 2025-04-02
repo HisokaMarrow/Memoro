@@ -630,6 +630,7 @@ main {
   .results-grid,
   .riddles-results-grid {
     grid-template-columns: 1fr !important;
+    align-items: center;
     gap: 15px;
     justify-items: center;
   }
