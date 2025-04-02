@@ -538,7 +538,6 @@ main {
 
   .main-container,
   .main-container-games,
-  .main-container-daily-chalange,
   .main-container-carusel {
     padding: 20px 20px;
     margin: 0px 0px;
@@ -546,6 +545,12 @@ main {
     max-width: 100%;
     box-sizing: border-box;
   }
+  
+  @media (max-width: 768px) {
+  .main-container-daily-chalange {
+    padding: 0px;
+    margin: 0px auto;
+    max-width: 100%;
 
   .main-title {
     font-size: 1.6rem;
