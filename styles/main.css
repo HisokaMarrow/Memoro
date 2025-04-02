@@ -422,6 +422,15 @@ main {
     margin: 20px auto;
     max-width: 100%;
   }
+  
+  .main-container-daily-chalange {
+    margin: 20px auto !important;
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
 
   .main-title {
     font-size: 1.6rem;
