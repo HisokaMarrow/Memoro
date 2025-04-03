@@ -627,17 +627,17 @@ main {
   }
 
   .main-grid,
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 15px;
   }
   
   .results-grid,
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 15px;
   }
   
   .riddles-results-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 15px;
   }
 
